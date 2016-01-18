@@ -1,0 +1,118 @@
+project.group = 'neuron'
+project.version = '5.0.0'
+
+apply plugin: 'java'
+apply plugin: 'maven'
+apply plugin: 'eclipse-wtp'
+//apply plugin: 'war'
+
+configurations {
+    deployerJars
+}
+
+repositories {
+    //mavenCentral()
+	maven {
+		url "http://182.92.67.89:8080/nexus/content/repositories/central/"
+	}
+	maven {
+		url "http://182.92.67.89:8080/nexus/content/repositories/snapshots/"
+	}
+	maven {
+		url "http://182.92.67.89:8080/nexus/content/repositories/thirdparty/"
+	}
+}
+
+dependencies {
+
+	compile 'neuron:sup-base-client:5.0.2-SNAPSHOT'
+	compile 'neuron:sup-account-client:5.0.5-SNAPSHOT'
+	compile 'neuron:sup-activity-client:5.0.0-SNAPSHOT'
+	compile 'neuron:sup-blog-client:5.0.0-SNAPSHOT'
+	compile 'neuron:sup-session-client:5.0.2-SNAPSHOT'
+	//compile 'neuron:sup-mailroom-client:5.0.1-SNAPSHOT'
+	//compile 'neuron:sup-smsbox-client:5.0.1-SNAPSHOT'
+	compile 'neuron:sup-msg-client:5.0.1-SNAPSHOT'
+	
+    compile 'org.springframework:spring-webmvc:4.2.1.RELEASE'
+	compile 'org.slf4j:slf4j-api:1.7.7'
+    compile 'net.sf.json-lib:json-lib:2.4:jdk15'
+	runtime 'ch.qos.logback:logback-classic:1.1.3'
+	runtime 'org.slf4j:jcl-over-slf4j:1.7.7'
+	
+	//providedCompile 'javax.servlet:javax.servlet-api:3.1.0'
+    //providedCompile 'javax.servlet.jsp:jsp-api:2.2.1-b03'
+    //providedCompile 'javax.servlet.jsp.jstl:javax.servlet.jsp.jstl-api:1.2.1'
+    compile 'javax.servlet:javax.servlet-api:3.1.0'
+    compile 'javax.servlet.jsp:jsp-api:2.2.1-b03'
+    compile 'javax.servlet.jsp.jstl:javax.servlet.jsp.jstl-api:1.2.1'
+    compile 'org.apache.taglibs:taglibs-standard-impl:1.2.1'
+	
+	testCompile 'junit:junit:4.11'
+    testCompile 'org.springframework:spring-test:4.2.1.RELEASE'
+    
+}
+
+sourceSets {
+    main {
+        java {
+            srcDir 'src/main/java'
+        }
+    }
+}
+
+jar {
+    manifest {
+        attributes 'Implementation-Title': project.name + ' all', 'Implementation-Version': project.version
+    }
+
+	include '**/*.class'
+}
+
+//war{
+//	webAppDirName = "WebContent"
+//	dependsOn jar
+//	from("$projectDir/src/main/resources") {
+//		include "*.*"
+//		into("WEB-INF/classes")
+//    }
+//    classpath = classpath - sourceSets.main.output
+//    classpath fileTree(dir: libsDir, include: "${project.name}-${project.version}.jar")
+//}
+
+task jarsrc (type:Jar) {
+    manifest {
+        attributes 'Implementation-Title': project.name + ' all sources', 'Implementation-Version': project.version
+    }
+    
+	classifier = 'sources'
+
+	from (sourceSets.main.allSource) {
+    	include '**/*.java'
+    }
+}
+
+artifacts {
+	archives jar
+	archives jarsrc
+}
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+			configuration = configurations.deployerJars
+			repository(url: "http://182.92.67.89:8080/nexus/content/repositories/snapshots/") {
+				authentication(userName: "admin", password: "20151010")
+			}
+            addFilter('all') {artifact, file ->
+                artifact.name == jar.baseName
+            }
+            pom('all').version = project.version + '-SNAPSHOT'
+            pom('all').packaging = 'jar'
+        }
+    }
+}
+
+tasks.withType(JavaCompile) {
+	options.encoding = "UTF-8"
+}

@@ -1,0 +1,4 @@
+include	'aplan-wechat',
+	'blog',
+	'sticky-note',
+	'admin'
