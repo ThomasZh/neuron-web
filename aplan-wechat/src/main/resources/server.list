@@ -1,0 +1,10 @@
+[
+{"id":"b89e7d48-25e6-4ed7-9fff-1b000dbf6cdf","ip":"siriusb","port":17101,"type":1701,"active"="true"},
+{"id":"0594a068-c476-480c-ba15-4e47df0491a5","ip":"siriusa","port":17101,"type":1701,"active"="true"},
+{"id":"e1f33ee8-d666-403b-ba94-c7edee1ccfdb","ip":"siriusb","port":17102,"type":1702,"active"="true"},
+{"id":"5a581e17-8065-4444-b747-f70677af566b","ip":"siriusa","port":17102,"type":1702,"active"="true"},
+{"id":"5309e209-f97e-4c3e-8367-6762d790e238","ip":"siriusb","port":17105,"type":1705,"active"="true"},
+{"id":"e6aaed21-60a0-4ec5-82d3-8bc4211a3f1c","ip":"siriusc","port":17106,"type":1706,"active"="true"},
+{"id":"68df84ba-9ec0-4df5-b62d-dc57d997529f","ip":"siriusd","port":17106,"type":1706,"active"="true"},
+{"id":"68df84ba-9ec0-4df5-b62d-dc57d997529f","ip":"siriusb","port":17107,"type":1707,"active"="true"}
+]
