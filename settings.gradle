@@ -1,4 +1,4 @@
-include	'aplan-wechat',
-	'blog',
-	'sticky-note',
-	'admin'
+include	'stp-web',
+	'stp-blog',
+	'stp-stickynote',
+	'stp-admin'
