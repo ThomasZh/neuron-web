@@ -1,4 +1,4 @@
 include	'stp-web',
-	'stp-blog',
-	'stp-stickynote',
-	'stp-admin'
+	'web-blog',
+	'web-stickynote',
+	'web-admin'
