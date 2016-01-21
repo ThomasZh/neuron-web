@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:task="http://www.springframework.org/schema/task" xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+            http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd
+        http://www.springframework.org/schema/task
+        http://www.springframework.org/schema/task/spring-task.xsd">
+	<context:property-placeholder location="classpath:sup-msg-cli.properties"
+		ignore-unresolvable="true" />
+	<bean id="msgReconnectingExecutor"
+		class="com.redoct.neuron.sup.rpc.client.avro.SharedScheduledExecutor"
+		init-method="init" destroy-method="shutdown" />
+	<bean name="msgBuilder"
+		class="com.redoct.neuron.sup.rpc.common.avro.ServiceProxyInterfaceBuilder"
+		scope="prototype">
+		<property name="name" value="${msg.avro.client.proxy.interface}" />
+	</bean>
+	<bean name="msgDiscoverer"
+		class="com.redoct.neuron.sup.rpc.common.avro.ServiceInterfaceDiscoverer"
+		scope="prototype">
+		<property name="serviceGroup" value="${msg.avro.client.service.group}" />
+	</bean>
+
+	<bean id="msgPool" class="com.redoct.neuron.sup.rpc.client.avro.ServiceProxyPool"
+		destroy-method="closeProxies">
+		<property name="serverAddresses" value="${msg.avro.server.addresses}" />
+		<property name="executor" ref="msgReconnectingExecutor" />
+	</bean>
+	<bean id="msgHandler"
+		class="com.redoct.neuron.sup.rpc.client.avro.AvroInvocationHandler">
+		<property name="serviceProxyPool" ref="msgPool" />
+		<lookup-method name="newBuilder" bean="msgBuilder" />
+		<lookup-method name="newDiscoverer" bean="msgDiscoverer" />
+	</bean>
+	<bean id="msgService"
+		class="com.redoct.neuron.sup.rpc.client.ServiceDelegatorFactoryBean">
+		<property name="serviceInterface"
+			value="com.redoct.neuron.sup.msg.service.SupMsgService" />
+		<property name="invocationHandler" ref="msgHandler" />
+	</bean>
+	<bean
+		class="com.redoct.neuron.sup.rpc.client.avro.AvroInvocationHandlerInitializer"
+		init-method="init">
+		<property name="avroInvocationHandlers">
+			<list>
+				<ref bean="msgHandler" />
+			</list>
+		</property>
+	</bean>
+</beans>

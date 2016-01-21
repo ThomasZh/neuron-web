@@ -262,7 +262,7 @@ public class ActivityController {
 			activitySignup.setSignupTime(timestamp);
 			activitySignup.setStatus(ActivityConstants.ACTIVITY_SIGNUP_STATUS_PENDING);
 			activitySignupService.createOrUpdate(activitySignup);
-/*
+
 			ActivityMember leader = activity.getLeader();
 			if (leader == null) {
 				LOGGER.error("Can not find leader, activityId: {}", activityId);
@@ -294,7 +294,7 @@ public class ActivityController {
 			sysNotifyFacade.multcast(msgOriginal, new String[] { myAccountId }, timestamp);
 
 			accountService.follow(leader.getAccountId(), myAccountId);
-*/
+
 			return "applySuccess";
 		}
 
@@ -390,7 +390,7 @@ public class ActivityController {
 				activitySignup.setStatus(ActivityConstants.ACTIVITY_SIGNUP_STATUS_PENDING);
 				activitySignupService.createOrUpdate(activitySignup);
 			}
-/*
+
 			Activity activity = activityService.read(activityId);
 			if (activity == null) {
 				LOGGER.error("Can not find activity, id: {}", activityId);
@@ -426,7 +426,7 @@ public class ActivityController {
 			sysNotifyFacade.multcast(msgOriginal, new String[] { myAccountId }, timestamp);
 
 			accountService.follow(leader.getAccountId(), myAccountId);
-*/
+
 		} // if (user != null)
 
 		return "applySuccess";

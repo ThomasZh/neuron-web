@@ -19,6 +19,7 @@ import com.redoct.neuron.sup.account.service.SupAccountService;
 @Controller
 @RequestMapping(path = "/accounts")
 public class ResetPwdController {
+
 	private static final Logger LOGGER = LoggerFactory.getLogger(ResetPwdController.class);
 	@Autowired
 	private SupAccountService accountService;
@@ -47,4 +48,5 @@ public class ResetPwdController {
 
 		return "resetpwdSuccess";
 	}
+
 }

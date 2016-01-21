@@ -1,4 +1,4 @@
-include	'stp-web',
+include	'web-wechat',
 	'web-blog',
 	'web-stickynote',
 	'web-admin'

@@ -33,7 +33,7 @@
 			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry sourcepath="/Users/thomas/.gradle/caches/modules-2/files-2.1/neuron/sup-msg-client/5.0.1-SNAPSHOT/b69448c3a89990c256b92c8f01e42cb5268b7e8d/sup-msg-client-5.0.1-SNAPSHOT-sources.jar" kind="lib" path="/Users/thomas/.gradle/caches/modules-2/files-2.1/neuron/sup-msg-client/5.0.1-SNAPSHOT/2bf2dd8dc230ed05fa51cfd40713d943d0f0fb8/sup-msg-client-5.0.1-SNAPSHOT.jar">
+	<classpathentry sourcepath="/Users/thomas/.gradle/caches/modules-2/files-2.1/neuron/sup-msg-client/5.0.2-SNAPSHOT/df15f2adbe55d043fdb639c2aa140e5ed3a0c9cb/sup-msg-client-5.0.2-SNAPSHOT-sources.jar" kind="lib" path="/Users/thomas/.gradle/caches/modules-2/files-2.1/neuron/sup-msg-client/5.0.2-SNAPSHOT/c43acb0c111379a7f61f4b36d50fca00961f3f78/sup-msg-client-5.0.2-SNAPSHOT.jar">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
 		</attributes>

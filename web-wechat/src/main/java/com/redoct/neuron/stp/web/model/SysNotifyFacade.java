@@ -30,7 +30,7 @@ public class SysNotifyFacade {
 		String msgId = supMsgService.store(msgOriginal, timestamp);
 		LOGGER.debug("Store system notify original, [ type = {}, resId = {} ]", msgOriginal.getType(),
 				msgOriginal.getResId());
-		
+
 		SysNotifyExt msgExt = new SysNotifyExt();
 		msgExt.setId(msgOriginal.getId());
 		msgExt.setType(msgOriginal.getType());
@@ -45,9 +45,11 @@ public class SysNotifyFacade {
 		msgExt.setContent(msgOriginal.getContent());
 		msgExt.setAction(msgOriginal.getAction());
 
-		List<String> iosDeviceTokens = new ArrayList<String>();
-		List<String> androidDeviceTokens = new ArrayList<String>();
+		List<String> iosOfflineDeviceTokens = new ArrayList<String>();
+		List<String> androidOnlineDeviceTokens = new ArrayList<String>();
+		List<String> androidOfflineDeviceTokens = new ArrayList<String>();
 
+		int expiry = (int) System.currentTimeMillis() / 1000 + 1209600;
 		for (String toAccountId : toAccountIds) {
 			msgExt.setToAccountId(toAccountId);
 			if (toAccountId.equals(msgExt.getFromAccountId())) {
@@ -60,32 +62,51 @@ public class SysNotifyFacade {
 				LOGGER.debug("Store system notify ext, [ toAccountId = {} ]", toAccountId);
 
 				StpSession toStpSession = supSessionService.queryStpSession(toAccountId);
-				if (toStpSession != null) {
-					LOGGER.debug("Multcast system notify, [ msgId = {}, os = {}, notifyToken = {} ]", msgExt.getId(),
-							toStpSession.getDeviceOsVersion(), toStpSession.getNotifyToken());
+				String os = toStpSession.getDeviceOsVersion().toLowerCase();
+				LOGGER.debug("Multcast system notify, [ msgId = {}, os = {}, notifyToken = {} ]", msgExt.getId(), os,
+						toStpSession.getNotifyToken());
 
-					if (toStpSession.getDeviceOsVersion().contains("android")
-							|| toStpSession.getDeviceOsVersion().contains("Android")) {
-						if (toStpSession.getNotifyToken() != null && toStpSession.getNotifyToken().length() > 0)
-							androidDeviceTokens.add(toStpSession.getNotifyToken());
-					} else if (toStpSession.getDeviceOsVersion().contains("iOS")
-							|| toStpSession.getDeviceOsVersion().contains("ios")) {
-						if (!toStpSession.isActive()) { // offline
-							if (toStpSession.getNotifyToken() != null && toStpSession.getNotifyToken().length() > 0)
-								iosDeviceTokens.add(toStpSession.getNotifyToken());
+				if (os.contains("android")) {
+					if (toStpSession.getNotifyToken() != null && toStpSession.getNotifyToken().length() > 0) {
+						if (toStpSession.isActive()) { // online
+							if (expiry - toStpSession.getExpiryTime() > 300) { // offline
+								androidOfflineDeviceTokens.add(toStpSession.getNotifyToken());
+							} else {
+								androidOnlineDeviceTokens.add(toStpSession.getNotifyToken());
+							}
+						} else {
+							androidOfflineDeviceTokens.add(toStpSession.getNotifyToken());
 						}
 					}
-				} // toStpSession != null
-			}
+				} else if (os.contains("ios")) {
+					if (!toStpSession.isActive()) { // offline
+						if (toStpSession.getNotifyToken() != null && toStpSession.getNotifyToken().length() > 0) {
+							iosOfflineDeviceTokens.add(toStpSession.getNotifyToken());
+						}
+					}
+				}
+			} // toStpSession != null
 		} // for
 
-		if (iosDeviceTokens.size() > 0) {
-			supMsgService.multcast("ios", iosDeviceTokens, msgExt);
+		if (iosOfflineDeviceTokens.size() > 0) {
+			supMsgService.multcast(false, "ios", iosOfflineDeviceTokens, msgExt);
+			for (String deviceToken : iosOfflineDeviceTokens) {
+				LOGGER.debug("ios offline deviceToken: ", deviceToken);
+			}
 		}
-		if (androidDeviceTokens.size() > 0) {
-			supMsgService.multcast("android", androidDeviceTokens, msgExt);
+		if (androidOnlineDeviceTokens.size() > 0) {
+			supMsgService.multcast(true, "android", androidOnlineDeviceTokens, msgExt);
+			for (String deviceToken : androidOnlineDeviceTokens) {
+				LOGGER.debug("android online deviceToken: ", deviceToken);
+			}
 		}
-		
+		if (androidOfflineDeviceTokens.size() > 0) {
+			supMsgService.multcast(false, "android", androidOfflineDeviceTokens, msgExt);
+			for (String deviceToken : androidOfflineDeviceTokens) {
+				LOGGER.debug("android offline deviceToken: ", deviceToken);
+			}
+		}
+
 		return msgId;
 	}
 
