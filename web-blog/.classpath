@@ -13,7 +13,7 @@
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="output" path="bin"/>
-	<classpathentry sourcepath="/Users/thomas/.gradle/caches/modules-2/files-2.1/neuron/sup-base-client/5.0.2-SNAPSHOT/4d2c10a55b191cf9d0a90df9a5c00b84d2d3aeb8/sup-base-client-5.0.2-SNAPSHOT-sources.jar" kind="lib" path="/Users/thomas/.gradle/caches/modules-2/files-2.1/neuron/sup-base-client/5.0.2-SNAPSHOT/54a16cf665953a4146a50c3ec843c6f29c8cd3db/sup-base-client-5.0.2-SNAPSHOT.jar">
+	<classpathentry sourcepath="/Users/thomas/.gradle/caches/modules-2/files-2.1/neuron/sup-base-client/5.0.2-SNAPSHOT/5b28c4026cfe82225cd2a69c02fdefc636059a47/sup-base-client-5.0.2-SNAPSHOT-sources.jar" kind="lib" path="/Users/thomas/.gradle/caches/modules-2/files-2.1/neuron/sup-base-client/5.0.2-SNAPSHOT/9070a303c98d4481f067ff963b1d6cc4a4c64ffd/sup-base-client-5.0.2-SNAPSHOT.jar">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
 		</attributes>
@@ -23,7 +23,7 @@
 			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry sourcepath="/Users/thomas/.gradle/caches/modules-2/files-2.1/neuron/sup-blog-client/5.0.0-SNAPSHOT/bcfd7c035aed5b62cb67e508d737337e7e69af3f/sup-blog-client-5.0.0-SNAPSHOT-sources.jar" kind="lib" path="/Users/thomas/.gradle/caches/modules-2/files-2.1/neuron/sup-blog-client/5.0.0-SNAPSHOT/5c11cba56c74b855fa6204f9e51e30f18e683e46/sup-blog-client-5.0.0-SNAPSHOT.jar">
+	<classpathentry sourcepath="/Users/thomas/.gradle/caches/modules-2/files-2.1/neuron/sup-blog-client/5.0.2-SNAPSHOT/bb006dab613a36cac68d6bb2b7b7c5951e05a03a/sup-blog-client-5.0.2-SNAPSHOT-sources.jar" kind="lib" path="/Users/thomas/.gradle/caches/modules-2/files-2.1/neuron/sup-blog-client/5.0.2-SNAPSHOT/369621ac9889f1fe29883797d309ce52b25165b4/sup-blog-client-5.0.2-SNAPSHOT.jar">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
 		</attributes>
@@ -93,11 +93,6 @@
 			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry sourcepath="/Users/thomas/.gradle/caches/modules-2/files-2.1/org.apache.commons/commons-pool2/2.4.1/da4b1a9ec3b989b5a70e23978d196ccbaea06842/commons-pool2-2.4.1-sources.jar" kind="lib" path="/Users/thomas/.gradle/caches/modules-2/files-2.1/org.apache.commons/commons-pool2/2.4.1/87b53127a85d88ad364dbf16f832ed9386a8ec2a/commons-pool2-2.4.1.jar">
-		<attributes>
-			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
-		</attributes>
-	</classpathentry>
 	<classpathentry sourcepath="/Users/thomas/.gradle/caches/modules-2/files-2.1/org.aspectj/aspectjweaver/1.8.7/2c276bb839d67f39766342cf77ea799da72ea323/aspectjweaver-1.8.7-sources.jar" kind="lib" path="/Users/thomas/.gradle/caches/modules-2/files-2.1/org.aspectj/aspectjweaver/1.8.7/f753e78bbe484e58b3b4e5ce3cc1751e50d11f6c/aspectjweaver-1.8.7.jar">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
@@ -124,6 +119,11 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry sourcepath="/Users/thomas/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.3.1/563dcb685903c96ce8abbd03adf7fa49e19aa8b4/gson-2.3.1-sources.jar" kind="lib" path="/Users/thomas/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.3.1/ecb6e1f8e4b0e84c4b886c2f14a1500caf309757/gson-2.3.1.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/thomas/.gradle/caches/modules-2/files-2.1/org.apache.commons/commons-pool2/2.4.1/da4b1a9ec3b989b5a70e23978d196ccbaea06842/commons-pool2-2.4.1-sources.jar" kind="lib" path="/Users/thomas/.gradle/caches/modules-2/files-2.1/org.apache.commons/commons-pool2/2.4.1/87b53127a85d88ad364dbf16f832ed9386a8ec2a/commons-pool2-2.4.1.jar">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
 		</attributes>
