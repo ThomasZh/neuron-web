@@ -50,7 +50,9 @@ import com.redoct.neuron.sup.activity.service.ActivityMemberService;
 import com.redoct.neuron.sup.activity.service.ActivityService;
 import com.redoct.neuron.sup.activity.service.ActivitySignupService;
 import com.redoct.neuron.sup.activity.service.ApplicationTemplateFieldService;
+import com.redoct.neuron.sup.activity.service.FriendActivityService;
 import com.redoct.neuron.sup.activity.service.ItineraryService;
+import com.redoct.neuron.sup.activity.service.SymbolService;
 import com.redoct.neuron.sup.msg.comm.MsgGlobalArgs;
 import com.redoct.neuron.sup.msg.domain.SysNotifyOriginal;
 
@@ -80,6 +82,10 @@ public class ActivityController {
 	private static final String DOMAIN = "planc2c.com";
 	@Autowired
 	private SysNotifyFacade sysNotifyFacade;
+	@Autowired
+	private FriendActivityService friendActivityService;
+	@Autowired
+	private SymbolService symbolService;
 
 	@RequestMapping(path = "/info", method = RequestMethod.GET)
 	public String initInfoForm(@RequestParam("ekey") String activityId, Map<String, Object> model) {
@@ -94,7 +100,7 @@ public class ActivityController {
 		model.put("datetime", datetime);
 
 		String leaderId = activity.getLeader().getAccountId();
-		AccountBasic leader = accountService.queryAccount(leaderId);
+		AccountBasic leader = accountService.findAccountBasicById(leaderId);
 		model.put("leader", leader);
 
 		List<Itinerary> itineraries = itineraryService.findPosterByActivityId(activityId);
@@ -202,15 +208,18 @@ public class ActivityController {
 
 				String myAccountId = null;
 				long timestamp = System.currentTimeMillis();
-				if (accountService.verifyExist(AccountGlobalArgs.ACCOUNT_LOGIN_BY_WECHAT, unionid)) {
+				if (accountService.verifyLoginExist(AccountGlobalArgs.ACCOUNT_LOGIN_BY_WECHAT, unionid)) {
 					LOGGER.warn("sessionId=[" + session.getId() + "]|This unionid(" + unionid + ") already exist!");
-					AccountBasic account = accountService.queryAccount(AccountGlobalArgs.ACCOUNT_LOGIN_BY_WECHAT,
-							unionid);
+					AccountBasic account = accountService
+							.findAccountBasicByLogin(AccountGlobalArgs.ACCOUNT_LOGIN_BY_WECHAT, unionid);
 					myAccountId = account.getAccountId();
 					LOGGER.info("sessionId=[" + session.getId() + "]|accountId=[" + myAccountId + "]|nickname=["
 							+ nickname + "]| login success)");
 				} else {
-					myAccountId = accountService.createAccount(nickname, headimgurl, "", timestamp);
+					AccountBasic account = new AccountBasic();
+					account.setNickname(nickname);
+					account.setAvatarUrl(headimgurl);
+					myAccountId = accountService.createAccountBasic(account, timestamp);
 					accountService.createLogin(myAccountId, AccountGlobalArgs.ACCOUNT_LOGIN_BY_WECHAT, unionid,
 							timestamp);
 					LOGGER.info("sessionId=[" + session.getId() + "]|accountId=[" + myAccountId + "]|nickname=["
@@ -266,8 +275,11 @@ public class ActivityController {
 			ActivityMember leader = activity.getLeader();
 			if (leader == null) {
 				LOGGER.error("Can not find leader, activityId: {}", activityId);
-				return null;
+				return "applySuccess";
 			}
+			accountService.follow(leader.getAccountId(), myAccountId);
+			friendActivityService.create(myAccountId, leader.getAccountId());
+			symbolService.create(myAccountId, leader.getAccountId());
 
 			SysNotifyOriginal msgOriginal = new SysNotifyOriginal();
 			msgOriginal.setFromAccountId(myAccountId);
@@ -292,8 +304,6 @@ public class ActivityController {
 			msgOriginal.setResId(activityId);
 			msgOriginal.setContent("Send an application to join activity.");
 			sysNotifyFacade.multcast(msgOriginal, new String[] { myAccountId }, timestamp);
-
-			accountService.follow(leader.getAccountId(), myAccountId);
 
 			return "applySuccess";
 		}
@@ -394,13 +404,17 @@ public class ActivityController {
 			Activity activity = activityService.read(activityId);
 			if (activity == null) {
 				LOGGER.error("Can not find activity, id: {}", activityId);
-				return null;
+				return "applySuccess";
 			}
 			ActivityMember leader = activity.getLeader();
 			if (leader == null) {
 				LOGGER.error("Can not find leader, activityId: {}", activityId);
-				return null;
+				return "applySuccess";
 			}
+			accountService.follow(leader.getAccountId(), myAccountId);
+			friendActivityService.create(myAccountId, leader.getAccountId());
+			symbolService.create(myAccountId, leader.getAccountId());
+
 			SysNotifyOriginal msgOriginal = new SysNotifyOriginal();
 			msgOriginal.setFromAccountId(myAccountId);
 			msgOriginal.setFromNickname(nickname);
@@ -424,9 +438,6 @@ public class ActivityController {
 			msgOriginal.setResId(activityId);
 			msgOriginal.setContent("Send an application to join activity.");
 			sysNotifyFacade.multcast(msgOriginal, new String[] { myAccountId }, timestamp);
-
-			accountService.follow(leader.getAccountId(), myAccountId);
-
 		} // if (user != null)
 
 		return "applySuccess";

@@ -28,6 +28,7 @@ public class SysNotifyFacade {
 		msgOriginal.setToAccountIds(toAccountIds);
 		msgOriginal.setTimestamp(timestamp);
 		String msgId = supMsgService.store(msgOriginal, timestamp);
+		msgOriginal.setId(msgId);
 		LOGGER.debug("Store system notify original, [ type = {}, resId = {} ]", msgOriginal.getType(),
 				msgOriginal.getResId());
 
@@ -61,7 +62,7 @@ public class SysNotifyFacade {
 				supMsgService.store(msgExt, msgOriginal.getTimestamp());
 				LOGGER.debug("Store system notify ext, [ toAccountId = {} ]", toAccountId);
 
-				StpSession toStpSession = supSessionService.queryStpSession(toAccountId);
+				StpSession toStpSession = supSessionService.findStpSessionByAccountId(toAccountId);
 				String os = toStpSession.getDeviceOsVersion().toLowerCase();
 				LOGGER.debug("Multcast system notify, [ msgId = {}, os = {}, notifyToken = {} ]", msgExt.getId(), os,
 						toStpSession.getNotifyToken());

@@ -13,203 +13,214 @@ import com.redoct.neuron.sup.account.domain.ProfileBasic;
 import com.redoct.neuron.sup.account.domain.ProfileDetail;
 import com.redoct.neuron.sup.account.domain.VerificationCode;
 import com.redoct.neuron.sup.account.service.SupAccountService;
-import com.redoct.neuron.sup.exception.SupServiceException;
 
 @Component
 public class MockSupAccountServiceImpl implements SupAccountService {
 
 	@Override
-	public boolean verifyExist(short loginType, String loginName) throws SupServiceException {
-
+	public boolean verifyLoginExist(short loginType, String loginName) {
+		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public String verifyLogin(short loginType, String loginName, String md5pwd) throws SupServiceException {
-
+	public String verifyLoginPwd(short loginType, String loginName, String md5pwd) {
+		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public void resetPwd(short loginType, String loginName, String md5pwd, long timestamp) throws SupServiceException {
-
+	public void resetPwd(short loginType, String loginName, String md5pwd, long timestamp) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
-	public String createAccount(String nickname, String avatarUrl, String desc, long timestamp)
-			throws SupServiceException {
-
+	public String createAccountBasic(AccountBasic account, long timestamp) {
+		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public void modifyAccountBasicInfo(AccountBasic account, long timestamp) throws SupServiceException {
-
+	public void modifyAccountBasic(AccountBasic account, long timestamp) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
-	public void createLogin(String accountId, short loginType, String loginName, long timestamp)
-			throws SupServiceException {
-
+	public void createLogin(String accountId, short loginType, String loginName, long timestamp) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
-	public void modifyAccountId4Login(String accountId, short loginType, String loginName, long timestamp)
-			throws SupServiceException {
-
+	public void modifyAccountId4Login(String accountId, short loginType, String loginName, long timestamp) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
-	public String createEkey(short loginType, String loginName, long timestamp) throws SupServiceException {
-
+	public String createLostPwdEkey(short loginType, String loginName, long timestamp) {
+		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public LostPwdEkey queryEkey(String ekey) throws SupServiceException {
-
+	public LostPwdEkey findLostPwdEkey(String ekey) {
+		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public AccountBasic queryAccount(String accountId) throws SupServiceException {
-
+	public AccountBasic findAccountBasicById(String accountId) {
+		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public AccountBasic queryAccount(short loginType, String loginName) throws SupServiceException {
-
+	public AccountBasic findAccountBasicByLogin(short loginType, String loginName) {
+		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public AccountMaster queryAccountMaster(String accountId) throws SupServiceException {
-
+	public AccountMaster findAccountMasterById(String accountId) {
+		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<AccountDetail> queryAccountDetails(List<String> ids) throws SupServiceException {
-
+	public List<AccountDetail> findAccountDetails(List<String> ids) {
+		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public String queryLoginName(String accountId, short loginType) throws SupServiceException {
-
+	public String findLoginNameById(String accountId, short loginType) {
+		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public String applyVerificationCode(short verificationType, String deviceId, String phone, long timestamp)
-			throws SupServiceException {
-
+	public String applyResetPwdVerificationCode(short verificationType, String deviceId, String phone, long timestamp) {
+		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public VerificationCode queryVerificationCode(short verificationType, String deviceId) throws SupServiceException {
-
+	public VerificationCode findResetPwdVerificationCode(short verificationType, String deviceId) {
+		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public void follow(String accountId, String fanAccountId) {
-
+	public void follow(String accountId, String friendingId) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
-	public void unfollow(String accountId, String fanAccountId) {
-
+	public void unfollow(String accountId, String friendingId) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
-	public List<AccountBasic> queryFans(String accountId, int pageNum, int pageSize) {
-
+	public List<AccountBasic> findFansPagination(String accountId, int pageNum, int pageSize) {
+		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<String> queryAllFanIds(String accountId) {
-
+	public List<String> findAllFanIds(String accountId) {
+		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<String> queryAllFriendIds(String accountId) {
-
+	public List<String> findAllFriendIds(String accountId) {
+		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<AccountBasic> queryFollowing(String fanAccountId, int pageNum, int pageSize) {
-
+	public List<AccountBasic> findFollowingsPagination(String accountId, int pageNum, int pageSize) {
+		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public void addFriend(String accountId, String friendAccountId) {
-
+	public void addFriend(String accountId, String friendingId) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
-	public void removeFriend(String accountId, String friendAccountId) {
-
+	public void removeFriend(String accountId, String friendingId) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
-	public List<AccountBasic> queryFriend(String accountId, int pageNum, int pageSize) {
-
+	public List<AccountBasic> findFriendsPagination(String accountId, int pageNum, int pageSize) {
+		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public ProfileDetail queryProfileDetail(String talentAccountId, String accountId) {
-
+	public ProfileDetail findProfileDetail(String talentAccountId, String accountId) {
+		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public void updateFavoriteNum(String accountId, int num) {
-
+	public void modifyProfileFavoriteNum(String accountId, int num) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
-	public void updateMomentImageNum(String accountId, int num) {
-
+	public void modifyProfileMomentNum(String accountId, int num) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
-	public void updateCreateActivityNum(String accountId, int num) {
-
+	public void modifyProfileCreateActivityNum(String accountId, int num) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
-	public void updateJoinedActivityNum(String accountId, int num) {
-
+	public void modifyProfileJoinedActivityNum(String accountId, int num) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
-	public void updateUnpublishActivityNum(String accountId, int num) {
-
+	public void modifyProfileUnpublishActivityNum(String accountId, int num) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
-	public void updateProfileBasic(ProfileBasic profile, long timestamp) {
-
+	public void modifyProfileBasic(ProfileBasic profile, long timestamp) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
-	public FriendInvitation applyFriendInvitiation(String fromAccountId, String toAccountId, long timestamp) {
-
+	public FriendInvitation applyFriendInvitation(String fromAccountId, String toAccountId, long timestamp) {
+		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public FriendInvitation queryFriendInvitiation(String code) {
-
+	public FriendInvitation findFriendInvitation(String code) {
+		// TODO Auto-generated method stub
 		return null;
 	}
+
+
 
 }

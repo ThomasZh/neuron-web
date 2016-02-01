@@ -26,8 +26,8 @@ repositories {
 dependencies {
 
 	compile 'neuron:sup-base-client:5.0.2-SNAPSHOT'
-	compile 'neuron:sup-account-client:5.0.5-SNAPSHOT'
-	compile 'neuron:sup-activity-client:5.0.0-SNAPSHOT'
+	compile 'neuron:sup-account-client:5.1.0-SNAPSHOT'
+	compile 'neuron:sup-activity-client:5.0.1-SNAPSHOT'
 	//compile 'neuron:sup-blog-client:5.0.0-SNAPSHOT'
 	compile 'neuron:sup-session-client:5.0.2-SNAPSHOT'
 	//compile 'neuron:sup-mailroom-client:5.0.1-SNAPSHOT'

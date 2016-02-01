@@ -28,8 +28,8 @@ public class SessionController {
 	@RequestMapping(path = "/session", method = RequestMethod.GET)
 	public String initRecentlySessionForm(@RequestParam("ticket") String ticket, Map<String, Object> model) {
 		LOGGER.debug("ticket = {}", ticket);
-		StpSession session = supSessionService.queryStpSession(ticket);
-		AccountBasic account = accountService.queryAccount(session.getAccountId());
+		StpSession session = supSessionService.findStpSessionByTicket(ticket);
+		AccountBasic account = accountService.findAccountBasicById(session.getAccountId());
 
 		model.put("ticket", ticket);
 		model.put("account", account);
@@ -45,7 +45,7 @@ public class SessionController {
 
 		return "admin/removeSessionSuccess";
 	}
-	
+
 	@RequestMapping(path = "/removeAccount", method = RequestMethod.GET)
 	public String initRemoveAccountForm(@RequestParam("id") String id, Map<String, Object> model) {
 		LOGGER.debug("id = {}", id);
@@ -58,8 +58,8 @@ public class SessionController {
 	@RequestMapping(path = "/account", method = RequestMethod.GET)
 	public String initRecentlyAccountForm(@RequestParam("id") String id, Map<String, Object> model) {
 		LOGGER.debug("id = {}", id);
-		AccountBasic account = accountService.queryAccount(id);
-		StpSession session = supSessionService.queryStpSession(id);
+		AccountBasic account = accountService.findAccountBasicById(id);
+		StpSession session = supSessionService.findStpSessionByAccountId(id);
 
 		model.put("account", account);
 		model.put("session", session);

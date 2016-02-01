@@ -38,7 +38,7 @@ public class ResetPwdController {
 			model.put("message", "Input passwords don't match");
 			return "resetpwd";
 		}
-		LostPwdEkey lostPwdEkey = accountService.queryEkey(resetPwdForm.getEkey());
+		LostPwdEkey lostPwdEkey = accountService.findLostPwdEkey(resetPwdForm.getEkey());
 		LOGGER.debug("Retrived account with ekey, accountId: {}",
 				lostPwdEkey != null ? lostPwdEkey.getAccountId() : null);
 

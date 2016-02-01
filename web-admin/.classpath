@@ -13,17 +13,17 @@
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="output" path="bin"/>
-	<classpathentry sourcepath="/Users/thomas/.gradle/caches/modules-2/files-2.1/neuron/sup-base-client/5.0.2-SNAPSHOT/4d2c10a55b191cf9d0a90df9a5c00b84d2d3aeb8/sup-base-client-5.0.2-SNAPSHOT-sources.jar" kind="lib" path="/Users/thomas/.gradle/caches/modules-2/files-2.1/neuron/sup-base-client/5.0.2-SNAPSHOT/54a16cf665953a4146a50c3ec843c6f29c8cd3db/sup-base-client-5.0.2-SNAPSHOT.jar">
+	<classpathentry sourcepath="/Users/thomas/.gradle/caches/modules-2/files-2.1/neuron/sup-base-client/5.0.2-SNAPSHOT/bf46ebbb1328fb03a9e59d56561afa04abb40a11/sup-base-client-5.0.2-SNAPSHOT-sources.jar" kind="lib" path="/Users/thomas/.gradle/caches/modules-2/files-2.1/neuron/sup-base-client/5.0.2-SNAPSHOT/298dc5494bf04676abe1b96765b69f3c0ccba199/sup-base-client-5.0.2-SNAPSHOT.jar">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry sourcepath="/Users/thomas/.gradle/caches/modules-2/files-2.1/neuron/sup-account-client/5.0.5-SNAPSHOT/dea8af3c8302cca72594eb0b90dd685395508310/sup-account-client-5.0.5-SNAPSHOT-sources.jar" kind="lib" path="/Users/thomas/.gradle/caches/modules-2/files-2.1/neuron/sup-account-client/5.0.5-SNAPSHOT/dbdc14ad4399f4484ae831024709f641bcb3ea1c/sup-account-client-5.0.5-SNAPSHOT.jar">
+	<classpathentry sourcepath="/Users/thomas/.gradle/caches/modules-2/files-2.1/neuron/sup-account-client/5.1.0-SNAPSHOT/881c70a0e4b63e81248f927874f6f168ab1a870c/sup-account-client-5.1.0-SNAPSHOT-sources.jar" kind="lib" path="/Users/thomas/.gradle/caches/modules-2/files-2.1/neuron/sup-account-client/5.1.0-SNAPSHOT/25de828c6559d2e9d2b3413457330a350d7e16de/sup-account-client-5.1.0-SNAPSHOT.jar">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry sourcepath="/Users/thomas/.gradle/caches/modules-2/files-2.1/neuron/sup-session-client/5.0.2-SNAPSHOT/cbe47f9b2d4fd6c50aaae1e9409348d775e72c1a/sup-session-client-5.0.2-SNAPSHOT-sources.jar" kind="lib" path="/Users/thomas/.gradle/caches/modules-2/files-2.1/neuron/sup-session-client/5.0.2-SNAPSHOT/5b388f7d7b841c26b8b65290d9af1b9ce6025ce6/sup-session-client-5.0.2-SNAPSHOT.jar">
+	<classpathentry sourcepath="/Users/thomas/.gradle/caches/modules-2/files-2.1/neuron/sup-session-client/5.0.2-SNAPSHOT/da5358a9737a102cc6fb8932eb1a50612681263b/sup-session-client-5.0.2-SNAPSHOT-sources.jar" kind="lib" path="/Users/thomas/.gradle/caches/modules-2/files-2.1/neuron/sup-session-client/5.0.2-SNAPSHOT/d38c0bd49323d0f551d2f64a088e7e11524e2e3f/sup-session-client-5.0.2-SNAPSHOT.jar">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
 		</attributes>
@@ -88,11 +88,6 @@
 			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry sourcepath="/Users/thomas/.gradle/caches/modules-2/files-2.1/org.apache.commons/commons-pool2/2.4.1/da4b1a9ec3b989b5a70e23978d196ccbaea06842/commons-pool2-2.4.1-sources.jar" kind="lib" path="/Users/thomas/.gradle/caches/modules-2/files-2.1/org.apache.commons/commons-pool2/2.4.1/87b53127a85d88ad364dbf16f832ed9386a8ec2a/commons-pool2-2.4.1.jar">
-		<attributes>
-			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
-		</attributes>
-	</classpathentry>
 	<classpathentry sourcepath="/Users/thomas/.gradle/caches/modules-2/files-2.1/org.aspectj/aspectjweaver/1.8.7/2c276bb839d67f39766342cf77ea799da72ea323/aspectjweaver-1.8.7-sources.jar" kind="lib" path="/Users/thomas/.gradle/caches/modules-2/files-2.1/org.aspectj/aspectjweaver/1.8.7/f753e78bbe484e58b3b4e5ce3cc1751e50d11f6c/aspectjweaver-1.8.7.jar">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
@@ -123,12 +118,7 @@
 			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry sourcepath="/Users/thomas/.gradle/caches/modules-2/files-2.1/org.apache.mina/mina-core/2.0.7/42097d3346d4fa5d694f2ed6e87a4bf7689cff0e/mina-core-2.0.7-sources.jar" kind="lib" path="/Users/thomas/.gradle/caches/modules-2/files-2.1/org.apache.mina/mina-core/2.0.7/c878e2aa82de748474a624ec3933e4604e446dec/mina-core-2.0.7.jar">
-		<attributes>
-			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry sourcepath="/Users/thomas/.gradle/caches/modules-2/files-2.1/io.netty/netty-all/4.0.32.Final/f8d2fce4a8136b887eaa96858c906971545d8a3e/netty-all-4.0.32.Final-sources.jar" kind="lib" path="/Users/thomas/.gradle/caches/modules-2/files-2.1/io.netty/netty-all/4.0.32.Final/e8872b84e976530d8041718a71a98cd5805adf16/netty-all-4.0.32.Final.jar">
+	<classpathentry sourcepath="/Users/thomas/.gradle/caches/modules-2/files-2.1/neuron/sup-base/5.0.2-SNAPSHOT/f155d08f1bb124581bafa0511146273c218ca5e9/sup-base-5.0.2-SNAPSHOT-sources.jar" kind="lib" path="/Users/thomas/.gradle/caches/modules-2/files-2.1/neuron/sup-base/5.0.2-SNAPSHOT/c08fed6b340573ebe3e436b1931e9588f41ff14f/sup-base-5.0.2-SNAPSHOT.jar">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
 		</attributes>
@@ -188,26 +178,6 @@
 			<attribute name="org.eclipse.jst.component.nondependency" value=""/>
 		</attributes>
 	</classpathentry>
-	<classpathentry sourcepath="/Users/thomas/.gradle/caches/modules-2/files-2.1/org.springframework/spring-aop/4.2.1.RELEASE/23cbb6dc140af6cf79d30874268ecb589d1ee806/spring-aop-4.2.1.RELEASE-sources.jar" kind="lib" path="/Users/thomas/.gradle/caches/modules-2/files-2.1/org.springframework/spring-aop/4.2.1.RELEASE/e5e199d175497a895dcdc7e3531e32fea6fbbbee/spring-aop-4.2.1.RELEASE.jar">
-		<attributes>
-			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry sourcepath="/Users/thomas/.gradle/caches/modules-2/files-2.1/org.apache.httpcomponents/httpcore/4.3.2/4809f38359edeea9487f747e09aa58ec8d3a54c5/httpcore-4.3.2-sources.jar" kind="lib" path="/Users/thomas/.gradle/caches/modules-2/files-2.1/org.apache.httpcomponents/httpcore/4.3.2/31fbbff1ddbf98f3aa7377c94d33b0447c646b6e/httpcore-4.3.2.jar">
-		<attributes>
-			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry sourcepath="/Users/thomas/.gradle/caches/modules-2/files-2.1/commons-codec/commons-codec/1.6/61e9f9d11fe3e12ec62f633006e99d75fd7f19c8/commons-codec-1.6-sources.jar" kind="lib" path="/Users/thomas/.gradle/caches/modules-2/files-2.1/commons-codec/commons-codec/1.6/b7f0fc8f61ecadeb3695f0b9464755eee44374d4/commons-codec-1.6.jar">
-		<attributes>
-			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry sourcepath="/Users/thomas/.gradle/caches/modules-2/files-2.1/aopalliance/aopalliance/1.0/4a4b6d692e17846a9f3da036438a7ac491d3c814/aopalliance-1.0-sources.jar" kind="lib" path="/Users/thomas/.gradle/caches/modules-2/files-2.1/aopalliance/aopalliance/1.0/235ba8b489512805ac13a8f9ea77a1ca5ebe3e8/aopalliance-1.0.jar">
-		<attributes>
-			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
-		</attributes>
-	</classpathentry>
 	<classpathentry sourcepath="/Users/thomas/.gradle/caches/modules-2/files-2.1/org.ow2.asm/asm-tree/5.0.3/f0f24f6666c1a15c7e202e91610476bd4ce59368/asm-tree-5.0.3-sources.jar" kind="lib" path="/Users/thomas/.gradle/caches/modules-2/files-2.1/org.ow2.asm/asm-tree/5.0.3/287749b48ba7162fb67c93a026d690b29f410bed/asm-tree-5.0.3.jar">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
@@ -263,6 +233,21 @@
 			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry sourcepath="/Users/thomas/.gradle/caches/modules-2/files-2.1/org.springframework/spring-aop/4.2.1.RELEASE/23cbb6dc140af6cf79d30874268ecb589d1ee806/spring-aop-4.2.1.RELEASE-sources.jar" kind="lib" path="/Users/thomas/.gradle/caches/modules-2/files-2.1/org.springframework/spring-aop/4.2.1.RELEASE/e5e199d175497a895dcdc7e3531e32fea6fbbbee/spring-aop-4.2.1.RELEASE.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/thomas/.gradle/caches/modules-2/files-2.1/org.apache.httpcomponents/httpcore/4.3.2/4809f38359edeea9487f747e09aa58ec8d3a54c5/httpcore-4.3.2-sources.jar" kind="lib" path="/Users/thomas/.gradle/caches/modules-2/files-2.1/org.apache.httpcomponents/httpcore/4.3.2/31fbbff1ddbf98f3aa7377c94d33b0447c646b6e/httpcore-4.3.2.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/thomas/.gradle/caches/modules-2/files-2.1/commons-codec/commons-codec/1.6/61e9f9d11fe3e12ec62f633006e99d75fd7f19c8/commons-codec-1.6-sources.jar" kind="lib" path="/Users/thomas/.gradle/caches/modules-2/files-2.1/commons-codec/commons-codec/1.6/b7f0fc8f61ecadeb3695f0b9464755eee44374d4/commons-codec-1.6.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry sourcepath="/Users/thomas/.gradle/caches/modules-2/files-2.1/org.apache.ant/ant-launcher/1.9.4/b7ae945463dece0e58f3ebbf6d3d4c773277e1b2/ant-launcher-1.9.4-sources.jar" kind="lib" path="/Users/thomas/.gradle/caches/modules-2/files-2.1/org.apache.ant/ant-launcher/1.9.4/334b62cb4be0432769679e8b94e83f8fd5ed395c/ant-launcher-1.9.4.jar">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
@@ -279,6 +264,11 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry sourcepath="/Users/thomas/.gradle/caches/modules-2/files-2.1/org.apache.commons/commons-compress/1.4.1/277d39267403965a7a192474794a29bac6760a25/commons-compress-1.4.1-sources.jar" kind="lib" path="/Users/thomas/.gradle/caches/modules-2/files-2.1/org.apache.commons/commons-compress/1.4.1/b02e84a993d88568417536240e970c4b809126fd/commons-compress-1.4.1.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/thomas/.gradle/caches/modules-2/files-2.1/aopalliance/aopalliance/1.0/4a4b6d692e17846a9f3da036438a7ac491d3c814/aopalliance-1.0-sources.jar" kind="lib" path="/Users/thomas/.gradle/caches/modules-2/files-2.1/aopalliance/aopalliance/1.0/235ba8b489512805ac13a8f9ea77a1ca5ebe3e8/aopalliance-1.0.jar">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
 		</attributes>
