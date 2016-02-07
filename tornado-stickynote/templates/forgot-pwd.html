@@ -1,0 +1,28 @@
+<html>
+<head>
+<title>Forgot password</title>
+</head>
+
+<body>
+	<li><a href="/login">Login</a></li>
+	<form id="loginForm" action="/forgot-pwd" method="POST">
+		{% raw xsrf_form_html() %}
+		<div>{{ message }}</div>
+		<div>
+			Username: <input type="text" id="loginname" name="loginname" />
+		</div>
+		<div>
+			<input type="button" value="Forgot password" onclick="SubmitForm();">
+		</div>
+	</form>
+
+	<script type="text/javascript" src="{{static_url("md5.js")}}"></script>
+	<script type="text/javascript">
+		function SubmitForm() {
+			document.getElementById("loginname").value = document
+					.getElementById("loginname").value;
+			document.getElementById("loginForm").submit();
+		}
+	</script>
+</body>
+</html>

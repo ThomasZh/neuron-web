@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>Edit board</title>
+</head>
+<body>
+	<form method="post" action="edit-board">
+		<input type="hidden" value="{{board["id"]}}" name="boardId" />
+		<!-- the 'raw' word is to force escape to be desactivated (it is by default activated) -->
+		{% raw xsrf_form_html() %}
+		<h4 style="cursor: pointer" onClick="history.go(-1);return true;">&#60;&#160;Boards</h4>
+		<div>
+			<textarea name="title" rows="6">{{board["title"]}}</textarea>
+		</div>
+		<div>
+			<button type="submit">Done</button>
+		</div>
+	</form>
+	<form method="post" action="remove-board">
+		<input type="hidden" value="{{board["id"]}}" name="boardId" />
+		<!-- the 'raw' word is to force escape to be desactivated (it is by default activated) -->
+		{% raw xsrf_form_html() %}
+		<button type="submit">Delete</button>
+	</form>
+</body>
+</html>

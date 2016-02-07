@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>Green board demo implement by tornado</title>
+</head>
+<body>
+	<div id="body">
+		<ul id="blackboard">
+			<form id="logoutForm" action="/logout" method="POST">
+				{% raw xsrf_form_html() %}
+				<input type="submit" value="Logout" />
+			</form>
+			<li><a id="plus" href="add-board">Add Board</a></li>
+				{% for board in boards %} 
+				{% module Template("boards-block.html",board=board) %} 
+				{% end %}
+		</ul>
+	</div>
+</body>
+</html>

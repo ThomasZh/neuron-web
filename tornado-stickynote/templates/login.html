@@ -1,0 +1,34 @@
+<html>
+<head>
+<title>Please Log In</title>
+</head>
+
+<body>
+	<li><a href="/register">Register</a></li>
+	<form id="loginForm" action="/login" method="POST">
+		{% raw xsrf_form_html() %}
+		<div>{{ message }}</div>
+		<div>
+			Username: <input type="text" id="loginname" name="loginname" />
+		</div>
+		<div>
+			Password: <input type="password" id="password" name="password" />
+		</div>
+		<div>
+			<input type="button" value="Login" onclick="SubmitForm();">
+		</div>
+	</form>
+	<li><a href="forgot-pwd">Forgot Password</a></li>
+
+	<script type="text/javascript" src="{{static_url("md5.js")}}"></script>
+	<script type="text/javascript">
+		function SubmitForm() {
+			document.getElementById("loginname").value = document
+					.getElementById("loginname").value;
+			document.getElementById("password").value = hex_md5(document
+					.getElementById("password").value);
+			document.getElementById("loginForm").submit();
+		}
+	</script>
+</body>
+</html>
