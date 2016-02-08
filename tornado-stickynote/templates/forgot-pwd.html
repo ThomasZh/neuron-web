@@ -39,6 +39,18 @@ body {
 	<div class="container">
 		<form class="form-signin" id="form-signin" action="/forgot-pwd" method="POST">
 			{% raw xsrf_form_html() %} 
+			
+			<nav class="navbar">
+				<div class="container-fluid">
+					<ul class="nav navbar-nav navbar-left">
+						<h2>Resend your activation email</h2>
+					</ul>
+					<ul class="nav navbar-nav navbar-right">
+						<a href="/login">Sign in</a>
+					</ul>
+				</div>
+			</nav>
+			
 			{% if err_msg != "" %}
 			<div class="alert alert-danger" role="alert">
 				<span class="glyphicon glyphicon-exclamation-sign"
@@ -47,16 +59,13 @@ body {
 			</div>
 			{% end %}
 
-			<h2>Resend your activation email</h2>
-			<div><a href="/login">Sign in</a></div>
-			<br>
 			<div>
 				If you have fixed your email settings and require the email to be resent, please put in your email address below:
 			</div>
 			<br>
 			<div>
 				<label for="input-email" class="sr-only">Email address</label>
-				<input type="email" id="input-email" name="input-email" class="form-control"
+				<input type="email" id="input-email" name="input-email" class="form-control" value="{{ login_name }}"
 					placeholder="Email address" required autofocus>
 			</div>
 			<br>

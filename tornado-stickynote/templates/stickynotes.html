@@ -20,20 +20,22 @@ body {
     padding-right: 2px;
     padding-bottom: 2px;
 }
-@font-face {
-  font-family: 'Reenie Beanie';
-  font-style: normal;
-  font-weight: 400;
-  src: local('Reenie Beanie'), local('ReenieBeanie'), url({{static_url("fonts/ljpKc6CdXusL1cnGUSamX4kaQb-UsZVONjobs91YQtw.woff")}}) format('woff');
-}
 </style>
 </head>
 
 <body>
-	<h2 class="glyphicon glyphicon-chevron-left" style="cursor: pointer" onClick="history.go(-1);return true;">Boards</h2>
-	<div>
-		<a id="edit" href="edit-board?boardId={{boardId}}">Edit Board</a>
-	</div>
+<div class="container">
+	<nav class="navbar">
+		<div class="container-fluid">
+			<ul class="nav navbar-nav navbar-left">
+				<h3 class="glyphicon glyphicon-chevron-left" style="cursor: pointer" onClick="history.go(-1);return true;">Boards</h3>
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<a class="btn btn-md btn-primary" id="edit" href="edit-board?boardId={{boardId}}">Edit Board</a>
+			</ul>
+		</div>
+	</nav>
+
 	<div id="uncompleted_notes">
 		<ul>
 			<li><a id="plus" href="add-note?boardId={{boardId}}">
@@ -51,5 +53,6 @@ body {
 			{% end %}
 		</ul>
 	</div>	
+</div>
 </body>
 </html>

@@ -46,7 +46,15 @@ body {
         <input id="hiddenCompleted" name="hiddenCompleted" type="hidden" value="{{note["completed"]}}" />
 		<!-- the 'raw' word is to force escape to be desactivated (it is by default activated) -->
 		{% raw xsrf_form_html() %}
-		<h2 class="glyphicon glyphicon-chevron-left" style="cursor: pointer" onClick="history.go(-1);return true;">Boards</h2>
+		
+		<nav class="navbar">
+			<div class="container-fluid">
+				<ul class="nav navbar-nav">
+					<h3 class="glyphicon glyphicon-chevron-left" style="cursor: pointer" onClick="history.go(-1);return true;">Boards</h3>
+				</ul>
+			</div>
+		</nav>	
+			
 		<div class="form-group">
             <textarea id="title" name="title" class="form-control input-lg" 
                 placeholder="Please input content..." rows="6">{{note["title"]}}</textarea>

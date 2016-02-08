@@ -21,20 +21,26 @@ body {
     padding-right: 2px;
     padding-bottom: 2px;
 }
-@font-face {
-  font-family: 'Reenie Beanie';
-  font-style: normal;
-  font-weight: 400;
-  src: local('Reenie Beanie'), local('ReenieBeanie'), url({{static_url("fonts/ljpKc6CdXusL1cnGUSamX4kaQb-UsZVONjobs91YQtw.woff")}}) format('woff');
-}
 </style>
 </head>
 
 <body>
+	<div class="container">
 	<div>
 		<form id="logoutForm" action="/logout" method="POST">
 			{% raw xsrf_form_html() %}
-			<button class="btn btn-md btn-primary" type="submit">Logout</button>
+			
+			<nav class="navbar">
+				<div class="container-fluid">
+					<ul class="nav navbar-nav navbar-left">
+						<h2>Welcome, {{login_name}}</h2>
+					</ul>
+					<ul class="nav navbar-nav navbar-right">
+						<button class="btn btn-md btn-primary" type="submit">Logout</button>
+					</ul>
+				</div>
+			</nav>
+			
 		</form>
 	</div>
 	<div id="body">
@@ -46,6 +52,7 @@ body {
 				{% module Template("boards-block.html",board=board) %} 
 			{% end %}
 		</ul>
+	</div>
 	</div>
 </body>
 </html>
