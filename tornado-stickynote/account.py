@@ -34,7 +34,7 @@ class LoginHandler(BaseHandler):
             _remember_me = "off"
         print "login_name: "+_login_name
         print "remember_me: " + _remember_me
-        self.render('login.html', err_msg="", login_name=_login_name, remember_me=_remember_me)
+        self.render('account/login.html', err_msg="", login_name=_login_name, remember_me=_remember_me)
 
     def post(self):
         _email = self.get_argument("input-email")
@@ -64,7 +64,7 @@ class LoginHandler(BaseHandler):
             self.set_secure_cookie("remember_me", _remember_me)
             self.redirect("/")
         except Exception:  
-            self.render('login.html', err_msg="Please enter a correct username and password.", 
+            self.render('account/login.html', err_msg="Please enter a correct username and password.", 
                         login_name=_email, remember_me=_remember_me)
 
 
@@ -86,7 +86,7 @@ class LogoutHandler(BaseHandler):
 
 class RegisterHandler(BaseHandler):
     def get(self):
-        self.render('register.html', err_msg="")
+        self.render('account/register.html', err_msg="")
 
     def post(self):
         _email = self.get_argument("input-email")
@@ -118,7 +118,7 @@ class RegisterHandler(BaseHandler):
             self.set_secure_cookie("login_name", _email)
             self.redirect("/")
         except Exception:  
-            self.render('register.html', err_msg="Email already exist, please try another.")
+            self.render('account/register.html', err_msg="Email already exist, please try another.")
 
 
 class ForgotPwdHandler(BaseHandler):
@@ -126,7 +126,7 @@ class ForgotPwdHandler(BaseHandler):
         _email = self.get_secure_cookie("login_name")
         if _email == None:
             _email = ""
-        self.render('forgot-pwd.html', err_msg="", login_name=_email)
+        self.render('account/forgot-pwd.html', err_msg="", login_name=_email)
 
     def post(self):
         _email = self.get_argument("input-email", "")
@@ -139,5 +139,5 @@ class ForgotPwdHandler(BaseHandler):
         response = http_client.fetch(url, method="POST", body=_json)
         print response.body
 
-        self.render('login.html', err_msg="Email has been send to your mail, please check it.", 
+        self.render('account/login.html', err_msg="Email has been send to your mail, please check it.", 
                     login_name=_email, remember_me="on")    

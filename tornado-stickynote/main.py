@@ -27,6 +27,7 @@ from greenboard import BoardsHandler, AddBoardHandler, EditBoardHandler, \
     RemoveBoardHandler
 from stickynote import NotesHandler, AddNoteHandler, EditNoteHandler, \
     RemoveNoteHandler
+from activity import ActivityHandler
 
 
 define("port", default=8888, help="run on the given port", type=int)
@@ -49,6 +50,7 @@ def main():
             (r"/add-note", AddNoteHandler),
             (r"/edit-note", EditNoteHandler),
             (r"/remove-note", RemoveNoteHandler),
+            (r"/activity", ActivityHandler),
             ],
         # __TODO:_GENERATE_YOUR_OWN_RANDOM_VALUE_HERE__
         cookie_secret="bZJc2sWbQLKos6GkHn/VB9oXwQt8S0R0kRvJ5/xJ89E=",

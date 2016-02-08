@@ -42,14 +42,14 @@ body {
 				<img src="{{static_url("images/plus-black.png")}}" width="100%" height="100%" />
 			</a></li>
 			{% for note in unotes %} 
-				{% module Template("notes-block.html",note=note) %} 
+				{% module Template("stickynote/notes-block.html",note=note) %} 
 			{% end %}
 		</ul>
 	</div>
 	<div id="completed_notes">
 		<ul>
 			{% for note in cnotes %} 
-				{% module Template("notes-block.html",note=note) %} 
+				{% module Template("stickynote/notes-block.html",note=note) %} 
 			{% end %}
 		</ul>
 	</div>	

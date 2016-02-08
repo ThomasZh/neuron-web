@@ -41,15 +41,19 @@ class BoardsHandler(BaseHandler):
         logging.info("got response %r", response.body)
         print response.body
         boards = json_decode(response.body)
-        self.render("boards.html", login_name=_login_name, boards=boards)
+        self.render("stickynote/boards.html", login_name=_login_name, boards=boards)
 
 
 class AddBoardHandler(BaseHandler):
     @tornado.web.authenticated  # if no session, redirect to login page
     def get(self):
-        self.render("add-board.html")
+        self.render("stickynote/add-board.html")
 
     def post(self):
+        _login_name = self.get_secure_cookie("login_name")
+        if _login_name == None:
+            _login_name = ""
+            
         _title = (self.request.arguments['title'])[0]
         logging.info("got title %r", _title)
         print _title
@@ -69,7 +73,7 @@ class AddBoardHandler(BaseHandler):
         logging.info("got response %r", response.body)
         print response.body
         boards = json_decode(response.body)
-        self.render("boards.html", boards=boards)
+        self.render("stickynote/boards.html", login_name=_login_name, boards=boards)
 
 
 class EditBoardHandler(BaseHandler):
@@ -84,7 +88,7 @@ class EditBoardHandler(BaseHandler):
         response = http_client.fetch(url, method="GET")
         print response.body
         _board = json_decode(response.body)
-        self.render("edit-board.html", board=_board)
+        self.render("stickynote/edit-board.html", board=_board)
 
     def post(self):
         _boardId = (self.request.arguments['boardId'])[0]
@@ -118,12 +122,16 @@ class EditBoardHandler(BaseHandler):
         print response.body
         completed_notes = json_decode(response.body)
         
-        self.render("stickynotes.html", boardId=_boardId, unotes=uncompleted_notes, cnotes=completed_notes)
+        self.render("stickynote/stickynotes.html", boardId=_boardId, unotes=uncompleted_notes, cnotes=completed_notes)
         
 
 class RemoveBoardHandler(BaseHandler):
     @tornado.web.authenticated  # if no session, redirect to login page
     def post(self):
+        _login_name = self.get_secure_cookie("login_name")
+        if _login_name == None:
+            _login_name = ""
+            
         _boardId = (self.request.arguments['boardId'])[0]
         logging.info("got _boardId %r", _boardId)
         print _boardId
@@ -141,4 +149,4 @@ class RemoveBoardHandler(BaseHandler):
         logging.info("got response %r", response.body)
         print response.body
         boards = json_decode(response.body)
-        self.render("boards.html", boards=boards)
+        self.render("stickynote/boards.html", login_name=_login_name, boards=boards)

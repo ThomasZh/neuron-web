@@ -50,7 +50,7 @@ class NotesHandler(BaseHandler):
         print response.body
         completed_notes = json_decode(response.body)
         
-        self.render("stickynotes.html", boardId=_boardId, unotes=uncompleted_notes, cnotes=completed_notes)
+        self.render("stickynote/stickynotes.html", boardId=_boardId, unotes=uncompleted_notes, cnotes=completed_notes)
         
         
 class AddNoteHandler(BaseHandler):
@@ -60,7 +60,7 @@ class AddNoteHandler(BaseHandler):
         logging.info("got _boardId %r", _boardId)
         print _boardId
         
-        self.render("add-note.html", boardId=_boardId)
+        self.render("stickynote/add-note.html", boardId=_boardId)
 
     def post(self):
         _boardId = (self.request.arguments['boardId'])[0]
@@ -97,7 +97,7 @@ class AddNoteHandler(BaseHandler):
         print response.body
         completed_notes = json_decode(response.body)
         
-        self.render("stickynotes.html", boardId=_boardId, unotes=uncompleted_notes, cnotes=completed_notes)
+        self.render("stickynote/stickynotes.html", boardId=_boardId, unotes=uncompleted_notes, cnotes=completed_notes)
         
 
 class EditNoteHandler(BaseHandler):
@@ -116,7 +116,7 @@ class EditNoteHandler(BaseHandler):
         print response.body
         _note = json_decode(response.body)
         
-        self.render("edit-note.html", note=_note)
+        self.render("stickynote/edit-note.html", note=_note)
 
     def post(self):
         _boardId = (self.request.arguments['boardId'])[0]
@@ -162,7 +162,7 @@ class EditNoteHandler(BaseHandler):
         print response.body
         completed_notes = json_decode(response.body)
         
-        self.render("stickynotes.html", boardId=_boardId, unotes=uncompleted_notes, cnotes=completed_notes)
+        self.render("stickynote/stickynotes.html", boardId=_boardId, unotes=uncompleted_notes, cnotes=completed_notes)
         
 
 class RemoveNoteHandler(BaseHandler):
@@ -197,4 +197,4 @@ class RemoveNoteHandler(BaseHandler):
         print response.body
         completed_notes = json_decode(response.body)
         
-        self.render("stickynotes.html", boardId=_boardId, unotes=uncompleted_notes, cnotes=completed_notes)
+        self.render("stickynote/stickynotes.html", boardId=_boardId, unotes=uncompleted_notes, cnotes=completed_notes)

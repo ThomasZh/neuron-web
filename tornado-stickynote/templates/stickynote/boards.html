@@ -49,7 +49,7 @@ body {
 				<img src="{{static_url("images/plus-white.png")}}" width="100%" height="100%" />
 			</a></li>
 			{% for board in boards %} 
-				{% module Template("boards-block.html",board=board) %} 
+				{% module Template("stickynote/boards-block.html",board=board) %} 
 			{% end %}
 		</ul>
 	</div>
