@@ -1,33 +1,94 @@
 <html>
 <head>
-<title>Please Log In</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Sign in</title>
+<link rel="stylesheet"
+	href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<style type="text/css">
+body {
+    background-color: #666;
+}
+.container {
+    padding-top: 0px;
+    padding-left: 2px;
+    padding-right: 2px;
+    padding-bottom: 2px;
+}
+.form-signin {
+    max-width: 500px;
+    padding: 19px 19px 19px;
+    margin: 0 auto 20px;
+    background-color: #ffc;
+    border: 0px solid #e5e5e5;
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    border-radius: 0px;
+    -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+    -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+    box-shadow: 0 1px 2px rgba(0,0,0,.05);
+}
+</style>
 </head>
 
 <body>
-	<li><a href="/register">Register</a></li>
-	<form id="loginForm" action="/login" method="POST">
-		{% raw xsrf_form_html() %}
-		<div>{{ message }}</div>
-		<div>
-			Username: <input type="text" id="loginname" name="loginname" />
-		</div>
-		<div>
-			Password: <input type="password" id="password" name="password" />
-		</div>
-		<div>
-			<input type="button" value="Login" onclick="SubmitForm();">
-		</div>
-	</form>
-	<li><a href="forgot-pwd">Forgot Password</a></li>
+	<div class="container">
+		<form class="form-signin" id="form-signin" action="/login" method="POST">
+			{% raw xsrf_form_html() %}
+			{% if err_msg != "" %}
+			<div class="alert alert-danger" role="alert">
+				<span class="glyphicon glyphicon-exclamation-sign"
+					aria-hidden="true"></span> <span class="sr-only">Error:</span> {{
+				err_msg }}
+			</div>
+			{% end %}
+			<h2>Please sign in</h2>
+			<div><a href="/register">Sign up</a></div>
+			<br>
+			<div>
+				<label for="input-email" class="sr-only">Email address</label>
+				<input type="email" id="input-email" name="input-email" class="form-control" value="{{ login_name }}"
+					placeholder="Email address" required autofocus>
+			</div>
+			<br>
+			<div>
+				<label for="input-password" class="sr-only">Password</label>
+				<input type="password" id="input-password" name="input-password" class="form-control"
+					placeholder="Password" required>
+			</div>
+			<div class="checkbox">
+				{% if remember_me == "on" %}
+				<label> <input type="checkbox" name="remember-me" checked>
+					Remember me
+				</label>
+				{% else %}
+				<label> <input type="checkbox" name="remember-me" >
+					Remember me
+				</label>
+				{% end %}
+			</div>
+			<div>
+				<button class="btn btn-lg btn-primary btn-block" type="button" onclick="submitForm();">Sign in</button>
+			</div>
+			<br>
+			<div>
+				<a href="forgot-pwd">Forgot password</a>
+			</div>
+		</form>
+	</div>
 
 	<script type="text/javascript" src="{{static_url("md5.js")}}"></script>
 	<script type="text/javascript">
-		function SubmitForm() {
-			document.getElementById("loginname").value = document
-					.getElementById("loginname").value;
-			document.getElementById("password").value = hex_md5(document
-					.getElementById("password").value);
-			document.getElementById("loginForm").submit();
+		function submitForm() {
+			document.getElementById("input-email").value = document
+					.getElementById("input-email").value;
+			document.getElementById("input-password").value = hex_md5(document
+					.getElementById("input-password").value);
+			document.getElementById("form-signin").submit();
 		}
 	</script>
 </body>

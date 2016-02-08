@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>Edit note</title>
+</head>
+<body>
+	<form method="post" action="edit-note-action">
+		<input type="hidden" value="{{note["boardId"]}}" name="boardId" />
+		<input type="hidden" value="{{note["id"]}}" name="noteId" />
+		<!-- the 'raw' word is to force escape to be desactivated (it is by default activated) -->
+		{% raw xsrf_form_html() %}
+		<h4 style="cursor: pointer" onClick="history.go(-1);return true;">&#60;&#160;Boards</h4>
+		<div>
+			<textarea name="title" rows="6">{{note["title"]}}</textarea>
+		</div>
+		<div class="checkbox">
+			<label> 
+				{% if not note["completed"] %}
+            		<input type="checkbox" name="completed">Completed</input>
+          		{% else %}
+          			<input type="checkbox" name="completed" checked>Completed</input>
+            	{% end %}
+			</label>
+		</div>
+		<div>
+			<input type="radio" value="yellow" name="color" checked>yellow</input>
+			<input type="radio" value="green" name="color">green</input> <input
+				type="radio" value="blue" name="color">blue</input> <input
+				type="radio" value="purple" name="color">purple</input> <input
+				type="radio" value="red" name="color">red</input>
+		</div>
+		<div>
+			<button type="submit">Done</button>
+		</div>
+	</form>
+	<form method="post" action="remove-note-action">
+		<input type="hidden" value="{{note["boardId"]}}" name="boardId" />
+		<input type="hidden" value="{{note["id"]}}" name="noteId" />
+		<!-- the 'raw' word is to force escape to be desactivated (it is by default activated) -->
+		{% raw xsrf_form_html() %}
+		<button type="submit">Delete</button>
+	</form>
+</body>
+</html>

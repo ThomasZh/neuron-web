@@ -1,28 +1,85 @@
 <html>
 <head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
 <title>Forgot password</title>
+<link rel="stylesheet"
+	href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<style type="text/css">
+body {
+    background-color: #666;
+}
+.container {
+    padding-top: 0px;
+    padding-left: 2px;
+    padding-right: 2px;
+    padding-bottom: 2px;
+}
+.form-signin {
+    max-width: 500px;
+    padding: 19px 19px 19px;
+    margin: 0 auto 20px;
+    background-color: #ffc;
+    border: 0px solid #e5e5e5;
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    border-radius: 0px;
+    -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+    -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+    box-shadow: 0 1px 2px rgba(0,0,0,.05);
+}
+</style>
 </head>
 
 <body>
-	<li><a href="/login">Login</a></li>
-	<form id="loginForm" action="/forgot-pwd" method="POST">
-		{% raw xsrf_form_html() %}
-		<div>{{ message }}</div>
-		<div>
-			Username: <input type="text" id="loginname" name="loginname" />
-		</div>
-		<div>
-			<input type="button" value="Forgot password" onclick="SubmitForm();">
-		</div>
-	</form>
+	<div class="container">
+		<form class="form-signin" id="form-signin" action="/forgot-pwd" method="POST">
+			{% raw xsrf_form_html() %} 
+			{% if err_msg != "" %}
+			<div class="alert alert-danger" role="alert">
+				<span class="glyphicon glyphicon-exclamation-sign"
+					aria-hidden="true"></span> <span class="sr-only">Error:</span> {{
+				err_msg }}
+			</div>
+			{% end %}
 
-	<script type="text/javascript" src="{{static_url("md5.js")}}"></script>
-	<script type="text/javascript">
-		function SubmitForm() {
-			document.getElementById("loginname").value = document
-					.getElementById("loginname").value;
-			document.getElementById("loginForm").submit();
-		}
-	</script>
+			<h2>Resend your activation email</h2>
+			<div><a href="/login">Sign in</a></div>
+			<br>
+			<div>
+				If you have fixed your email settings and require the email to be resent, please put in your email address below:
+			</div>
+			<br>
+			<div>
+				<label for="input-email" class="sr-only">Email address</label>
+				<input type="email" id="input-email" name="input-email" class="form-control"
+					placeholder="Email address" required autofocus>
+			</div>
+			<br>
+			<div>
+				<button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
+			</div>
+			<br>
+			<div>
+				<h3>Troubleshooting</h3>
+				If you have trouble receiving your Inbox Signup Validation, try the following:
+				<ul>
+				<li><strong>Wrong Address:</strong> Make sure that you have typed in the correct email address (displayed above).
+				</li>
+				
+				<li><strong>Junk Mail Filter:</strong> Make sure that the Signup Validation Email did not get filtered into the junk mail folder of your email application.
+				</li>
+				<li><strong>Blocked by ISP:</strong> In some cases emails may be accidentally blocked by Anti-SPAM technology used by your Internet Service Provider (ISP). Contact your ISP and ask them if they are blocking email sent by 'sendcloud.com'.
+				</li>
+				</ul>
+				If you have trouble validating your account and have recieved your email please contact us for assistance: 
+				<a href="mailto:thomas@time2box.com">thomas@time2box.com</a>
+			</div>
+		</form>
+	</div>
 </body>
 </html>

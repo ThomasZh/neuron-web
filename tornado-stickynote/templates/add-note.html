@@ -1,27 +1,92 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8" />
-<title>Add a new note</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Add note</title>
+<link rel="stylesheet"
+	href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="{{static_url("click-wave.css")}}">
+<style type="text/css">
+body {
+    background-color: #176f4e;
+}
+.container {
+    padding-top: 0px;
+    padding-left: 2px;
+    padding-right: 2px;
+    padding-bottom: 2px;
+}
+.form-signin {
+    max-width: 500px;
+    padding: 19px 19px 19px;
+    margin: 0 auto 20px;
+    background-color: #ffc;
+    border: 0px solid #e5e5e5;
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    border-radius: 0px;
+    -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+    -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+    box-shadow: 0 1px 2px rgba(0,0,0,.05);
+}
+</style>
 </head>
+
 <body>
-	<form method="post" action="add-note">
-		<input type="hidden" value="{{boardId}}" name="boardId" />
-		<!-- the 'raw' word is to force escape to be desactivated (it is by default activated) -->
-		{% raw xsrf_form_html() %} 
-		<h4 style="cursor: pointer" onClick="history.go(-1);return true;">&#60;&#160;Boards</h4>
-		<textarea id="title" name="title" placeholder="Please input title..."
-			rows="6"></textarea>
-		<div>
-			<input type="radio" value="yellow" name="color" checked >yellow</input> 
-			<input type="radio" value="green" name="color" >green</input>
-			<input type="radio" value="blue" name="color" >blue</input>
-			<input type="radio" value="purple" name="color" >purple</input>
-			<input type="radio" value="red" name="color" >red</input>
-		</div>
-		<div>
-			<button type="submit">Done</button>
-		</div>
-	</form>
+	<div class="container">
+		<form class="form-signin" id="form-signin" method="post" action="add-note">
+			<input type="hidden" value="{{boardId}}" name="boardId" />
+			<!-- the 'raw' word is to force escape to be desactivated (it is by default activated) -->
+			{% raw xsrf_form_html() %} 
+			<h2 class="glyphicon glyphicon-chevron-left" style="cursor: pointer" onClick="history.go(-1);return true;">Boards</h2>
+			<div class="form-group">
+                <textarea id="title" name="title" class="form-control input-lg" 
+                    placeholder="Please input content..." rows="6"></textarea>
+            </div>
+			<div>
+				<input type="radio" class="option-input radio yellow" value="yellow"
+					name="color" checked onclick="javascript:change('#ffc')">
+				<input type="radio" class="option-input radio green" value="green"
+					name="color" onclick="javascript:change('#c2ffc1')">
+				<input type="radio" class="option-input radio blue" value="blue"
+					name="color" onclick="javascript:change('#81effe')">
+				<input type="radio" class="option-input radio purple" value="purple"
+					name="color" onclick="javascript:change('#c0befe')">
+				<input type="radio" class="option-input radio red" value="red"
+					name="color" onclick="javascript:change('#fc76bb')">
+			</div>
+			<br>
+			<div>
+				<button class="btn btn-lg btn-primary btn-block" type="submit">Add board</button>
+			</div>
+		</form>
+	</div>
+	
+	<script type="text/javascript">
+	function findSelection(field) {
+		var radios = document.getElementsByName(field);
+
+		for (var i = 0, length = radios.length; i < length; i++) {
+		    if (radios[i].checked) {
+		        return radios[i].value;
+		    }
+		}
+	}
+	
+	function submitForm() {
+	    var genderS = findSelection("color");
+	    alert(genderS);
+	}
+
+	function change(color){
+		var board = document.getElementById("form-signin");
+		board.style.backgroundColor = color;
+	}
+	</script>
 </body>
 </html>

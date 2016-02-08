@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>Add a new note</title>
+</head>
+<body>
+	<form method="post" action="add-note-action">
+		<input type="hidden" value="{{boardId}}" name="boardId" />
+		<!-- the 'raw' word is to force escape to be desactivated (it is by default activated) -->
+		{% raw xsrf_form_html() %} 
+		<h4 style="cursor: pointer" onClick="history.go(-1);return true;">&#60;&#160;Boards</h4>
+		<textarea id="title" name="title" placeholder="Please input title..."
+			rows="6"></textarea>
+		<div>
+			<input type="radio" value="yellow" name="color" checked >yellow</input> 
+			<input type="radio" value="green" name="color" >green</input>
+			<input type="radio" value="blue" name="color" >blue</input>
+			<input type="radio" value="purple" name="color" >purple</input>
+			<input type="radio" value="red" name="color" >red</input>
+		</div>
+		<div>
+			<button type="submit">Done</button>
+		</div>
+	</form>
+</body>
+</html>

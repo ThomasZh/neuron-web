@@ -34,99 +34,123 @@ define("debug", default=True, help="run in debug mode")
 
 class BaseHandler(tornado.web.RequestHandler):
     def get_current_user(self):
-        return self.get_secure_cookie("user")
+        return self.get_secure_cookie("ticket")
 
 
 class LoginHandler(BaseHandler):
     def get(self):
-        self.render('login.html', message="")
+        _login_name = self.get_secure_cookie("login_name")
+        if _login_name == None:
+            _login_name = ""
+        _remember_me = self.get_secure_cookie("remember_me")
+        if _remember_me == None:
+            _remember_me = "off"
+        print "login_name: "+_login_name
+        print "remember_me: " + _remember_me
+        self.render('login.html', err_msg="", login_name=_login_name, remember_me=_remember_me)
 
     def post(self):
-        _loginname = self.get_argument("loginname", "")
-        print _loginname
+        _email = self.get_argument("input-email")
+        _md5pwd = self.get_argument("input-password")
+        _remember_me = self.get_argument("remember-me", "off")
         _user_agent = self.request.headers["User-Agent"]
-        print _user_agent
         _device_id = base64.b64encode(uuid.uuid4().bytes + uuid.uuid4().bytes)
-        _md5pwd = self.get_argument("password", "")
-    
+        print "login_name: "+_email
+        print "remember_me: " + _remember_me
+        
         try:
             params = { "osVersion" : "webkit:"+_user_agent,
                   "gateToken" : "bZJc2sWbQLKos6GkHn/VB9oXwQt8S0R0kRvJ5/xJ89E=",
                   "deviceId" : _device_id,
                   "password" : _md5pwd,
-                  "email" : _loginname}
-            _str = json_encode(params)
+                  "email" : _email}
+            _json = json_encode(params)
             url = "http://182.92.66.109/account/login"
             http_client = HTTPClient()
-            response = http_client.fetch(url, method="POST", body=_str)
+            response = http_client.fetch(url, method="POST", body=_json)
             print response.body
             _stp_session = json_decode(response.body)
-            _sessionTicket = _stp_session["sessionToken"]
+            _session_ticket = _stp_session["sessionToken"]
             
-            self.set_secure_cookie("user", _sessionTicket)
+            self.set_secure_cookie("ticket", _session_ticket)
+            self.set_secure_cookie("login_name", _email)
+            self.set_secure_cookie("remember_me", _remember_me)
             self.redirect("/")
         except Exception:  
-            self.render('login.html', message="Please enter a correct username and password.")
+            self.render('login.html', err_msg="Please enter a correct username and password.", 
+                        login_name=_email, remember_me=_remember_me)
 
 
 class LogoutHandler(BaseHandler):
     def post(self):
-        self.clear_cookie("user")
+        _remember_me = self.get_secure_cookie("remember_me")
+        if _remember_me == None:
+            _remember_me = "off"
+        print  _remember_me
+        
+        if _remember_me == "off":
+            self.clear_cookie("ticket")
+            self.clear_cookie("login_name")
+            self.clear_cookie("remember_me")
+        else:
+            self.clear_cookie("ticket")
         self.redirect("/")
 
 
 class RegisterHandler(BaseHandler):
     def get(self):
-        self.render('register.html', message="")
+        self.render('register.html', err_msg="")
 
     def post(self):
-        _loginname = self.get_argument("loginname", "")
-        print _loginname
+        _email = self.get_argument("input-email")
+        _md5pwd = self.get_argument("input-password")
         _user_agent = self.request.headers["User-Agent"]
-        print _user_agent
         _lang = self.request.headers["Accept-Language"]
-        print _lang
         _device_id = base64.b64encode(uuid.uuid4().bytes + uuid.uuid4().bytes)
-        _md5pwd = self.get_argument("password", "")
+        print _email
         print _md5pwd
+        print _user_agent
+        print _lang
     
         try:
             params = { "osVersion" : "webkit:"+_user_agent,
                   "gateToken" : "bZJc2sWbQLKos6GkHn/VB9oXwQt8S0R0kRvJ5/xJ89E=",
                   "deviceId" : _device_id,
                   "md5pwd" : _md5pwd,
-                  "email" : _loginname,
+                  "email" : _email,
                   "lang": _lang,}
-            _str = json_encode(params)
+            _json = json_encode(params)
             url = "http://182.92.66.109/account/email-register"
             http_client = HTTPClient()
-            response = http_client.fetch(url, method="POST", body=_str)
+            response = http_client.fetch(url, method="POST", body=_json)
             print response.body
             _stp_session = json_decode(response.body)
             _sessionTicket = _stp_session["sessionToken"]
             
-            self.set_secure_cookie("user", _sessionTicket)
+            self.set_secure_cookie("ticket", _sessionTicket)
+            self.set_secure_cookie("login_name", _email)
             self.redirect("/")
         except Exception:  
-            self.render('register.html', message="Please enter a correct username and password.")
+            self.render('register.html', err_msg="Email already exist, please try another.")
 
 
 class ForgotPwdHandler(BaseHandler):
     def get(self):
-        self.render('forgot-pwd.html', message="")
+        self.render('forgot-pwd.html', err_msg="")
 
     def post(self):
-        _loginname = self.get_argument("loginname", "")
-        print _loginname
+        _email = self.get_argument("input-email", "")
+        print _email
         
-        params = {"email" : _loginname}
-        _str = json_encode(params)
+        params = {"email" : _email}
+        _json = json_encode(params)
         url = "http://182.92.66.109/account/apply-for-email-verification"
         http_client = HTTPClient()
-        response = http_client.fetch(url, method="POST", body=_str)
+        response = http_client.fetch(url, method="POST", body=_json)
         print response.body
 
-        self.render('login.html', message="Email has been send to your mail, please check it.")        
+        self.render('login.html', err_msg="Email has been send to your mail, please check it.", 
+                    login_name=_email, remember_me="on")        
 
 
 class MainHandler(BaseHandler):
