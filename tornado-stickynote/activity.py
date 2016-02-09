@@ -22,7 +22,7 @@ from tornado.httpclient import HTTPClient
 from tornado.httputil import url_concat
 import tornado.web
 
-from base import BaseHandler
+from base import BaseHandler, timestamp_datetime
 
 
 class ActivityHandler(BaseHandler):
@@ -42,6 +42,8 @@ class ActivityHandler(BaseHandler):
         print response.body
         _info = json_decode(response.body)
         
+        _begin_time = timestamp_datetime(_info["beginTime"]/1000)
+        
         params = {"X-Session-Id": _ticket}
         url = url_concat("http://182.92.66.109/activities/"+_id+"/poster", params)
         http_client = HTTPClient()
@@ -50,4 +52,4 @@ class ActivityHandler(BaseHandler):
         print response.body
         _descs = json_decode(response.body)
         
-        self.render('activity/activity-info.html', info=_info, descs=_descs)
+        self.render('activity/activity-info.html', info=_info, begin_time=_begin_time, descs=_descs)

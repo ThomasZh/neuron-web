@@ -1,11 +1,10 @@
-<!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>Add board</title>
+<title>Error</title>
 <link rel="stylesheet"
 	href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
 <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
@@ -24,7 +23,7 @@ body {
     max-width: 600px;
     padding: 19px 19px 19px;
     margin: 0 auto 20px;
-    background-color: #176f4e;
+    background-color: #ffc;
     border: 0px solid #e5e5e5;
     -webkit-border-radius: 0px;
     -moz-border-radius: 0px;
@@ -38,28 +37,31 @@ body {
 
 <body>
 	<div class="container">
-		<form class="form-signin" id="form-signin" method="post" action="add-board">
-			<!-- the 'raw' word is to force escape to be desactivated (it is by default activated) -->
-			{% raw xsrf_form_html() %} 
+		<form class="form-signin" id="form-signin" action="/" method="GET">
 			
-			<!-- START THE NAVBAR -->
-			<nav class="navbar navbar-static-top">
-				<div class="container2">
-					<div class="navbar-header">
-						<span class="navbar-brand glyphicon glyphicon-chevron-left" 
-							style="cursor: pointer" 
-							onClick="history.go(-1);return true;">Boards</span>
+		<!-- START THE NAVBAR -->
+		<nav class="navbar navbar-static-top">
+			<div class="container2">
+				<div class="navbar-header">
+					<h2><span>404: NOT FOUND</span></h2>
+				</div>
+				<div class="collapse navbar-collapse">
+					<div class="nav navbar-nav navbar-right">
 					</div>
 				</div>
-			</nav>
-			<!-- END NAVBAR -->
+			</div>
+		</nav>
+		<!-- END NAVBAR -->
 
 			<div class="form-group">
-				<textarea class="form-control input-lg" id="title" name="title" placeholder="Please input title..."
-				rows="6"></textarea>
+				Sorry, the page you were looking for doesn’t exist.
 			</div>
 			<div class="form-group">
-				<button class="btn btn-lg btn-primary btn-block" type="submit">Add board</button>
+				<button class="btn btn-lg btn-primary btn-block" type="submit">BACK TO HOME</button>
+			</div>
+			<div class="form-group">
+				<span>If you followed a broken link, please <a href="mailto:thomas@time2box.com">let us know</a> where the broken link came from. 
+				</span>
 			</div>
 		</form>
 	</div>

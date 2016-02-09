@@ -58,6 +58,7 @@ class LoginHandler(BaseHandler):
             print response.body
             _stp_session = json_decode(response.body)
             _session_ticket = _stp_session["sessionToken"]
+            _account_id = _stp_session["accountId"]
             
             self.set_secure_cookie("ticket", _session_ticket)
             self.set_secure_cookie("login_name", _email)
@@ -69,7 +70,7 @@ class LoginHandler(BaseHandler):
 
 
 class LogoutHandler(BaseHandler):
-    def post(self):
+    def get(self):
         _remember_me = self.get_secure_cookie("remember_me")
         if _remember_me == None:
             _remember_me = "off"
@@ -141,3 +142,33 @@ class ForgotPwdHandler(BaseHandler):
 
         self.render('account/login.html', err_msg="Email has been send to your mail, please check it.", 
                     login_name=_email, remember_me="on")    
+
+
+class ResetPwdHandler(BaseHandler):
+    def get(self):
+        _ekey = self.get_argument("ekey", "")
+        self.render('account/reset-pwd.html', ekey=_ekey)
+
+    def post(self):
+        _ekey = self.get_argument("ekey", "")
+        _md5pwd = self.get_argument("input-password", "")
+        print _ekey
+        
+        params = {"ekey" : _ekey}
+        _json = json_encode(params)
+        url = "http://182.92.66.109/account/verify-email"
+        http_client = HTTPClient()
+        response = http_client.fetch(url, method="POST", body=_json)
+        print response.body
+        _ekey_object = json_decode(response.body)
+        _email = _ekey_object["email"]
+
+        params = {"ekey" : _ekey, "email": _email, "newPassword": _md5pwd}
+        _json = json_encode(params)
+        url = "http://182.92.66.109/account/reset-password"
+        http_client = HTTPClient()
+        response = http_client.fetch(url, method="POST", body=_json)
+        print response.body
+        
+        self.render('account/login.html', err_msg="Password has been changed, please sign in.", 
+                    login_name="", remember_me="off")   

@@ -19,30 +19,37 @@ import os.path
 
 import tornado.ioloop
 from tornado.options import define, options, parse_command_line
+from tornado.web import RequestHandler
 import tornado.web
 
 from account import LoginHandler, LogoutHandler, RegisterHandler, \
-    ForgotPwdHandler
+    ForgotPwdHandler, ResetPwdHandler
+from activity import ActivityHandler
 from greenboard import BoardsHandler, AddBoardHandler, EditBoardHandler, \
     RemoveBoardHandler
 from stickynote import NotesHandler, AddNoteHandler, EditNoteHandler, \
     RemoveNoteHandler
-from activity import ActivityHandler
 
 
 define("port", default=8888, help="run on the given port", type=int)
 define("debug", default=True, help="run in debug mode")
 
 
+class PageNotFoundHandler(RequestHandler):
+    def get(self):
+        self.render('404.html')
+
+
 def main():
     parse_command_line()
     app = tornado.web.Application(
-        [
+        [            
             (r"/", BoardsHandler),
             (r'/login', LoginHandler),
             (r'/logout', LogoutHandler),
             (r'/register', RegisterHandler),
             (r'/forgot-pwd', ForgotPwdHandler),
+            (r'/reset-pwd', ResetPwdHandler),
             (r"/add-board", AddBoardHandler),
             (r"/edit-board", EditBoardHandler),
             (r"/remove-board", RemoveBoardHandler),
@@ -51,6 +58,7 @@ def main():
             (r"/edit-note", EditNoteHandler),
             (r"/remove-note", RemoveNoteHandler),
             (r"/activity", ActivityHandler),
+            (".*", PageNotFoundHandler),
             ],
         # __TODO:_GENERATE_YOUR_OWN_RANDOM_VALUE_HERE__
         cookie_secret="bZJc2sWbQLKos6GkHn/VB9oXwQt8S0R0kRvJ5/xJ89E=",

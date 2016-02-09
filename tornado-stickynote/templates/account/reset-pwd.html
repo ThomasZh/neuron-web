@@ -4,7 +4,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>Sign up</title>
+<title>Reset password</title>
 <link rel="stylesheet"
 	href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
 <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
@@ -37,7 +37,7 @@ body {
 
 <body>
 	<div class="container">
-		<form class="form-signin" id="form-signin" action="/register" method="POST">
+		<form class="form-signin" id="form-signin" action="/reset-pwd" method="POST">
 			{% raw xsrf_form_html() %} 
 			
 		<!-- START THE NAVBAR -->
@@ -48,7 +48,7 @@ body {
 						<span class="glyphicon glyphicon-log-in" aria-hidden="true">
 						</span>
 					</a>
-					<h2><span>Please sign up</span></h2>
+					<h2><span>Reset password</span></h2>
 				</div>
 				<div class="collapse navbar-collapse">
 					<div class="nav navbar-nav navbar-right">
@@ -61,20 +61,8 @@ body {
 			</div>
 		</nav>
 		<!-- END NAVBAR -->
-			
-			{% if err_msg != "" %}
-			<div class="alert alert-danger" role="alert">
-				<span class="glyphicon glyphicon-exclamation-sign"
-					aria-hidden="true"></span> <span class="sr-only">Error:</span> {{
-				err_msg }}
-			</div>
-			{% end %}
 
-			<div class="form-group">
-				<label for="input-email" class="sr-only">Email address</label>
-				<input type="email" id="input-email" name="input-email" class="form-control"
-					placeholder="Email address" required autofocus>
-			</div>
+			<input type="hidden" value="{{ekey}}" name="ekey" />
 			<div class="form-group">
 				<label for="input-password" class="sr-only">Password</label>
 				<input type="password" id="input-password" name="input-password" class="form-control"
@@ -86,7 +74,7 @@ body {
 					placeholder="Password (again)" required>
 			</div>
 			<div class="form-group">
-				<button class="btn btn-lg btn-primary btn-block" type="button" onclick="submitForm();">Sign up</button>
+				<button class="btn btn-lg btn-primary btn-block" type="button" onclick="submitForm();">Submit</button>
 			</div>
 		</form>
 	</div>
@@ -94,8 +82,6 @@ body {
 	<script type="text/javascript" src="{{static_url("md5.js")}}"></script>
 	<script type="text/javascript">
 		function submitForm() {
-			document.getElementById("input-email").value = document
-					.getElementById("input-email").value;
 			document.getElementById("input-password").value = hex_md5(document
 					.getElementById("input-password").value);
 			document.getElementById("form-signin").submit();

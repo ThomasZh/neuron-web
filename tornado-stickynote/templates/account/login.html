@@ -5,31 +5,35 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <title>Sign in</title>
-<link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
 <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <style type="text/css">
 body {
-    background-color: #666;
+	background-color: #666;
 }
+
 .container {
-    padding-top: 0px;
-    padding-left: 2px;
-    padding-right: 2px;
-    padding-bottom: 2px;
+	padding-top: 0px;
+	padding-left: 2px;
+	padding-right: 2px;
+	padding-bottom: 2px;
 }
+
 .form-signin {
-    max-width: 500px;
-    padding: 19px 19px 19px;
-    margin: 0 auto 20px;
-    background-color: #ffc;
-    border: 0px solid #e5e5e5;
-    -webkit-border-radius: 0px;
-    -moz-border-radius: 0px;
-    border-radius: 0px;
-    -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
-    -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
-    box-shadow: 0 1px 2px rgba(0,0,0,.05);
+	max-width: 600px;
+	padding: 19px 19px 19px;
+	margin: 0 auto 20px;
+	background-color: #ffc;
+	border: 0px solid #e5e5e5;
+	-webkit-border-radius: 0px;
+	-moz-border-radius: 0px;
+	border-radius: 0px;
+	-webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
+	-moz-box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
+	box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
 }
 </style>
 </head>
@@ -39,52 +43,63 @@ body {
 		<form class="form-signin" id="form-signin" action="/login" method="POST">
 			{% raw xsrf_form_html() %}
 
-			<nav class="navbar">
-				<div class="container-fluid">
-					<ul class="nav navbar-nav navbar-left">
-						<h2>Please sign in</h2>
-					</ul>
-					<ul class="nav navbar-nav navbar-right">
-						<a href="/register">Sign up</a>
-					</ul>
+			<!-- START THE NAVBAR -->
+			<nav class="navbar navbar-static-top">
+				<div class="container2">
+					<div class="navbar-header">
+						<a class="navbar-toggle collapsed" type="submit" href="/register">
+							<span class="glyphicon glyphicon-user" aria-hidden="true">
+						</span>
+						</a>
+						<h2>
+							<span>Please sign in</span>
+						</h2>
+					</div>
+					<div class="collapse navbar-collapse">
+						<div class="nav navbar-nav navbar-right">
+							<a class="navbar-brand" href="/register"> <span
+								class="glyphicon glyphicon-user" aria-hidden="true"> </span>
+								Sign up
+							</a>
+						</div>
+					</div>
 				</div>
 			</nav>
-			
+			<!-- END NAVBAR -->
+
 			{% if err_msg != "" %}
 			<div class="alert alert-danger" role="alert">
 				<span class="glyphicon glyphicon-exclamation-sign"
-					aria-hidden="true"></span> <span class="sr-only">Error:</span> {{
-				err_msg }}
+					aria-hidden="true"></span> <span class="sr-only">Error:</span>
+						{{ err_msg }}
 			</div>
 			{% end %}
 			
-			<div>
-				<label for="input-email" class="sr-only">Email address</label>
-				<input type="email" id="input-email" name="input-email" class="form-control" value="{{ login_name }}"
+			<div id="err-msg-label">
+			</div>
+
+			<div class="form-group required">
+				<label for="input-email" class="sr-only">Email address</label> <input
+					type="email" id="input-email" name="input-email"
+					class="form-control" value="{{ login_name }}"
 					placeholder="Email address" required autofocus>
 			</div>
-			<br>
-			<div>
-				<label for="input-password" class="sr-only">Password</label>
-				<input type="password" id="input-password" name="input-password" class="form-control"
-					placeholder="Password" required>
+			<div class="form-group required">
+				<label for="input-password" class="sr-only">Password</label> <input
+					type="password" id="input-password" name="input-password"
+					class="form-control" placeholder="Password" required>
 			</div>
 			<div class="checkbox">
-				{% if remember_me == "on" %}
-				<label> <input type="checkbox" name="remember-me" checked>
-					Remember me
-				</label>
-				{% else %}
-				<label> <input type="checkbox" name="remember-me" >
-					Remember me
-				</label>
-				{% end %}
+				{% if remember_me == "on" %} <label> <input type="checkbox"
+					name="remember-me" checked> Remember me
+				</label> {% else %} <label> <input type="checkbox"
+					name="remember-me"> Remember me
+				</label> {% end %}
 			</div>
-			<div>
-				<button class="btn btn-lg btn-primary btn-block" type="button" onclick="submitForm();">Sign in</button>
+			<div class="form-group">
+				<button class="btn btn-lg btn-primary btn-block" onclick="submitForm();">Sign in</button>
 			</div>
-			<br>
-			<div>
+			<div class="form-group">
 				<a href="forgot-pwd">Forgot password</a>
 			</div>
 		</form>
@@ -93,10 +108,29 @@ body {
 	<script type="text/javascript" src="{{static_url("md5.js")}}"></script>
 	<script type="text/javascript">
 		function submitForm() {
-			document.getElementById("input-email").value = document
-					.getElementById("input-email").value;
-			document.getElementById("input-password").value = hex_md5(document
-					.getElementById("input-password").value);
+			var inputEmail = document.getElementById("input-email").value;
+ 			if (inputEmail == null || inputEmail == undefined || inputEmail == '') {
+				err-msg-label = document.getElementById("err-msg-label");
+				err-msg-label.innerHTML='<div class="alert alert-danger" role="alert">\
+					<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>\
+					<strong> Warning: </strong>\
+					The email address is required and can\'t be empty\
+					</div>';
+				return;
+			}
+			var inputPassword = document.getElementById("input-password").value;
+			if (inputPassword == null || inputPassword == undefined || inputPassword == '') {
+				err-msg-label = document.getElementById("err-msg-label");
+				err-msg-label.innerHTML='<div class="alert alert-danger" role="alert">\
+					<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>\
+					<strong> Warning: </strong>\
+					The password is required and can\'t be empty\
+					</div>';
+				return;
+			}
+		
+			document.getElementById("input-email").value = hex_md5(document.getElementById("input-email").value);
+			document.getElementById("input-password").value = hex_md5(document.getElementById("input-password").value);
 			document.getElementById("form-signin").submit();
 		}
 	</script>

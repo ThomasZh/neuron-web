@@ -16,25 +16,43 @@ body {
 }
 .container {
     padding-top: 0px;
-    padding-left: 2px;
-    padding-right: 2px;
-    padding-bottom: 2px;
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-bottom: 0px;
+//    background-color: #fff;
+    margin:0em 0em 0em 1em;
 }
 </style>
 </head>
 
 <body>
-<div class="container">
-	<nav class="navbar">
-		<div class="container-fluid">
-			<ul class="nav navbar-nav navbar-left">
-				<h3 class="glyphicon glyphicon-chevron-left" style="cursor: pointer" onClick="history.go(-1);return true;">Boards</h3>
-			</ul>
-			<ul class="nav navbar-nav navbar-right">
-				<a class="btn btn-md btn-primary" id="edit" href="edit-board?boardId={{boardId}}">Edit Board</a>
-			</ul>
+	<!-- START THE NAVBAR -->
+	<nav class="navbar navbar-static-top"
+		style="background: url({{ static_url("images/wood-banner.jpg")}}) repeat">
+		<div class="container2">
+			<div class="navbar-header">
+				<a class="navbar-brand navbar-toggle collapsed"
+					href="edit-board?boardId={{boardId}}"> <span
+					class="glyphicon glyphicon-edit" aria-hidden="true"> </span>
+				</a> <span class="navbar-brand glyphicon glyphicon-chevron-left"
+					style="cursor: pointer" onClick="history.go(-1);return true;">Boards
+				</span>
+			</div>
+			<div class="collapse navbar-collapse">
+				<div class="nav navbar-nav navbar-right">
+					<a class="navbar-brand" href="edit-board?boardId={{boardId}}">
+						<span class="glyphicon glyphicon-edit" aria-hidden="true">
+					</span> Edit board
+					</a>
+				</div>
+			</div>
 		</div>
 	</nav>
+	<!-- END NAVBAR -->
+
+	<div class="container">
+
+		
 
 	<div id="uncompleted_notes">
 		<ul>

@@ -99,7 +99,7 @@ body{
     border-radius: 5px;
 }
 .close_icon{
-    background: url(../images/close_icon.png) no-repeat;
+    background: url(images/close_icon.png) no-repeat;
     background-size: 20px;
     width:20px;
     height:20px;
@@ -309,7 +309,7 @@ body{
 }
 .list_msg li.icon1 i{
     display:inline-block;
-    background: url(../images/icon1s.png) no-repeat 0 center;
+    background: url(images/icon1s.png) no-repeat 0 center;
     width:15px;
     height:15px;
 
@@ -317,14 +317,14 @@ body{
 }
 .list_msg li.icon2 i{
     display:inline-block;
-    background: url(../images/icon2s.png) no-repeat 0 center;
+    background: url(images/icon2s.png) no-repeat 0 center;
     width:14px;
     height:14px;
 
 }
 .list_msg li.icon3 i{
     display:inline-block;
-    background: url(../images/icon3s.png) no-repeat 0 center;
+    background: url(images/icon3s.png) no-repeat 0 center;
     width:15px;
     height:14px;
 
@@ -633,7 +633,7 @@ a.hqyzm{
 {
     .list_msg li.icon1 i{
         display:inline-block;
-        background: url(../images/icon1.png) no-repeat 0 center;
+        background: url(images/icon1.png) no-repeat 0 center;
         background-size:20px;
         width:20px;
         height:20px;
@@ -642,7 +642,7 @@ a.hqyzm{
     }
     .list_msg li.icon2 i{
         display:inline-block;
-        background: url(../images/icon2.png) no-repeat 0 center;
+        background: url(images/icon2.png) no-repeat 0 center;
         background-size:22px;
         width:22px;
         height:22px;
@@ -650,7 +650,7 @@ a.hqyzm{
     }
     .list_msg li.icon3 i{
         display:inline-block;
-        background: url(../images/icon3.png) no-repeat 0 center;
+        background: url(images/icon3.png) no-repeat 0 center;
         background-size:20px;
         width:20px;
         height:20px;

@@ -22,7 +22,7 @@ body {
     padding-bottom: 2px;
 }
 .form-signin {
-    max-width: 500px;
+    max-width: 600px;
     padding: 19px 19px 19px;
     margin: 0 auto 20px;
     background-color: #ffc;
@@ -47,13 +47,17 @@ body {
 		<!-- the 'raw' word is to force escape to be desactivated (it is by default activated) -->
 		{% raw xsrf_form_html() %}
 		
-		<nav class="navbar">
-			<div class="container-fluid">
-				<ul class="nav navbar-nav">
-					<h3 class="glyphicon glyphicon-chevron-left" style="cursor: pointer" onClick="history.go(-1);return true;">Boards</h3>
-				</ul>
-			</div>
-		</nav>	
+			<!-- START THE NAVBAR -->
+			<nav class="navbar navbar-static-top">
+				<div class="container2">
+					<div class="navbar-header">
+						<span class="navbar-brand glyphicon glyphicon-chevron-left" 
+							style="cursor: pointer" 
+							onClick="history.go(-1);return true;">Board</span>
+					</div>
+				</div>
+			</nav>
+			<!-- END NAVBAR -->
 			
 		<div class="form-group">
             <textarea id="title" name="title" class="form-control input-lg" 
@@ -68,7 +72,7 @@ body {
             	{% end %}
 			</label>
 		</div>
-		<div>
+		<div class="form-group">
 			<input type="radio" class="option-input radio yellow" value="yellow"
 				name="color" checked onclick="javascript:change('#ffc')">
 			<input type="radio" class="option-input radio green" value="green"
@@ -81,11 +85,10 @@ body {
 				name="color" onclick="javascript:change('#fc76bb')">
 		</div>
 		<br>
-		<div>
+		<div class="form-group">
 			<button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
 		</div>
-		<br>
-		<div>
+		<div class="form-group">
 			<button class="btn btn-lg btn-danger btn-block" type="button" onclick="submitDelete();">Delete</button>
 		</div>
 	</form>

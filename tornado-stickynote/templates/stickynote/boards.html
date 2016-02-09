@@ -14,34 +14,50 @@
 <style type="text/css">
 body {
     background-color: #666;
+//    padding-right: 5px;
 }
 .container {
     padding-top: 0px;
-    padding-left: 2px;
-    padding-right: 2px;
-    padding-bottom: 2px;
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-bottom: 0px;
+//    background-color: #ff5;
+    margin:0em 0em 0em 1em;
 }
 </style>
 </head>
 
 <body>
+	<form id="logout-form" action="/logout" method="POST">
+		{% raw xsrf_form_html() %}
+
+		<!-- START THE NAVBAR -->
+		<nav class="navbar navbar-static-top">
+			<div class="container2">
+				<div class="navbar-header">
+					<a class="navbar-brand navbar-toggle collapsed" href="/logout">
+						<span class="glyphicon glyphicon-log-out" aria-hidden="true">
+						</span>
+					</a>
+					<span class="navbar-brand"> Welcome, {{login_name}}</span>
+				</div>
+				<div class="collapse navbar-collapse">
+					<div class="nav navbar-nav navbar-right">
+						<a class="navbar-brand" href="/logout">
+							<span class="glyphicon glyphicon-log-out" aria-hidden="true">
+							</span> Logout
+						</a>
+					</div>
+				</div>
+			</div>
+		</nav>
+		<!-- END NAVBAR -->
+
+	</form>
+
 	<div class="container">
 	<div>
-		<form id="logoutForm" action="/logout" method="POST">
-			{% raw xsrf_form_html() %}
-			
-			<nav class="navbar">
-				<div class="container-fluid">
-					<ul class="nav navbar-nav navbar-left">
-						<h2>Welcome, {{login_name}}</h2>
-					</ul>
-					<ul class="nav navbar-nav navbar-right">
-						<button class="btn btn-md btn-primary" type="submit">Logout</button>
-					</ul>
-				</div>
-			</nav>
-			
-		</form>
+
 	</div>
 	<div id="body">
 		<ul id="blackboard">
@@ -54,5 +70,11 @@ body {
 		</ul>
 	</div>
 	</div>
+	
+<script type="text/javascript">
+	function submitLogout() {
+	document.getElementById("logout-form").submit();
+}
+</script>
 </body>
 </html>
