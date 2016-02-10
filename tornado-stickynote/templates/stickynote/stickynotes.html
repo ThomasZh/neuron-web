@@ -4,7 +4,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>Sticky notes</title>
+<title>{{_("Sticky Note")}}</title>
 <link rel="stylesheet"
 	href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
 <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
@@ -19,7 +19,6 @@ body {
     padding-left: 0px;
     padding-right: 0px;
     padding-bottom: 0px;
-//    background-color: #fff;
     margin:0em 0em 0em 1em;
 }
 </style>
@@ -35,14 +34,14 @@ body {
 					href="edit-board?boardId={{boardId}}"> <span
 					class="glyphicon glyphicon-edit" aria-hidden="true"> </span>
 				</a> <span class="navbar-brand glyphicon glyphicon-chevron-left"
-					style="cursor: pointer" onClick="history.go(-1);return true;">Boards
+					style="cursor: pointer" onClick="history.go(-1);return true;">{{_("Green Board")}}
 				</span>
 			</div>
 			<div class="collapse navbar-collapse">
 				<div class="nav navbar-nav navbar-right">
 					<a class="navbar-brand" href="edit-board?boardId={{boardId}}">
 						<span class="glyphicon glyphicon-edit" aria-hidden="true">
-					</span> Edit board
+					</span> {{_("Edit")}}
 					</a>
 				</div>
 			</div>

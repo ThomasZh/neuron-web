@@ -4,7 +4,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>Sign up</title>
+<title>{{_("Sign up")}}</title>
 <link rel="stylesheet"
 	href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
 <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
@@ -52,14 +52,14 @@ body {
 						</span>
 						</a>
 						<h2>
-							<span>Please sign up</span>
+							<span>{{_("Sign up")}}</span>
 						</h2>
 					</div>
 					<div class="collapse navbar-collapse">
 						<div class="nav navbar-nav navbar-right">
 							<a class="navbar-brand" href="/login"> <span
 								class="glyphicon glyphicon-log-in" aria-hidden="true"> </span>
-								Sign in
+								{{_("Sign in")}}
 							</a>
 						</div>
 					</div>
@@ -78,23 +78,23 @@ body {
 			<div id="alertPanel"></div>
 
 			<div class="form-group">
-				<label for="input-email" class="sr-only">Email address</label> <input
+				<label for="input-email" class="sr-only">{{_("Email address")}}</label> <input
 					type="email" id="input-email" name="input-email"
-					class="form-control" placeholder="Email address" required autofocus>
+					class="form-control" placeholder="{{_("Email address")}}" required autofocus>
 			</div>
 			<div class="form-group">
-				<label for="input-password" class="sr-only">Password</label> <input
+				<label for="input-password" class="sr-only">{{_("Password")}}</label> <input
 					type="password" id="input-password" name="input-password"
-					class="form-control" placeholder="Password" required>
+					class="form-control" placeholder="{{_("Password")}}" required>
 			</div>
 			<div class="form-group">
-				<label for="input-password2" class="sr-only">Password again</label>
+				<label for="input-password2" class="sr-only">{{_("Password again")}}</label>
 				<input type="password" id="input-password2" name="input-password2"
-					class="form-control" placeholder="Password (again)" required>
+					class="form-control" placeholder="{{_("Password again")}}" required>
 			</div>
 			<div class="form-group">
 				<button class="btn btn-lg btn-primary btn-block" type="button"
-					onclick="submitForm();">Sign up</button>
+					onclick="submitForm();">{{_("Submit")}}</button>
 			</div>
 		</form>
 	</div>

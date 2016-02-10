@@ -4,7 +4,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>Sign in</title>
+<title>{{_("Sign in")}}</title>
 <link rel="stylesheet"
 	href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
 
@@ -53,14 +53,14 @@ body {
 						</span>
 						</a>
 						<h2>
-							<span>Please sign in</span>
+							<span>{{_("Sign in")}}</span>
 						</h2>
 					</div>
 					<div class="collapse navbar-collapse">
 						<div class="nav navbar-nav navbar-right">
 							<a class="navbar-brand" href="/register"> <span
 								class="glyphicon glyphicon-user" aria-hidden="true"> </span>
-								Sign up
+								{{_("Sign up")}}
 							</a>
 						</div>
 					</div>
@@ -71,7 +71,7 @@ body {
 			{% if err_msg != "" %}
 			<div class="alert alert-danger" role="alert">
 				<span class="glyphicon glyphicon-exclamation-sign"
-					aria-hidden="true"></span> <span class="sr-only">Error:</span> {{
+					aria-hidden="true"></span> <span class="sr-only"> Error: </span> {{
 				err_msg }}
 			</div>
 			{% end %}
@@ -79,29 +79,29 @@ body {
 			<div id="alertPanel"></div>
 
 			<div class="form-group required">
-				<label for="input-email" class="sr-only">Email address</label> <input
+				<label for="input-email" class="sr-only">{{_("Email address")}}</label> <input
 					type="email" id="input-email" name="input-email"
 					class="form-control" value="{{ login_name }}"
-					placeholder="Email address" required autofocus>
+					placeholder="{{_("Email address")}}" required autofocus>
 			</div>
 			<div class="form-group required">
-				<label for="input-password" class="sr-only">Password</label> <input
+				<label for="input-password" class="sr-only">{{_("Password")}}</label> <input
 					type="password" id="input-password" name="input-password"
-					class="form-control" placeholder="Password" required>
+					class="form-control" placeholder="{{_("Password")}}" required>
 			</div>
 			<div class="checkbox">
 				{% if remember_me == "on" %} <label> <input type="checkbox"
-					name="remember-me" checked> Remember me
+					name="remember-me" checked> {{_("Remember me")}}
 				</label> {% else %} <label> <input type="checkbox"
-					name="remember-me"> Remember me
+					name="remember-me"> {{_("Remember me")}}
 				</label> {% end %}
 			</div>
 			<div class="form-group">
 				<button class="btn btn-lg btn-primary btn-block" type="button"
-					onclick="SubmitForm();">Sign in</button>
+					onclick="SubmitForm();">{{_("Submit")}}</button>
 			</div>
 			<div class="form-group">
-				<a href="forgot-pwd">Forgot password</a>
+				<a href="forgot-pwd">{{_("Forgot password")}}</a>
 			</div>
 		</form>
 	</div>

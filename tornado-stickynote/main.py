@@ -15,6 +15,7 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
+from distutils import config
 import os.path
 
 import tornado.ioloop
@@ -67,7 +68,14 @@ def main():
         xsrf_cookies=True,
         debug=options.debug,
         login_url="/login",
+        I18N_PATH=os.path.join(os.path.dirname(__file__), "locale"),
+        #default_locale="en_US",
+        default_locale="zh_CN",
         )
+    #tornado.locale.load_gettext_translations(config["I18N_PATH"], "stickynote")
+    #tornado.locale.set_default_locale(config["default_locale"])
+    tornado.locale.load_gettext_translations(os.path.join(os.path.dirname(__file__), "locale"), "stickynote")
+    tornado.locale.set_default_locale("zh_CN")
     app.listen(options.port)
     tornado.ioloop.IOLoop.current().start()
 

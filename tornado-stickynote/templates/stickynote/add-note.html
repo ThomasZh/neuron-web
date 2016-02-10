@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>Add note</title>
+<title>{{_("Add Sticky Note")}}</title>
 <link rel="stylesheet"
 	href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
 <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
@@ -50,7 +50,7 @@ body {
 					<div class="navbar-header">
 						<span class="navbar-brand glyphicon glyphicon-chevron-left" 
 							style="cursor: pointer" 
-							onClick="history.go(-1);return true;">Board</span>
+							onClick="history.go(-1);return true;">{{_("Sticky Note")}}</span>
 					</div>
 				</div>
 			</nav>
@@ -77,7 +77,7 @@ body {
 			<br>
 			<div class="form-group">
 				<button class="btn btn-lg btn-primary btn-block"  type="button"
-					onclick="SubmitForm();">Add board</button>
+					onclick="SubmitForm();">{{_("Submit")}}</button>
 			</div>
 		</form>
 	</div>

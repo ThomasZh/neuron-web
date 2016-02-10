@@ -4,33 +4,35 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>Error</title>
+<title>{{_("ERROR")}}</title>
 <link rel="stylesheet"
 	href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
 <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <style type="text/css">
 body {
-    background-color: #666;
+	background-color: #666;
 }
+
 .container {
-    padding-top: 0px;
-    padding-left: 2px;
-    padding-right: 2px;
-    padding-bottom: 2px;
+	padding-top: 0px;
+	padding-left: 2px;
+	padding-right: 2px;
+	padding-bottom: 2px;
 }
+
 .form-signin {
-    max-width: 600px;
-    padding: 19px 19px 19px;
-    margin: 0 auto 20px;
-    background-color: #ffc;
-    border: 0px solid #e5e5e5;
-    -webkit-border-radius: 0px;
-    -moz-border-radius: 0px;
-    border-radius: 0px;
-    -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
-    -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
-    box-shadow: 0 1px 2px rgba(0,0,0,.05);
+	max-width: 600px;
+	padding: 19px 19px 19px;
+	margin: 0 auto 20px;
+	background-color: #ffc;
+	border: 0px solid #e5e5e5;
+	-webkit-border-radius: 0px;
+	-moz-border-radius: 0px;
+	border-radius: 0px;
+	-webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
+	-moz-box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
+	box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
 }
 </style>
 </head>
@@ -38,29 +40,30 @@ body {
 <body>
 	<div class="container">
 		<form class="form-signin" id="form-signin" action="/" method="GET">
-			
-		<!-- START THE NAVBAR -->
-		<nav class="navbar navbar-static-top">
-			<div class="container2">
-				<div class="navbar-header">
-					<h2><span>404: NOT FOUND</span></h2>
-				</div>
-				<div class="collapse navbar-collapse">
-					<div class="nav navbar-nav navbar-right">
+
+			<!-- START THE NAVBAR -->
+			<nav class="navbar navbar-static-top">
+				<div class="container2">
+					<div class="navbar-header">
+						<h2>
+							<span>404: {{_("NOT FOUND")}}</span>
+						</h2>
+					</div>
+					<div class="collapse navbar-collapse">
+						<div class="nav navbar-nav navbar-right"></div>
 					</div>
 				</div>
-			</div>
-		</nav>
-		<!-- END NAVBAR -->
+			</nav>
+			<!-- END NAVBAR -->
 
+			<div class="form-group">Sorry, the page you were looking for doesn’t exist.</div>
 			<div class="form-group">
-				Sorry, the page you were looking for doesn’t exist.
+				<button class="btn btn-lg btn-primary btn-block" type="submit">{{_("BACK TO HOME")}}</button>
 			</div>
 			<div class="form-group">
-				<button class="btn btn-lg btn-primary btn-block" type="submit">BACK TO HOME</button>
-			</div>
-			<div class="form-group">
-				<span>If you followed a broken link, please <a href="mailto:thomas@time2box.com">let us know</a> where the broken link came from. 
+				<span>If you followed a broken link, please <a
+					href="mailto:thomas@time2box.com">let us know</a> where the broken
+					link came from.
 				</span>
 			</div>
 		</form>

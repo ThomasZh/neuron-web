@@ -26,6 +26,7 @@ from base import BaseHandler
 
 class LoginHandler(BaseHandler):
     def get(self):
+        _ = self.locale.translate
         _login_name = self.get_secure_cookie("login_name")
         if _login_name == None:
             _login_name = ""
@@ -41,9 +42,11 @@ class LoginHandler(BaseHandler):
         _md5pwd = self.get_argument("input-password")
         _remember_me = self.get_argument("remember-me", "off")
         _user_agent = self.request.headers["User-Agent"]
+        _user_locale = self.request.headers["Accept-Language"]
         _device_id = base64.b64encode(uuid.uuid4().bytes + uuid.uuid4().bytes)
         print "login_name: "+_email
         print "remember_me: " + _remember_me
+        print  "user_locale: " + _user_locale
         
         try:
             params = { "osVersion" : "webkit:"+_user_agent,
@@ -86,6 +89,7 @@ class LogoutHandler(BaseHandler):
 
 class RegisterHandler(BaseHandler):
     def get(self):
+        _ = self.locale.translate
         self.render('account/register.html', err_msg="")
 
     def post(self):
@@ -123,6 +127,7 @@ class RegisterHandler(BaseHandler):
 
 class ForgotPwdHandler(BaseHandler):
     def get(self):
+        _ = self.locale.translate
         _email = self.get_secure_cookie("login_name")
         if _email == None:
             _email = ""
@@ -145,6 +150,7 @@ class ForgotPwdHandler(BaseHandler):
 
 class ResetPwdHandler(BaseHandler):
     def get(self):
+        _ = self.locale.translate
         _ekey = self.get_argument("ekey", "")
         self.render('account/reset-pwd.html', ekey=_ekey)
 

@@ -1,0 +1,129 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-02-10 19:20+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: templates/404.html:7
+msgid "ERROR"
+msgstr ""
+
+#: templates/404.html:49
+msgid "NOT FOUND"
+msgstr ""
+
+#: templates/404.html:61
+msgid "BACK TO HOME"
+msgstr ""
+
+#: templates/account/forgot-pwd.html:7
+msgid "Forgot Password"
+msgstr ""
+
+#: templates/account/forgot-pwd.html:55
+msgid "Resend your activation email"
+msgstr ""
+
+#: templates/account/forgot-pwd.html:62 templates/account/login.html:7
+#: templates/account/login.html:56 templates/account/register.html:62
+#: templates/account/reset-pwd.html:62
+msgid "Sign in"
+msgstr ""
+
+#: templates/account/forgot-pwd.html:76 templates/account/login.html:82
+#: templates/account/register.html:81
+msgid "Email address"
+msgstr ""
+
+#: templates/account/forgot-pwd.html:83 templates/account/login.html:101
+#: templates/account/register.html:97 templates/account/reset-pwd.html:85
+#: templates/stickynote/add-board.html:67 templates/stickynote/add-note.html:80
+#: templates/stickynote/edit-board.html:66
+#: templates/stickynote/edit-note.html:92
+msgid "Submit"
+msgstr ""
+
+#: templates/account/forgot-pwd.html:86
+msgid "Troubleshooting"
+msgstr ""
+
+#: templates/account/login.html:63 templates/account/register.html:7
+#: templates/account/register.html:55
+msgid "Sign up"
+msgstr ""
+
+#: templates/account/login.html:88 templates/account/register.html:86
+#: templates/account/reset-pwd.html:74
+msgid "Password"
+msgstr ""
+
+#: templates/account/login.html:94 templates/account/login.html:96
+msgid "Remember me"
+msgstr ""
+
+#: templates/account/login.html:104
+msgid "Forgot password"
+msgstr ""
+
+#: templates/account/register.html:91 templates/account/reset-pwd.html:79
+msgid "Password again"
+msgstr ""
+
+#: templates/account/reset-pwd.html:7 templates/account/reset-pwd.html:55
+msgid "Reset Password"
+msgstr ""
+
+#: templates/stickynote/add-board.html:8
+msgid "Add Green Board"
+msgstr ""
+
+#: templates/stickynote/add-board.html:53 templates/stickynote/add-note.html:53
+#: templates/stickynote/boards.html:8 templates/stickynote/stickynotes.html:38
+msgid "Green Board"
+msgstr ""
+
+#: templates/stickynote/add-note.html:8
+msgid "Add Sticky Note"
+msgstr ""
+
+#: templates/stickynote/boards.html:42
+msgid "Welcome"
+msgstr ""
+
+#: templates/stickynote/boards.html:48
+msgid "Logout"
+msgstr ""
+
+#: templates/stickynote/edit-board.html:8 templates/stickynote/edit-note.html:8
+#: templates/stickynote/stickynotes.html:45
+msgid "Edit"
+msgstr ""
+
+#: templates/stickynote/edit-board.html:52
+#: templates/stickynote/edit-note.html:59
+#: templates/stickynote/stickynotes.html:7
+msgid "Sticky Note"
+msgstr ""
+
+#: templates/stickynote/edit-board.html:70
+#: templates/stickynote/edit-note.html:96
+msgid "Delete"
+msgstr ""
+
+#: templates/stickynote/edit-note.html:73
+#: templates/stickynote/edit-note.html:74
+msgid "Completed"
+msgstr ""
