@@ -11,91 +11,134 @@
 <script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <style type="text/css">
 body {
-    background-color: #666;
+	background-color: #666;
 }
+
 .container {
-    padding-top: 0px;
-    padding-left: 2px;
-    padding-right: 2px;
-    padding-bottom: 2px;
+	padding-top: 0px;
+	padding-left: 2px;
+	padding-right: 2px;
+	padding-bottom: 2px;
 }
+
 .form-signin {
-    max-width: 600px;
-    padding: 19px 19px 19px;
-    margin: 0 auto 20px;
-    background-color: #ffc;
-    border: 0px solid #e5e5e5;
-    -webkit-border-radius: 0px;
-    -moz-border-radius: 0px;
-    border-radius: 0px;
-    -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
-    -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
-    box-shadow: 0 1px 2px rgba(0,0,0,.05);
+	max-width: 600px;
+	padding: 19px 19px 19px;
+	margin: 0 auto 20px;
+	background-color: #ffc;
+	border: 0px solid #e5e5e5;
+	-webkit-border-radius: 0px;
+	-moz-border-radius: 0px;
+	border-radius: 0px;
+	-webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
+	-moz-box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
+	box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
 }
 </style>
 </head>
 
 <body>
 	<div class="container">
-		<form class="form-signin" id="form-signin" action="/forgot-pwd" method="POST">
-			{% raw xsrf_form_html() %} 
-			
-		<!-- START THE NAVBAR -->
-		<nav class="navbar navbar-static-top">
-			<div class="container2">
-				<div class="navbar-header">
-					<a class="navbar-toggle collapsed" type="submit" href="/login">
-						<span class="glyphicon glyphicon-log-in" aria-hidden="true">
-						</span>
-					</a>
-					<h2><span>Resend your activation email</span></h2>
-				</div>
-				<div class="collapse navbar-collapse">
-					<div class="nav navbar-nav navbar-right">
-						<a class="navbar-brand" href="/login">
+		<form class="form-signin" id="form-signin" action="/forgot-pwd"
+			method="POST">
+			{% raw xsrf_form_html() %}
+
+			<!-- START THE NAVBAR -->
+			<nav class="navbar navbar-static-top">
+				<div class="container2">
+					<div class="navbar-header">
+						<a class="navbar-toggle collapsed" type="submit" href="/login">
 							<span class="glyphicon glyphicon-log-in" aria-hidden="true">
-							</span> Sign in
+						</span>
 						</a>
+						<h2>
+							<span>Resend your activation email</span>
+						</h2>
+					</div>
+					<div class="collapse navbar-collapse">
+						<div class="nav navbar-nav navbar-right">
+							<a class="navbar-brand" href="/login"> <span
+								class="glyphicon glyphicon-log-in" aria-hidden="true"> </span>
+								Sign in
+							</a>
+						</div>
 					</div>
 				</div>
-			</div>
-		</nav>
-		<!-- END NAVBAR -->
-			
-			{% if err_msg != "" %}
-			<div class="alert alert-danger" role="alert">
-				<span class="glyphicon glyphicon-exclamation-sign"
-					aria-hidden="true"></span> <span class="sr-only">Error:</span> {{
-				err_msg }}
-			</div>
-			{% end %}
+			</nav>
+			<!-- END NAVBAR -->
 
+			<div id="alertPanel"></div>
+
+			<div class="form-group">If you have fixed your email settings
+				and require the email to be resent, please put in your email address
+				below:</div>
 			<div class="form-group">
-				If you have fixed your email settings and require the email to be resent, please put in your email address below:
-			</div>
-			<div class="form-group">
-				<label for="input-email" class="sr-only">Email address</label>
-				<input type="email" id="input-email" name="input-email" class="form-control" value="{{ login_name }}"
+				<label for="input-email" class="sr-only">Email address</label> <input
+					type="email" id="input-email" name="input-email"
+					class="form-control" value="{{ login_name }}"
 					placeholder="Email address" required autofocus>
 			</div>
 			<div class="form-group">
-				<button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
+				<button class="btn btn-lg btn-primary btn-block" type="button"
+					onclick="submitForm();">Submit</button>
 			</div>
 			<div class="form-group">
 				<h3 class="form-group">Troubleshooting</h3>
-				<span class="form-group">If you have trouble receiving your Inbox Signup Validation, try the following:</span>
+				<span class="form-group">If you have trouble receiving your
+					Inbox Signup Validation, try the following:</span>
 				<ul>
-					<li class="form-group"><strong>Wrong Address:</strong> Make sure that you have typed in the correct email address (displayed above).
-					</li>
-					<li class="form-group"><strong>Junk Mail Filter:</strong> Make sure that the Signup Validation Email did not get filtered into the junk mail folder of your email application.
-					</li>
-					<li class="form-group"><strong>Blocked by ISP:</strong> In some cases emails may be accidentally blocked by Anti-SPAM technology used by your Internet Service Provider (ISP). Contact your ISP and ask them if they are blocking email sent by 'sendcloud.com'.
-					</li>
+					<li class="form-group"><strong>Wrong Address:</strong> Make
+						sure that you have typed in the correct email address (displayed
+						above).</li>
+					<li class="form-group"><strong>Junk Mail Filter:</strong> Make
+						sure that the Signup Validation Email did not get filtered into
+						the junk mail folder of your email application.</li>
+					<li class="form-group"><strong>Blocked by ISP:</strong> In
+						some cases emails may be accidentally blocked by Anti-SPAM
+						technology used by your Internet Service Provider (ISP). Contact
+						your ISP and ask them if they are blocking email sent by
+						'sendcloud.com'.</li>
 				</ul>
-				<span class="form-group">If you have trouble validating your account and have recieved your email please contact us for assistance: 
-				<a href="mailto:thomas@time2box.com">thomas@time2box.com</a></span>
+				<span class="form-group">If you have trouble validating your
+					account and have recieved your email please contact us for
+					assistance: <a href="mailto:thomas@time2box.com">thomas@time2box.com</a>
+				</span>
 			</div>
 		</form>
 	</div>
+
+	<script type="text/javascript">
+		function IsMail(mail) {
+			var patrn = /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
+			if (!patrn.test(mail))
+				return false;
+			else
+				return true;
+		}
+
+		function submitForm() {
+			var email = document.getElementById("input-email").value;
+			if (email == null || email == undefined || email == '') {
+				var alertPanel = document.getElementById("alertPanel");
+				alertPanel.innerHTML = '<div class="alert alert-danger" role="alert">\
+					<span class="glyphicon glyphicon-exclamation-sign"\
+					aria-hidden="true"></span> <span class="sr-only"> Warning: </span>\
+					The email address is required and can\'t be empty\
+					</div>';
+				return false;
+			}
+			if (!IsMail(email)) {
+				var alertPanel = document.getElementById("alertPanel");
+				alertPanel.innerHTML = '<div class="alert alert-danger" role="alert">\
+					<span class="glyphicon glyphicon-exclamation-sign"\
+					aria-hidden="true"></span> <span class="sr-only"> Warning: </span>\
+					The input is not a valid email address\
+					</div>';
+				return false;
+			}
+
+			document.getElementById("form-signin").submit();
+		}
+	</script>
 </body>
 </html>

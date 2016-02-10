@@ -11,70 +11,78 @@
 <script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <style type="text/css">
 body {
-    background-color: #666;
+	background-color: #666;
 }
+
 .container {
-    padding-top: 0px;
-    padding-left: 2px;
-    padding-right: 2px;
-    padding-bottom: 2px;
+	padding-top: 0px;
+	padding-left: 2px;
+	padding-right: 2px;
+	padding-bottom: 2px;
 }
+
 .form-signin {
-    max-width: 600px;
-    padding: 19px 19px 19px;
-    margin: 0 auto 20px;
-    background-color: #ffc;
-    border: 0px solid #e5e5e5;
-    -webkit-border-radius: 0px;
-    -moz-border-radius: 0px;
-    border-radius: 0px;
-    -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
-    -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
-    box-shadow: 0 1px 2px rgba(0,0,0,.05);
+	max-width: 600px;
+	padding: 19px 19px 19px;
+	margin: 0 auto 20px;
+	background-color: #ffc;
+	border: 0px solid #e5e5e5;
+	-webkit-border-radius: 0px;
+	-moz-border-radius: 0px;
+	border-radius: 0px;
+	-webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
+	-moz-box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
+	box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
 }
 </style>
 </head>
 
 <body>
 	<div class="container">
-		<form class="form-signin" id="form-signin" action="/reset-pwd" method="POST">
-			{% raw xsrf_form_html() %} 
-			
-		<!-- START THE NAVBAR -->
-		<nav class="navbar navbar-static-top">
-			<div class="container2">
-				<div class="navbar-header">
-					<a class="navbar-toggle collapsed" type="submit" href="/login">
-						<span class="glyphicon glyphicon-log-in" aria-hidden="true">
-						</span>
-					</a>
-					<h2><span>Reset password</span></h2>
-				</div>
-				<div class="collapse navbar-collapse">
-					<div class="nav navbar-nav navbar-right">
-						<a class="navbar-brand" href="/login">
+		<form class="form-signin" id="form-signin" action="/reset-pwd"
+			method="POST">
+			{% raw xsrf_form_html() %}
+
+			<!-- START THE NAVBAR -->
+			<nav class="navbar navbar-static-top">
+				<div class="container2">
+					<div class="navbar-header">
+						<a class="navbar-toggle collapsed" type="submit" href="/login">
 							<span class="glyphicon glyphicon-log-in" aria-hidden="true">
-							</span> Sign in
+						</span>
 						</a>
+						<h2>
+							<span>Reset password</span>
+						</h2>
+					</div>
+					<div class="collapse navbar-collapse">
+						<div class="nav navbar-nav navbar-right">
+							<a class="navbar-brand" href="/login"> <span
+								class="glyphicon glyphicon-log-in" aria-hidden="true"> </span>
+								Sign in
+							</a>
+						</div>
 					</div>
 				</div>
-			</div>
-		</nav>
-		<!-- END NAVBAR -->
+			</nav>
+			<!-- END NAVBAR -->
+
+			<div id="alertPanel"></div>
 
 			<input type="hidden" value="{{ekey}}" name="ekey" />
 			<div class="form-group">
-				<label for="input-password" class="sr-only">Password</label>
-				<input type="password" id="input-password" name="input-password" class="form-control"
-					placeholder="Password" required>
+				<label for="input-password" class="sr-only">Password</label> <input
+					type="password" id="input-password" name="input-password"
+					class="form-control" placeholder="Password" required>
 			</div>
 			<div class="form-group">
 				<label for="input-password2" class="sr-only">Password again</label>
-				<input type="password" id="input-password2" name="input-password2" class="form-control"
-					placeholder="Password (again)" required>
+				<input type="password" id="input-password2" name="input-password2"
+					class="form-control" placeholder="Password (again)" required>
 			</div>
 			<div class="form-group">
-				<button class="btn btn-lg btn-primary btn-block" type="button" onclick="submitForm();">Submit</button>
+				<button class="btn btn-lg btn-primary btn-block" type="button"
+					onclick="submitForm();">Submit</button>
 			</div>
 		</form>
 	</div>
@@ -82,8 +90,40 @@ body {
 	<script type="text/javascript" src="{{static_url("md5.js")}}"></script>
 	<script type="text/javascript">
 		function submitForm() {
+			var password = document.getElementById("input-password").value;
+			if (password == null || password == undefined || password == '') {
+				var alertPanel = document.getElementById("alertPanel");
+				alertPanel.innerHTML = '<div class="alert alert-danger" role="alert">\
+					<span class="glyphicon glyphicon-exclamation-sign"\
+					aria-hidden="true"></span> <span class="sr-only"> Warning: </span>\
+					The password is required and can\'t be empty\
+					</div>';
+				return false;
+			}
+			var password2 = document.getElementById("input-password2").value;
+			if (password2 == null || password2 == undefined || password2 == '') {
+				var alertPanel = document.getElementById("alertPanel");
+				alertPanel.innerHTML = '<div class="alert alert-danger" role="alert">\
+					<span class="glyphicon glyphicon-exclamation-sign"\
+					aria-hidden="true"></span> <span class="sr-only"> Warning: </span>\
+					The password (again) is required and can\'t be empty\
+					</div>';
+				return false;
+			}
+			if (password !== password2) {
+				var alertPanel = document.getElementById("alertPanel");
+				alertPanel.innerHTML = '<div class="alert alert-danger" role="alert">\
+					<span class="glyphicon glyphicon-exclamation-sign"\
+					aria-hidden="true"></span> <span class="sr-only"> Warning: </span>\
+					The password and its confirm are not the same\
+					</div>';
+				return false;
+			}
+			
 			document.getElementById("input-password").value = hex_md5(document
 					.getElementById("input-password").value);
+			document.getElementById("input-password2").value = hex_md5(document
+					.getElementById("input-password2").value);
 			document.getElementById("form-signin").submit();
 		}
 	</script>

@@ -40,7 +40,8 @@ body {
 
 <body>
 	<div class="container">
-		<form class="form-signin" id="form-signin" action="/login" method="POST">
+		<form class="form-signin" id="form-signin" action="/login"
+			method="POST">
 			{% raw xsrf_form_html() %}
 
 			<!-- START THE NAVBAR -->
@@ -70,13 +71,12 @@ body {
 			{% if err_msg != "" %}
 			<div class="alert alert-danger" role="alert">
 				<span class="glyphicon glyphicon-exclamation-sign"
-					aria-hidden="true"></span> <span class="sr-only">Error:</span>
-						{{ err_msg }}
+					aria-hidden="true"></span> <span class="sr-only">Error:</span> {{
+				err_msg }}
 			</div>
 			{% end %}
-			
-			<div id="err-msg-label">
-			</div>
+
+			<div id="alertPanel"></div>
 
 			<div class="form-group required">
 				<label for="input-email" class="sr-only">Email address</label> <input
@@ -97,7 +97,8 @@ body {
 				</label> {% end %}
 			</div>
 			<div class="form-group">
-				<button class="btn btn-lg btn-primary btn-block" onclick="submitForm();">Sign in</button>
+				<button class="btn btn-lg btn-primary btn-block" type="button"
+					onclick="SubmitForm();">Sign in</button>
 			</div>
 			<div class="form-group">
 				<a href="forgot-pwd">Forgot password</a>
@@ -107,30 +108,47 @@ body {
 
 	<script type="text/javascript" src="{{static_url("md5.js")}}"></script>
 	<script type="text/javascript">
-		function submitForm() {
-			var inputEmail = document.getElementById("input-email").value;
- 			if (inputEmail == null || inputEmail == undefined || inputEmail == '') {
-				err-msg-label = document.getElementById("err-msg-label");
-				err-msg-label.innerHTML='<div class="alert alert-danger" role="alert">\
-					<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>\
-					<strong> Warning: </strong>\
+		function IsMail(mail) {
+			var patrn = /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
+			if (!patrn.test(mail))
+				return false;
+			else
+				return true;
+		}
+
+		function SubmitForm() {
+			var email = document.getElementById("input-email").value;
+			if (email == null || email == undefined || email == '') {
+				var alertPanel = document.getElementById("alertPanel");
+				alertPanel.innerHTML = '<div class="alert alert-danger" role="alert">\
+					<span class="glyphicon glyphicon-exclamation-sign"\
+					aria-hidden="true"></span> <span class="sr-only"> Warning: </span>\
 					The email address is required and can\'t be empty\
 					</div>';
-				return;
+				return false;
 			}
-			var inputPassword = document.getElementById("input-password").value;
-			if (inputPassword == null || inputPassword == undefined || inputPassword == '') {
-				err-msg-label = document.getElementById("err-msg-label");
-				err-msg-label.innerHTML='<div class="alert alert-danger" role="alert">\
-					<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>\
-					<strong> Warning: </strong>\
+			if (!IsMail(email)) {
+				var alertPanel = document.getElementById("alertPanel");
+				alertPanel.innerHTML = '<div class="alert alert-danger" role="alert">\
+					<span class="glyphicon glyphicon-exclamation-sign"\
+					aria-hidden="true"></span> <span class="sr-only"> Warning: </span>\
+					The input is not a valid email address\
+					</div>';
+				return false;
+			}
+			var password = document.getElementById("input-password").value;
+			if (password == null || password == undefined || password == '') {
+				var alertPanel = document.getElementById("alertPanel");
+				alertPanel.innerHTML = '<div class="alert alert-danger" role="alert">\
+					<span class="glyphicon glyphicon-exclamation-sign"\
+					aria-hidden="true"></span> <span class="sr-only"> Warning: </span>\
 					The password is required and can\'t be empty\
 					</div>';
-				return;
+				return false;
 			}
-		
-			document.getElementById("input-email").value = hex_md5(document.getElementById("input-email").value);
-			document.getElementById("input-password").value = hex_md5(document.getElementById("input-password").value);
+
+			document.getElementById("input-password").value = hex_md5(document
+					.getElementById("input-password").value);
 			document.getElementById("form-signin").submit();
 		}
 	</script>

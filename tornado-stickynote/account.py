@@ -58,7 +58,6 @@ class LoginHandler(BaseHandler):
             print response.body
             _stp_session = json_decode(response.body)
             _session_ticket = _stp_session["sessionToken"]
-            _account_id = _stp_session["accountId"]
             
             self.set_secure_cookie("ticket", _session_ticket)
             self.set_secure_cookie("login_name", _email)
@@ -127,7 +126,7 @@ class ForgotPwdHandler(BaseHandler):
         _email = self.get_secure_cookie("login_name")
         if _email == None:
             _email = ""
-        self.render('account/forgot-pwd.html', err_msg="", login_name=_email)
+        self.render('account/forgot-pwd.html', login_name=_email)
 
     def post(self):
         _email = self.get_argument("input-email", "")
