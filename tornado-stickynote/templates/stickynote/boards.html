@@ -10,19 +10,19 @@
 	href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
 <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-<link href="{{static_url("sticky-notes.css")}}" rel="stylesheet" type="text/css">
+<link href="{{static_url("sticky-notes.css")}}" rel="stylesheet"
+	type="text/css">
 <style type="text/css">
 body {
-    background-color: #666;
-//    padding-right: 5px;
+	background-color: #666;
 }
+
 .container {
-    padding-top: 0px;
-    padding-left: 0px;
-    padding-right: 0px;
-    padding-bottom: 0px;
-//    background-color: #ff5;
-    margin:0em 0em 0em 1em;
+	padding-top: 0px;
+	padding-left: 0px;
+	padding-right: 0px;
+	padding-bottom: 0px;
+	margin: 0em 0em 0em 1em;
 }
 </style>
 </head>
@@ -33,48 +33,48 @@ body {
 
 		<!-- START THE NAVBAR -->
 		<nav class="navbar navbar-static-top">
-			<div class="container2">
+			<div>
 				<div class="navbar-header">
 					<a class="navbar-brand navbar-toggle collapsed" href="/logout">
 						<span class="glyphicon glyphicon-log-out" aria-hidden="true">
 						</span>
-					</a>
+					</a> 
 					<span class="navbar-brand"> {{_("Welcome")}}, {{login_name}}</span>
 				</div>
 				<div class="collapse navbar-collapse">
 					<div class="nav navbar-nav navbar-right">
-						<a class="navbar-brand" href="/logout">
+						<a class="navbar-brand" href="/logout"> 
 							<span class="glyphicon glyphicon-log-out" aria-hidden="true">
-							</span> {{_("Logout")}}
+								{{_("Logout")}}
+							</span>
 						</a>
 					</div>
 				</div>
 			</div>
 		</nav>
 		<!-- END NAVBAR -->
-
 	</form>
 
 	<div class="container">
-	<div>
+		<div id="body">
+			<ul id="blackboard">
+				<li>
+					<a class="black" id="plus" href="add-board"> 
+						<img src="{{static_url("images/plus-white.png")}}" 
+							width="100%" height="100%" />
+					</a>
+				</li>
+				{% for board in boards %}
+					{% module Template("stickynote/boards-block.html", board=board) %}
+				{% end %}
+			</ul>
+		</div>
+	</div>
 
-	</div>
-	<div id="body">
-		<ul id="blackboard">
-			<li><a class="black" id="plus" href="add-board">
-				<img src="{{static_url("images/plus-white.png")}}" width="100%" height="100%" />
-			</a></li>
-			{% for board in boards %} 
-				{% module Template("stickynote/boards-block.html",board=board) %} 
-			{% end %}
-		</ul>
-	</div>
-	</div>
-	
-<script type="text/javascript">
-	function submitLogout() {
-	document.getElementById("logout-form").submit();
-}
-</script>
+	<script type="text/javascript">
+		function submitLogout() {
+			document.getElementById("logout-form").submit();
+		}
+	</script>
 </body>
 </html>

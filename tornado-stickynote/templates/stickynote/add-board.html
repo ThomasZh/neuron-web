@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>{{_("Add Green Board")}}</title>
+<title>{{_("Add")}}</title>
 <link rel="stylesheet"
 	href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
 <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
@@ -40,17 +40,17 @@ body {
 
 <body>
 	<div class="container">
-		<form class="form-signin" id="form-signin" method="post"
-			action="add-board">
+		<form class="form-signin" id="form-signin" method="post" action="add-board">
 			<!-- the 'raw' word is to force escape to be desactivated (it is by default activated) -->
 			{% raw xsrf_form_html() %}
 
 			<!-- START THE NAVBAR -->
 			<nav class="navbar navbar-static-top">
-				<div class="container2">
+				<div>
 					<div class="navbar-header">
 						<span class="navbar-brand glyphicon glyphicon-chevron-left"
-							style="cursor: pointer" onClick="history.go(-1);return true;">{{_("Green Board")}}</span>
+							style="cursor: pointer" onClick="history.go(-1);return true;">
+							{{_("Green Board")}}</span>
 					</div>
 				</div>
 			</nav>

@@ -31,7 +31,6 @@ class NotesHandler(BaseHandler):
     def get(self):
         _boardId = (self.request.arguments['boardId'])[0]
         logging.info("got _boardId %r", _boardId)
-        print _boardId
         
         _timestamp = long(time.time() * 1000)
         params = {"completed":False, "before": _timestamp, "limit": 20}
@@ -39,7 +38,6 @@ class NotesHandler(BaseHandler):
         http_client = HTTPClient()
         response = http_client.fetch(url, method="GET")
         logging.info("got response %r", response.body)
-        print response.body
         uncompleted_notes = json_decode(response.body)
         
         params = {"completed":True, "before": _timestamp, "limit": 20}
@@ -47,7 +45,6 @@ class NotesHandler(BaseHandler):
         http_client = HTTPClient()
         response = http_client.fetch(url, method="GET")
         logging.info("got response %r", response.body)
-        print response.body
         completed_notes = json_decode(response.body)
         
         self.render("stickynote/stickynotes.html", boardId=_boardId, unotes=uncompleted_notes, cnotes=completed_notes)
