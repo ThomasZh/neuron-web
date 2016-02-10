@@ -12,56 +12,78 @@
 <script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <style type="text/css">
 body {
-    background-color: #666;
+	background-color: #666;
 }
+
 .container {
-    padding-top: 0px;
-    padding-left: 2px;
-    padding-right: 2px;
-    padding-bottom: 2px;
+	padding-top: 0px;
+	padding-left: 2px;
+	padding-right: 2px;
+	padding-bottom: 2px;
 }
+
 .form-signin {
-    max-width: 600px;
-    padding: 19px 19px 19px;
-    margin: 0 auto 20px;
-    background-color: #176f4e;
-    border: 0px solid #e5e5e5;
-    -webkit-border-radius: 0px;
-    -moz-border-radius: 0px;
-    border-radius: 0px;
-    -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
-    -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
-    box-shadow: 0 1px 2px rgba(0,0,0,.05);
+	max-width: 600px;
+	padding: 19px 19px 19px;
+	margin: 0 auto 20px;
+	background-color: #176f4e;
+	border: 0px solid #e5e5e5;
+	-webkit-border-radius: 0px;
+	-moz-border-radius: 0px;
+	border-radius: 0px;
+	-webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
+	-moz-box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
+	box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
 }
 </style>
 </head>
 
 <body>
 	<div class="container">
-		<form class="form-signin" id="form-signin" method="post" action="add-board">
+		<form class="form-signin" id="form-signin" method="post"
+			action="add-board">
 			<!-- the 'raw' word is to force escape to be desactivated (it is by default activated) -->
-			{% raw xsrf_form_html() %} 
-			
+			{% raw xsrf_form_html() %}
+
 			<!-- START THE NAVBAR -->
 			<nav class="navbar navbar-static-top">
 				<div class="container2">
 					<div class="navbar-header">
-						<span class="navbar-brand glyphicon glyphicon-chevron-left" 
-							style="cursor: pointer" 
-							onClick="history.go(-1);return true;">Boards</span>
+						<span class="navbar-brand glyphicon glyphicon-chevron-left"
+							style="cursor: pointer" onClick="history.go(-1);return true;">Boards</span>
 					</div>
 				</div>
 			</nav>
 			<!-- END NAVBAR -->
 
+			<div id="alertPanel"></div>
+
 			<div class="form-group">
-				<textarea class="form-control input-lg" id="title" name="title" placeholder="Please input title..."
-				rows="6"></textarea>
+				<textarea class="form-control input-lg" id="title" name="title"
+					placeholder="Please input title..." rows="6"></textarea>
 			</div>
 			<div class="form-group">
-				<button class="btn btn-lg btn-primary btn-block" type="submit">Add board</button>
+				<button class="btn btn-lg btn-primary btn-block" type="button"
+					onclick="SubmitForm();">Add board</button>
 			</div>
 		</form>
 	</div>
+
+	<script type="text/javascript">
+		function SubmitForm() {
+			var title = document.getElementById("title").value;
+			if (title == null || title == undefined || title == '') {
+				var alertPanel = document.getElementById("alertPanel");
+				alertPanel.innerHTML = '<div class="alert alert-danger" role="alert">\
+					<span class="glyphicon glyphicon-exclamation-sign"\
+					aria-hidden="true"></span> <span class="sr-only"> Warning: </span>\
+					The title is required and can\'t be empty\
+					</div>';
+				return false;
+			}
+
+			document.getElementById("form-signin").submit();
+		}
+	</script>
 </body>
 </html>

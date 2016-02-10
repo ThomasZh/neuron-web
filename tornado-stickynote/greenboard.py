@@ -30,9 +30,7 @@ class BoardsHandler(BaseHandler):
     @tornado.web.authenticated  # if no session, redirect to login page
     def get(self):
         _login_name = self.get_secure_cookie("login_name")
-        if _login_name == None:
-            _login_name = ""
-            
+
         _timestamp = long(time.time() * 1000)
         params = {"before": _timestamp, "limit": 20}
         url = url_concat("http://182.92.66.109/greenboards", params)
@@ -51,9 +49,6 @@ class AddBoardHandler(BaseHandler):
 
     def post(self):
         _login_name = self.get_secure_cookie("login_name")
-        if _login_name == None:
-            _login_name = ""
-            
         _title = (self.request.arguments['title'])[0]
         logging.info("got title %r", _title)
         print _title
@@ -128,10 +123,7 @@ class EditBoardHandler(BaseHandler):
 class RemoveBoardHandler(BaseHandler):
     @tornado.web.authenticated  # if no session, redirect to login page
     def post(self):
-        _login_name = self.get_secure_cookie("login_name")
-        if _login_name == None:
-            _login_name = ""
-            
+        _login_name = self.get_secure_cookie("login_name")            
         _boardId = (self.request.arguments['boardId'])[0]
         logging.info("got _boardId %r", _boardId)
         print _boardId

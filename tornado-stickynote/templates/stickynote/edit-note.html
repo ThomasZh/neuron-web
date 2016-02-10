@@ -13,148 +13,162 @@
 <link rel="stylesheet" href="{{static_url("click-wave.css")}}">
 <style type="text/css">
 body {
-    background-color: #176f4e;
+	background-color: #176f4e;
 }
+
 .container {
-    padding-top: 0px;
-    padding-left: 2px;
-    padding-right: 2px;
-    padding-bottom: 2px;
+	padding-top: 0px;
+	padding-left: 2px;
+	padding-right: 2px;
+	padding-bottom: 2px;
 }
+
 .form-signin {
-    max-width: 600px;
-    padding: 19px 19px 19px;
-    margin: 0 auto 20px;
-    background-color: #ffc;
-    border: 0px solid #e5e5e5;
-    -webkit-border-radius: 0px;
-    -moz-border-radius: 0px;
-    border-radius: 0px;
-    -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
-    -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
-    box-shadow: 0 1px 2px rgba(0,0,0,.05);
+	max-width: 600px;
+	padding: 19px 19px 19px;
+	margin: 0 auto 20px;
+	background-color: #ffc;
+	border: 0px solid #e5e5e5;
+	-webkit-border-radius: 0px;
+	-moz-border-radius: 0px;
+	border-radius: 0px;
+	-webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
+	-moz-box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
+	box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
 }
 </style>
 </head>
 
 <body>
-<div class="container">
-	<form class="form-signin" id="form-signin" method="post" action="edit-note">
-		<input type="hidden" value="{{note["boardId"]}}" name="boardId" />
-		<input type="hidden" value="{{note["id"]}}" name="noteId" />
-        <input id="hiddencolor" name="hiddencolor" type="hidden" value="{{note["color"]}}" />
-        <input id="hiddenCompleted" name="hiddenCompleted" type="hidden" value="{{note["completed"]}}" />
-		<!-- the 'raw' word is to force escape to be desactivated (it is by default activated) -->
-		{% raw xsrf_form_html() %}
-		
+	<div class="container">
+		<form class="form-signin" id="form-signin" method="post"
+			action="edit-note">
+			<input type="hidden" value="{{note["boardId"]}}" name="boardId" />
+			<input type="hidden" value="{{note["id"]}}" name="noteId" /> <input
+				id="hiddencolor" name="hiddencolor" type="hidden" value="{{note["color"]}}" />
+			<input id="hiddenCompleted" name="hiddenCompleted" type="hidden"
+				value="{{note["completed"]}}" />
+			<!-- the 'raw' word is to force escape to be desactivated (it is by default activated) -->
+			{% raw xsrf_form_html() %}
+
 			<!-- START THE NAVBAR -->
 			<nav class="navbar navbar-static-top">
 				<div class="container2">
 					<div class="navbar-header">
-						<span class="navbar-brand glyphicon glyphicon-chevron-left" 
-							style="cursor: pointer" 
-							onClick="history.go(-1);return true;">Board</span>
+						<span class="navbar-brand glyphicon glyphicon-chevron-left"
+							style="cursor: pointer" onClick="history.go(-1);return true;">Board</span>
 					</div>
 				</div>
 			</nav>
 			<!-- END NAVBAR -->
-			
-		<div class="form-group">
-            <textarea id="title" name="title" class="form-control input-lg" 
-                placeholder="Please input content..." rows="6">{{note["title"]}}</textarea>
-        </div>
-		<div class="checkbox">
-			<label> 
-				{% if not note["completed"] %}
-            		<input type="checkbox" name="completed">Completed</input>
-          		{% else %}
-          			<input type="checkbox" name="completed" checked>Completed</input>
-            	{% end %}
-			</label>
-		</div>
-		<div class="form-group">
-			<input type="radio" class="option-input radio yellow" value="yellow"
-				name="color" checked onclick="javascript:change('#ffc')">
-			<input type="radio" class="option-input radio green" value="green"
-				name="color" onclick="javascript:change('#c2ffc1')">
-			<input type="radio" class="option-input radio blue" value="blue"
-				name="color" onclick="javascript:change('#81effe')">
-			<input type="radio" class="option-input radio purple" value="purple"
-				name="color" onclick="javascript:change('#c0befe')">
-			<input type="radio" class="option-input radio red" value="red"
-				name="color" onclick="javascript:change('#fc76bb')">
-		</div>
-		<br>
-		<div class="form-group">
-			<button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
-		</div>
-		<div class="form-group">
-			<button class="btn btn-lg btn-danger btn-block" type="button" onclick="submitDelete();">Delete</button>
-		</div>
-	</form>
-	<form id="remove-note" method="post" action="remove-note">
-		<input type="hidden" value="{{note["boardId"]}}" name="boardId" />
-		<input type="hidden" value="{{note["id"]}}" name="noteId" />
-		<!-- the 'raw' word is to force escape to be desactivated (it is by default activated) -->
-		{% raw xsrf_form_html() %}
-	</form>
-</div>
 
-<script type="text/javascript">
-function findSelection(field) {
-	var radios = document.getElementsByName(field);
+			<div id="alertPanel"></div>
 
-	for (var i = 0, length = radios.length; i < length; i++) {
-	    if (radios[i].checked) {
-	        return radios[i].value;
-	    }
-	}
-}
+			<div class="form-group">
+				<textarea id="title" name="title" class="form-control input-lg"
+					placeholder="Please input content..." rows="6">{{note["title"]}}</textarea>
+			</div>
+			<div class="checkbox">
+				<label> {% if not note["completed"] %} <input
+					type="checkbox" name="completed">Completed</input> {% else %} <input
+					type="checkbox" name="completed" checked>Completed</input> {% end
+					%}
+				</label>
+			</div>
+			<div class="form-group">
+				<input type="radio" class="option-input radio yellow" value="yellow"
+					name="color" checked onclick="javascript:change('#ffc')"> <input
+					type="radio" class="option-input radio green" value="green"
+					name="color" onclick="javascript:change('#c2ffc1')"> <input
+					type="radio" class="option-input radio blue" value="blue"
+					name="color" onclick="javascript:change('#81effe')"> <input
+					type="radio" class="option-input radio purple" value="purple"
+					name="color" onclick="javascript:change('#c0befe')"> <input
+					type="radio" class="option-input radio red" value="red"
+					name="color" onclick="javascript:change('#fc76bb')">
+			</div>
+			<br>
+			<div class="form-group">
+				<button class="btn btn-lg btn-primary btn-block" type="button" onclick="SubmitForm();">Submit</button>
+			</div>
+			<div class="form-group">
+				<button class="btn btn-lg btn-danger btn-block" type="button"
+					onclick="SubmitDelete();">Delete</button>
+			</div>
+		</form>
+		<form id="remove-note" method="post" action="remove-note">
+			<input type="hidden" value="{{note["boardId"]}}" name="boardId" />
+			<input type="hidden" value="{{note["id"]}}" name="noteId" />
+			<!-- the 'raw' word is to force escape to be desactivated (it is by default activated) -->
+			{% raw xsrf_form_html() %}
+		</form>
+	</div>
 
-function submitForm() {
-    var genderS = findSelection("color");
-    alert(genderS);
-}
+	<script type="text/javascript">
+		function findSelection(field) {
+			var radios = document.getElementsByName(field);
 
-function change(color){
-	var board = document.getElementById("form-signin");
-	board.style.backgroundColor = color;
-}
+			for (var i = 0, length = radios.length; i < length; i++) {
+				if (radios[i].checked) {
+					return radios[i].value;
+				}
+			}
+		}
 
-function submitDelete() {
-	document.getElementById("remove-note").submit();
-}
+		function SubmitForm() {
+			var title = document.getElementById("title").value;
+			if (title == null || title == undefined || title == '') {
+				var alertPanel = document.getElementById("alertPanel");
+				alertPanel.innerHTML = '<div class="alert alert-danger" role="alert">\
+				<span class="glyphicon glyphicon-exclamation-sign"\
+				aria-hidden="true"></span> <span class="sr-only"> Warning: </span>\
+				The title is required and can\'t be empty\
+				</div>';
+				return false;
+			}
 
-function init(){
-    var completed = document.getElementById("hiddenCompleted");
-	if (completed.value == "true") {
-        document.body.style.background="#ffffff";
-    }
+			document.getElementById("form-signin").submit();
+		}
 
-    var color = document.getElementById("hiddencolor");
-    var board = document.getElementById("form-signin");
-	if (color.value == "yellow")
-    	board.style.backgroundColor = '#ffc';
-	else if (color.value == "green")
-    	board.style.backgroundColor = '#c2ffc1';
-	else if (color.value == "blue")
-    	board.style.backgroundColor = '#81effe';
-	else if (color.value == "purple")
-    	board.style.backgroundColor = '#c0befe';
-	else if (color.value == "red")
-    	board.style.backgroundColor = '#fc76bb';
+		function change(color) {
+			var board = document.getElementById("form-signin");
+			board.style.backgroundColor = color;
+		}
 
-    var radios = document.getElementsByName("color");
-    for (var i = 0, length = radios.length; i < length; i++) {
-        if (radios[i].value == color.value) {
-            radios[i].checked = true;
-        } else {
-            radios[i].checked = false;
-        }
-    }
-}
+		function SubmitDelete() {
+			document.getElementById("remove-note").submit();
+		}
 
-init();
-</script>
+		function init() {
+			var completed = document.getElementById("hiddenCompleted");
+			if (completed.value == "true") {
+				document.body.style.background = "#ffffff";
+			}
+
+			var color = document.getElementById("hiddencolor");
+			var board = document.getElementById("form-signin");
+			if (color.value == "yellow")
+				board.style.backgroundColor = '#ffc';
+			else if (color.value == "green")
+				board.style.backgroundColor = '#c2ffc1';
+			else if (color.value == "blue")
+				board.style.backgroundColor = '#81effe';
+			else if (color.value == "purple")
+				board.style.backgroundColor = '#c0befe';
+			else if (color.value == "red")
+				board.style.backgroundColor = '#fc76bb';
+
+			var radios = document.getElementsByName("color");
+			for (var i = 0, length = radios.length; i < length; i++) {
+				if (radios[i].value == color.value) {
+					radios[i].checked = true;
+				} else {
+					radios[i].checked = false;
+				}
+			}
+		}
+
+		init();
+	</script>
 </body>
 </html>
