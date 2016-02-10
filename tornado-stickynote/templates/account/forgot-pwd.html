@@ -4,7 +4,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>{{_("Forgot Password")}}</title>
+<title>{{_("Forgot password")}}</title>
 <link rel="stylesheet"
 	href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
 <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
@@ -69,9 +69,7 @@ body {
 
 			<div id="alertPanel"></div>
 
-			<div class="form-group">If you have fixed your email settings
-				and require the email to be resent, please put in your email address
-				below:</div>
+			<div class="form-group">{{_("If you have fixed your email settings and require the email to be resent, please put in your email address below")}}:</div>
 			<div class="form-group">
 				<label for="input-email" class="sr-only">{{_("Email address")}}</label> <input
 					type="email" id="input-email" name="input-email"
@@ -84,24 +82,22 @@ body {
 			</div>
 			<div class="form-group">
 				<h3 class="form-group">{{_("Troubleshooting")}}</h3>
-				<span class="form-group">If you have trouble receiving your
-					Inbox Signup Validation, try the following:</span>
+				<h5 class="form-group">{{_("If you have trouble receiving your Inbox Signup Validation, try the following")}}:</h5>
 				<ul>
-					<li class="form-group"><strong>Wrong Address:</strong> Make
-						sure that you have typed in the correct email address (displayed
-						above).</li>
-					<li class="form-group"><strong>Junk Mail Filter:</strong> Make
-						sure that the Signup Validation Email did not get filtered into
-						the junk mail folder of your email application.</li>
-					<li class="form-group"><strong>Blocked by ISP:</strong> In
-						some cases emails may be accidentally blocked by Anti-SPAM
-						technology used by your Internet Service Provider (ISP). Contact
-						your ISP and ask them if they are blocking email sent by
-						'sendcloud.com'.</li>
+					<li class="form-group"><strong>{{_("Wrong Address")}}:</strong> 
+						{{_("Make sure that you have typed in the correct email address (displayed above).")}}
+					</li>
+					<li class="form-group"><strong>{{_("Junk Mail Filter")}}:</strong> 
+						{{_("Make sure that the Signup Validation Email did not get filtered into the junk mail folder of your email application.")}}
+					</li>
+					<li class="form-group"><strong>{{_("Blocked by ISP")}}:</strong> 
+						{{_("In some cases emails may be accidentally blocked by Anti-SPAM technology used by your Internet Service Provider (ISP).")}}
+						{{_("Contact your ISP and ask them if they are blocking email sent by SendCloud.com.")}}
+					</li>
 				</ul>
-				<span class="form-group">If you have trouble validating your
-					account and have recieved your email please contact us for
-					assistance: <a href="mailto:thomas@time2box.com">thomas@time2box.com</a>
+				<span class="form-group">
+					{{_("If you have trouble validating your account and have recieved your email please contact us for assistance:")}}
+					<a href="mailto:thomas@time2box.com">thomas@time2box.com</a>
 				</span>
 			</div>
 		</form>

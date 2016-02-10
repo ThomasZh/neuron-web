@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-02-10 19:20+0800\n"
+"POT-Creation-Date: 2016-02-10 23:35+0800\n"
 "PO-Revision-Date: 2016-02-10 18:13+0800\n"
 "Last-Translator: ThomasZhang <thomas@macbook~pro.home>\n"
 "Language-Team: Chinese (simplified)\n"
@@ -25,13 +25,32 @@ msgstr "错误"
 msgid "NOT FOUND"
 msgstr "未发现"
 
+#: templates/404.html:59
+msgid "Sorry, the page you were looking for does not exist."
+msgstr "对比起, 您正在访问的网页不存在."
+
 #: templates/404.html:61
 msgid "BACK TO HOME"
 msgstr "回到主页"
 
-#: templates/account/forgot-pwd.html:7
-#, fuzzy
-msgid "Forgot Password"
+#: templates/404.html:64
+msgid "If you followed a broken link"
+msgstr "如何您访问的是一个坏链接"
+
+#: templates/404.html:64
+msgid "please"
+msgstr "请"
+
+#: templates/404.html:65
+msgid "let us know"
+msgstr "告诉我们"
+
+#: templates/404.html:66
+msgid "where the broken link came from."
+msgstr "这个坏链接是从哪个网站来的."
+
+#: templates/account/forgot-pwd.html:7 templates/account/login.html:104
+msgid "Forgot password"
 msgstr "忘记密码"
 
 #: templates/account/forgot-pwd.html:55
@@ -44,12 +63,16 @@ msgstr "发送重置密码的邮件"
 msgid "Sign in"
 msgstr "登录"
 
-#: templates/account/forgot-pwd.html:76 templates/account/login.html:82
+#: templates/account/forgot-pwd.html:72
+msgid "If you have fixed your email settings and require the email to be resent, please put in your email address below"
+msgstr "如果您忘记了密码, 请输入您的电子邮箱地址"
+
+#: templates/account/forgot-pwd.html:74 templates/account/login.html:82
 #: templates/account/register.html:81
 msgid "Email address"
 msgstr "电子邮箱地址"
 
-#: templates/account/forgot-pwd.html:83 templates/account/login.html:101
+#: templates/account/forgot-pwd.html:81 templates/account/login.html:101
 #: templates/account/register.html:97 templates/account/reset-pwd.html:85
 #: templates/stickynote/add-board.html:67 templates/stickynote/add-note.html:80
 #: templates/stickynote/edit-board.html:66
@@ -57,9 +80,45 @@ msgstr "电子邮箱地址"
 msgid "Submit"
 msgstr "提交"
 
-#: templates/account/forgot-pwd.html:86
+#: templates/account/forgot-pwd.html:84
 msgid "Troubleshooting"
 msgstr "常见问题"
+
+#: templates/account/forgot-pwd.html:85
+msgid "If you have trouble receiving your Inbox Signup Validation, try the following"
+msgstr "如果您未在收件箱中找到重置密码的邮件, 可能是"
+
+#: templates/account/forgot-pwd.html:87
+msgid "Wrong Address"
+msgstr "错误的电子邮件地址"
+
+#: templates/account/forgot-pwd.html:88
+msgid "Make sure that you have typed in the correct email address (displayed above)."
+msgstr "检查一下您输入的电子邮件地址是否正确."
+
+#: templates/account/forgot-pwd.html:90
+msgid "Junk Mail Filter"
+msgstr "垃圾邮件过滤器"
+
+#: templates/account/forgot-pwd.html:91
+msgid "Make sure that the Signup Validation Email did not get filtered into the junk mail folder of your email application."
+msgstr "检查一下您的垃圾收件箱, 重置密码的邮件是否在哪."
+
+#: templates/account/forgot-pwd.html:93
+msgid "Blocked by ISP"
+msgstr "被ISP拦截"
+
+#: templates/account/forgot-pwd.html:94
+msgid "In some cases emails may be accidentally blocked by Anti-SPAM technology used by your Internet Service Provider (ISP)."
+msgstr "某些情况下, 重置密码的邮件被ISP(互联网服务提供商)拦截了."
+
+#: templates/account/forgot-pwd.html:95
+msgid "Contact your ISP and ask them if they are blocking email sent by SendCloud.com."
+msgstr "联系一下为您提供服务的ISP, 他们是否拦截了SendCloud.com的邮件."
+
+#: templates/account/forgot-pwd.html:99
+msgid "If you have trouble validating your account and have recieved your email please contact us for assistance:"
+msgstr "如果在接收重置密码邮件有任何疑问, 请给我们发送邮件:"
 
 #: templates/account/login.html:63 templates/account/register.html:7
 #: templates/account/register.html:55
@@ -75,33 +134,28 @@ msgstr "密码"
 msgid "Remember me"
 msgstr "记住登录名"
 
-#: templates/account/login.html:104
-msgid "Forgot password"
-msgstr "忘记密码"
-
 #: templates/account/register.html:91 templates/account/reset-pwd.html:79
 msgid "Password again"
 msgstr "重复密码"
 
 #: templates/account/reset-pwd.html:7 templates/account/reset-pwd.html:55
-#, fuzzy
-msgid "Reset Password"
+msgid "Reset_password"
 msgstr "重置密码"
 
-#: templates/stickynote/add-board.html:8
-#, fuzzy
-msgid "Add Green Board"
-msgstr "黑板"
+#: templates/stickynote/add-board.html:8 templates/stickynote/add-note.html:8
+msgid "Add"
+msgstr "添加"
 
-#: templates/stickynote/add-board.html:53 templates/stickynote/add-note.html:53
-#: templates/stickynote/boards.html:8 templates/stickynote/stickynotes.html:38
-#, fuzzy
+#: templates/stickynote/add-board.html:53 templates/stickynote/boards.html:8
+#: templates/stickynote/stickynotes.html:41
 msgid "Green Board"
 msgstr "黑板"
 
-#: templates/stickynote/add-note.html:8
-#, fuzzy
-msgid "Add Sticky Note"
+#: templates/stickynote/add-note.html:53
+#: templates/stickynote/edit-board.html:52
+#: templates/stickynote/edit-note.html:59
+#: templates/stickynote/stickynotes.html:7
+msgid "Sticky Note"
 msgstr "粘贴纸"
 
 #: templates/stickynote/boards.html:42
@@ -113,16 +167,9 @@ msgid "Logout"
 msgstr "退出"
 
 #: templates/stickynote/edit-board.html:8 templates/stickynote/edit-note.html:8
-#: templates/stickynote/stickynotes.html:45
-#, fuzzy
+#: templates/stickynote/stickynotes.html:48
 msgid "Edit"
 msgstr "编辑"
-
-#: templates/stickynote/edit-board.html:52
-#: templates/stickynote/edit-note.html:59
-#: templates/stickynote/stickynotes.html:7
-msgid "Sticky Note"
-msgstr "粘贴纸"
 
 #: templates/stickynote/edit-board.html:70
 #: templates/stickynote/edit-note.html:96

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-02-10 19:20+0800\n"
+"POT-Creation-Date: 2016-02-10 23:35+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -25,12 +25,32 @@ msgstr ""
 msgid "NOT FOUND"
 msgstr ""
 
+#: templates/404.html:59
+msgid "Sorry, the page you were looking for does not exist."
+msgstr ""
+
 #: templates/404.html:61
 msgid "BACK TO HOME"
 msgstr ""
 
-#: templates/account/forgot-pwd.html:7
-msgid "Forgot Password"
+#: templates/404.html:64
+msgid "If you followed a broken link"
+msgstr ""
+
+#: templates/404.html:64
+msgid "please"
+msgstr ""
+
+#: templates/404.html:65
+msgid "let us know"
+msgstr ""
+
+#: templates/404.html:66
+msgid "where the broken link came from."
+msgstr ""
+
+#: templates/account/forgot-pwd.html:7 templates/account/login.html:104
+msgid "Forgot password"
 msgstr ""
 
 #: templates/account/forgot-pwd.html:55
@@ -43,12 +63,16 @@ msgstr ""
 msgid "Sign in"
 msgstr ""
 
-#: templates/account/forgot-pwd.html:76 templates/account/login.html:82
+#: templates/account/forgot-pwd.html:72
+msgid "If you have fixed your email settings and require the email to be resent, please put in your email address below"
+msgstr ""
+
+#: templates/account/forgot-pwd.html:74 templates/account/login.html:82
 #: templates/account/register.html:81
 msgid "Email address"
 msgstr ""
 
-#: templates/account/forgot-pwd.html:83 templates/account/login.html:101
+#: templates/account/forgot-pwd.html:81 templates/account/login.html:101
 #: templates/account/register.html:97 templates/account/reset-pwd.html:85
 #: templates/stickynote/add-board.html:67 templates/stickynote/add-note.html:80
 #: templates/stickynote/edit-board.html:66
@@ -56,8 +80,44 @@ msgstr ""
 msgid "Submit"
 msgstr ""
 
-#: templates/account/forgot-pwd.html:86
+#: templates/account/forgot-pwd.html:84
 msgid "Troubleshooting"
+msgstr ""
+
+#: templates/account/forgot-pwd.html:85
+msgid "If you have trouble receiving your Inbox Signup Validation, try the following"
+msgstr ""
+
+#: templates/account/forgot-pwd.html:87
+msgid "Wrong Address"
+msgstr ""
+
+#: templates/account/forgot-pwd.html:88
+msgid "Make sure that you have typed in the correct email address (displayed above)."
+msgstr ""
+
+#: templates/account/forgot-pwd.html:90
+msgid "Junk Mail Filter"
+msgstr ""
+
+#: templates/account/forgot-pwd.html:91
+msgid "Make sure that the Signup Validation Email did not get filtered into the junk mail folder of your email application."
+msgstr ""
+
+#: templates/account/forgot-pwd.html:93
+msgid "Blocked by ISP"
+msgstr ""
+
+#: templates/account/forgot-pwd.html:94
+msgid "In some cases emails may be accidentally blocked by Anti-SPAM technology used by your Internet Service Provider (ISP)."
+msgstr ""
+
+#: templates/account/forgot-pwd.html:95
+msgid "Contact your ISP and ask them if they are blocking email sent by SendCloud.com."
+msgstr ""
+
+#: templates/account/forgot-pwd.html:99
+msgid "If you have trouble validating your account and have recieved your email please contact us for assistance:"
 msgstr ""
 
 #: templates/account/login.html:63 templates/account/register.html:7
@@ -74,29 +134,28 @@ msgstr ""
 msgid "Remember me"
 msgstr ""
 
-#: templates/account/login.html:104
-msgid "Forgot password"
-msgstr ""
-
 #: templates/account/register.html:91 templates/account/reset-pwd.html:79
 msgid "Password again"
 msgstr ""
 
 #: templates/account/reset-pwd.html:7 templates/account/reset-pwd.html:55
-msgid "Reset Password"
+msgid "Reset_password"
 msgstr ""
 
-#: templates/stickynote/add-board.html:8
-msgid "Add Green Board"
+#: templates/stickynote/add-board.html:8 templates/stickynote/add-note.html:8
+msgid "Add"
 msgstr ""
 
-#: templates/stickynote/add-board.html:53 templates/stickynote/add-note.html:53
-#: templates/stickynote/boards.html:8 templates/stickynote/stickynotes.html:38
+#: templates/stickynote/add-board.html:53 templates/stickynote/boards.html:8
+#: templates/stickynote/stickynotes.html:41
 msgid "Green Board"
 msgstr ""
 
-#: templates/stickynote/add-note.html:8
-msgid "Add Sticky Note"
+#: templates/stickynote/add-note.html:53
+#: templates/stickynote/edit-board.html:52
+#: templates/stickynote/edit-note.html:59
+#: templates/stickynote/stickynotes.html:7
+msgid "Sticky Note"
 msgstr ""
 
 #: templates/stickynote/boards.html:42
@@ -108,14 +167,8 @@ msgid "Logout"
 msgstr ""
 
 #: templates/stickynote/edit-board.html:8 templates/stickynote/edit-note.html:8
-#: templates/stickynote/stickynotes.html:45
+#: templates/stickynote/stickynotes.html:48
 msgid "Edit"
-msgstr ""
-
-#: templates/stickynote/edit-board.html:52
-#: templates/stickynote/edit-note.html:59
-#: templates/stickynote/stickynotes.html:7
-msgid "Sticky Note"
 msgstr ""
 
 #: templates/stickynote/edit-board.html:70
