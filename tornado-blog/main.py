@@ -30,7 +30,7 @@ import tornado.web
 from account import LoginHandler, LogoutHandler, RegisterHandler, \
     ForgotPwdHandler, ResetPwdHandler
 from base import timestamp_datetime
-from blog import AddArticleHandler, ArticleHandler
+from blog import AddArticleHandler, ArticleHandler, AjaxArticlesHandler
 
 
 define("port", default=8888, help="run on the given port", type=int)
@@ -84,6 +84,7 @@ def main():
             (r"/contact", ContactHandler),
             (r"/add-article", AddArticleHandler),
             (r"/article", ArticleHandler),
+            (r"/ajax-articles", AjaxArticlesHandler),
             (".*", PageNotFoundHandler),
             ],
         # __TODO:_GENERATE_YOUR_OWN_RANDOM_VALUE_HERE__

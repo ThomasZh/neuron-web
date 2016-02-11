@@ -88,13 +88,15 @@
 	<!-- Main Content -->
 	<div class="container">
 		<div class="row">
-			<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+			<div id="articleRows" class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
 				{% for article in articles %}
 					{% module Template("blog/articles-block.html", article=article) %}
 				{% end %}
+			</div>
+			<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
 				<!-- Pager -->
 				<ul class="pager">
-					<li class="next"><a href="#">Older Posts &rarr;</a></li>
+					<li class="next"><a id="AjaxGetButton">Older Posts &rarr;</a></li>
 				</ul>
 			</div>
 		</div>
@@ -129,7 +131,7 @@
 			</div>
 		</div>
 	</footer>
-
+  
 	<!-- jQuery -->
 	<script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
 
@@ -139,5 +141,32 @@
 	<!-- Custom Theme JavaScript -->
 	<script src="{{static_url("js/clean-blog.min.js")}}"></script>
 
+	<script type="text/javascript">
+		preAllow = true;   // when ajax not completed, cannot do the next request
+	
+		$("#AjaxGetButton").click(function(){ // This event fires when a button is clicked
+			if(preAllow){
+			    preAllow = false;
+				$.get("/ajax-articles",function(data,status){
+					ajaxobj = eval("("+data+")");
+					for (var i in ajaxobj) {
+                    	$('#articleRows').append('<div class="post-preview"><a href="/article?id='
+                    		+ ajaxobj[i].id +
+                    		'"><h2 class="post-title">'
+                    		+ ajaxobj[i].title +
+                    		'</h2><h3 class="post-subtitle">'
+                    		+ ajaxobj[i].content +
+                    		'</h3></a><p class="post-meta">Posted by <a href="#">'
+                    		+ ajaxobj[i].accountNickname +
+                    		'</a> ' 
+                    		+ ajaxobj[i].timestamp +
+                    		'</p></div><hr>');
+					}
+					preAllow = true;
+				});
+			}
+		});
+	</script>
+	
 </body>
 </html>

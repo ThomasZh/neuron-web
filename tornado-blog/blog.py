@@ -15,6 +15,7 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
+import json
 import logging
 import time
 
@@ -67,3 +68,21 @@ class AddArticleHandler(BaseHandler):
 class ArticleHandler(tornado.web.RequestHandler):
     def get(self):
         self.render('blog/article.html')
+
+
+class AjaxArticlesHandler(tornado.web.RequestHandler):
+    def get(self):
+        _timestamp = long(time.time() * 1000)
+        params = {"before": _timestamp, "limit": 20}
+        url = url_concat("http://182.92.66.109/blogs/articles", params)
+        http_client = HTTPClient()
+        response = http_client.fetch(url, method="GET")
+        logging.info("got response %r", response.body)
+        _articles = json_decode(response.body)
+        
+        for _article in _articles:
+            _timestamp = _article["timestamp"]
+            _datetime = timestamp_datetime(_timestamp / 1000)
+            _article["timestamp"] = _datetime
+        
+        self.finish(json.dumps(_articles))  
