@@ -70,6 +70,11 @@ class ContactHandler(tornado.web.RequestHandler):
         self.render('contact.html')
 
 
+class DemoCenterHandler(tornado.web.RequestHandler):
+    def get(self):
+        self.render('demo-center.html')
+
+
 def main():
     parse_command_line()
     app = tornado.web.Application(
@@ -81,6 +86,7 @@ def main():
             (r'/forgot-pwd', ForgotPwdHandler),
             (r'/reset-pwd', ResetPwdHandler),
             (r"/about", AboutHandler),
+            (r"/demo-center", DemoCenterHandler),
             (r"/contact", ContactHandler),
             (r"/add-article", AddArticleHandler),
             (r"/article", ArticleHandler),
