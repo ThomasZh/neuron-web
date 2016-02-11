@@ -22,6 +22,7 @@ from tornado.escape import json_encode, json_decode
 from tornado.httpclient import HTTPClient
 
 from base import BaseHandler
+from gettext import gettext as _
 
 
 class LoginHandler(BaseHandler):
@@ -38,13 +39,13 @@ class LoginHandler(BaseHandler):
         self.render('account/login.html', err_msg="", login_name=_login_name, remember_me=_remember_me)
 
     def post(self):
-        _email = self.get_argument("input-email")
+        _login_name = self.get_argument("input-email")
         _md5pwd = self.get_argument("input-password")
         _remember_me = self.get_argument("remember-me", "off")
         _user_agent = self.request.headers["User-Agent"]
         _user_locale = self.request.headers["Accept-Language"]
         _device_id = base64.b64encode(uuid.uuid4().bytes + uuid.uuid4().bytes)
-        print "login_name: "+_email
+        print "login_name: "+_login_name
         print "remember_me: " + _remember_me
         print  "user_locale: " + _user_locale
         
@@ -53,7 +54,7 @@ class LoginHandler(BaseHandler):
                   "gateToken" : "bZJc2sWbQLKos6GkHn/VB9oXwQt8S0R0kRvJ5/xJ89E=",
                   "deviceId" : _device_id,
                   "password" : _md5pwd,
-                  "email" : _email}
+                  "email" : _login_name}
             _json = json_encode(params)
             url = "http://182.92.66.109/account/login"
             http_client = HTTPClient()
@@ -63,12 +64,13 @@ class LoginHandler(BaseHandler):
             _session_ticket = _stp_session["sessionToken"]
             
             self.set_secure_cookie("ticket", _session_ticket)
-            self.set_secure_cookie("login_name", _email)
+            self.set_secure_cookie("login_name", _login_name)
             self.set_secure_cookie("remember_me", _remember_me)
             self.redirect("/")
         except Exception:  
-            self.render('account/login.html', err_msg="Please enter a correct username and password.", 
-                        login_name=_email, remember_me=_remember_me)
+            _err_msg = _("Please enter a correct username and password.")
+            self.render('account/login.html', err_msg=_err_msg, 
+                        login_name=_login_name, remember_me=_remember_me)
 
 
 class LogoutHandler(BaseHandler):
@@ -122,7 +124,8 @@ class RegisterHandler(BaseHandler):
             self.set_secure_cookie("login_name", _email)
             self.redirect("/")
         except Exception:  
-            self.render('account/register.html', err_msg="Email already exist, please try another.")
+            _err_msg = _("Email already exist, please try another.")
+            self.render('account/register.html', err_msg=_err_msg)
 
 
 class ForgotPwdHandler(BaseHandler):
@@ -144,7 +147,8 @@ class ForgotPwdHandler(BaseHandler):
         response = http_client.fetch(url, method="POST", body=_json)
         print response.body
 
-        self.render('account/login.html', err_msg="Email has been send to your mail, please check it.", 
+        _err_msg = _("Email has been send to your mail, please check it.")
+        self.render('account/login.html', err_msg=_err_msg, 
                     login_name=_email, remember_me="on")    
 
 
@@ -175,5 +179,6 @@ class ResetPwdHandler(BaseHandler):
         response = http_client.fetch(url, method="POST", body=_json)
         print response.body
         
-        self.render('account/login.html', err_msg="Password has been changed, please sign in.", 
+        _err_msg = _("Password has been changed, please sign in.")
+        self.render('account/login.html', err_msg=_err_msg, 
                     login_name="", remember_me="off")   

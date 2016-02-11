@@ -58,8 +58,7 @@ body {
 					<div class="collapse navbar-collapse">
 						<div class="nav navbar-nav navbar-right">
 							<a class="navbar-brand" href="/login"> <span
-								class="glyphicon glyphicon-log-in" aria-hidden="true"> </span>
-								{{_("Sign in")}}
+								class="glyphicon glyphicon-log-in" aria-hidden="true"> {{_("Sign in")}}</span>
 							</a>
 						</div>
 					</div>
@@ -80,17 +79,17 @@ body {
 			<div class="form-group">
 				<label for="input-email" class="sr-only">{{_("Email address")}}</label> <input
 					type="email" id="input-email" name="input-email"
-					class="form-control" placeholder="{{_("Email address")}}" required autofocus>
+					class="form-control" placeholder={{_("Email address")}} required autofocus>
 			</div>
 			<div class="form-group">
 				<label for="input-password" class="sr-only">{{_("Password")}}</label> <input
 					type="password" id="input-password" name="input-password"
-					class="form-control" placeholder="{{_("Password")}}" required>
+					class="form-control" placeholder={{_("Password")}} required>
 			</div>
 			<div class="form-group">
 				<label for="input-password2" class="sr-only">{{_("Password again")}}</label>
 				<input type="password" id="input-password2" name="input-password2"
-					class="form-control" placeholder="{{_("Password again")}}" required>
+					class="form-control" placeholder={{_("Password again")}} required>
 			</div>
 			<div class="form-group">
 				<button class="btn btn-lg btn-primary btn-block" type="button"
@@ -115,18 +114,18 @@ body {
 				var alertPanel = document.getElementById("alertPanel");
 				alertPanel.innerHTML = '<div class="alert alert-danger" role="alert">\
 					<span class="glyphicon glyphicon-exclamation-sign"\
-					aria-hidden="true"></span> <span class="sr-only"> Warning: </span>\
-					The email address is required and can\'t be empty\
-					</div>';
+					aria-hidden="true"></span> <span class="sr-only"> Warning: </span>'+
+					"{{_("The email address is required and cannot be empty")}}" +
+					'</div>';
 				return false;
 			}
 			if (!IsMail(email)) {
 				var alertPanel = document.getElementById("alertPanel");
 				alertPanel.innerHTML = '<div class="alert alert-danger" role="alert">\
 					<span class="glyphicon glyphicon-exclamation-sign"\
-					aria-hidden="true"></span> <span class="sr-only"> Warning: </span>\
-					The input is not a valid email address\
-					</div>';
+					aria-hidden="true"></span> <span class="sr-only"> Warning: </span>'+
+					"{{_("The input is not a valid email address")}}" +
+					'</div>';
 				return false;
 			}
 			var password = document.getElementById("input-password").value;
@@ -134,9 +133,9 @@ body {
 				var alertPanel = document.getElementById("alertPanel");
 				alertPanel.innerHTML = '<div class="alert alert-danger" role="alert">\
 					<span class="glyphicon glyphicon-exclamation-sign"\
-					aria-hidden="true"></span> <span class="sr-only"> Warning: </span>\
-					The password is required and can\'t be empty\
-					</div>';
+					aria-hidden="true"></span> <span class="sr-only"> Warning: </span>'+
+					"{{_("The password is required and cannot be empty")}}" +
+					'</div>';
 				return false;
 			}
 			var password2 = document.getElementById("input-password2").value;
@@ -144,18 +143,18 @@ body {
 				var alertPanel = document.getElementById("alertPanel");
 				alertPanel.innerHTML = '<div class="alert alert-danger" role="alert">\
 					<span class="glyphicon glyphicon-exclamation-sign"\
-					aria-hidden="true"></span> <span class="sr-only"> Warning: </span>\
-					The password (again) is required and can\'t be empty\
-					</div>';
+					aria-hidden="true"></span> <span class="sr-only"> Warning: </span>'+
+					"{{_("The password (again) is required and cannot be empty")}}" +
+					'</div>';
 				return false;
 			}
 			if (password !== password2) {
 				var alertPanel = document.getElementById("alertPanel");
 				alertPanel.innerHTML = '<div class="alert alert-danger" role="alert">\
 					<span class="glyphicon glyphicon-exclamation-sign"\
-					aria-hidden="true"></span> <span class="sr-only"> Warning: </span>\
-					The password and its confirm are not the same\
-					</div>';
+					aria-hidden="true"></span> <span class="sr-only"> Warning: </span>'+
+					"{{_("The password and its confirm are not the same")}}" +
+					'</div>';
 				return false;
 			}
 

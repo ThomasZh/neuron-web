@@ -23,7 +23,16 @@ body {
 	padding-bottom: 2px;
 }
 
-.form-signin {
+.form-signin-outter {
+	max-width: 600px;
+	margin: 0 auto 20px;
+	background-color: #ffc;
+	-webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
+	-moz-box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
+	box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
+}
+
+.form-signin-inner {
 	max-width: 600px;
 	padding: 19px 19px 19px;
 	margin: 0 auto 20px;
@@ -41,73 +50,76 @@ body {
 
 <body>
 	<div class="container">
-		<form class="form-signin" id="form-signin" method="post"
-			action="edit-note">
-			<input type="hidden" value="{{note["boardId"]}}" name="boardId" />
-			<input type="hidden" value="{{note["id"]}}" name="noteId" /> <input
-				id="hiddencolor" name="hiddencolor" type="hidden" value="{{note["color"]}}" />
-			<input id="hiddenCompleted" name="hiddenCompleted" type="hidden"
-				value="{{note["completed"]}}" />
-			<!-- the 'raw' word is to force escape to be desactivated (it is by default activated) -->
-			{% raw xsrf_form_html() %}
-
+		<div class="form-signin-outter" id="form-signin-outter">
 			<!-- START THE NAVBAR -->
 			<nav class="navbar navbar-static-top">
-				<div class="container2">
+				<div>
 					<div class="navbar-header">
-						<span class="navbar-brand glyphicon glyphicon-chevron-left"
-							style="cursor: pointer" onClick="history.go(-1);return true;">{{_("Sticky Note")}}</span>
+						<a class="navbar-brand glyphicon glyphicon-chevron-left"
+							style="cursor: pointer" onClick="history.go(-1);return true;">
+							{{_("Green Board")}}</a>
 					</div>
 				</div>
 			</nav>
 			<!-- END NAVBAR -->
 
-			<div id="alertPanel"></div>
+			<form class="form-signin-inner" id="form-signin" method="post" action="edit-note">
+				<input type="hidden" value="{{note["boardId"]}}" name="boardId" />
+				<input type="hidden" value="{{note["id"]}}" name="noteId" /> <input
+					id="hiddencolor" name="hiddencolor" type="hidden" value="{{note["color"]}}" />
+				<input id="hiddenCompleted" name="hiddenCompleted" type="hidden"
+					value="{{note["completed"]}}" />
+				<!-- the 'raw' word is to force escape to be desactivated (it is by default activated) -->
+				{% raw xsrf_form_html() %}
 
-			<div class="form-group">
-				<textarea id="title" name="title" class="form-control input-lg"
-					placeholder="Please input content..." rows="6">{{note["title"]}}</textarea>
-			</div>
-			<div class="checkbox">
-				<label> {% if not note["completed"] %} <input
-					type="checkbox" name="completed">{{_("Completed")}}</input> {% else %} <input
-					type="checkbox" name="completed" checked>{{_("Completed")}}</input> {% end
-					%}
-				</label>
-			</div>
-			<div class="form-group">
-				<input type="radio" class="option-input radio yellow" value="yellow"
-					name="color" checked onclick="javascript:change('#ffc')"> <input
-					type="radio" class="option-input radio green" value="green"
-					name="color" onclick="javascript:change('#c2ffc1')"> <input
-					type="radio" class="option-input radio blue" value="blue"
-					name="color" onclick="javascript:change('#81effe')"> <input
-					type="radio" class="option-input radio purple" value="purple"
-					name="color" onclick="javascript:change('#c0befe')"> <input
-					type="radio" class="option-input radio red" value="red"
-					name="color" onclick="javascript:change('#fc76bb')">
-			</div>
-			<br>
-			<div class="form-group">
-				<button class="btn btn-lg btn-primary btn-block" type="button" onclick="SubmitForm();">{{_("Submit")}}</button>
-			</div>
-			<div class="form-group">
-				<button class="btn btn-lg btn-danger btn-block" type="button"
-					onclick="SubmitDelete();">{{_("Delete")}}</button>
-			</div>
-		</form>
-		<form id="remove-note" method="post" action="remove-note">
-			<input type="hidden" value="{{note["boardId"]}}" name="boardId" />
-			<input type="hidden" value="{{note["id"]}}" name="noteId" />
-			<!-- the 'raw' word is to force escape to be desactivated (it is by default activated) -->
-			{% raw xsrf_form_html() %}
-		</form>
+				<div id="alertPanel"></div>
+
+				<div class="form-group">
+					<textarea id="title" name="title" class="form-control input-lg"
+						placeholder={{_("Please input title...")}} rows="6">{{note["title"]}}</textarea>
+				</div>
+				<div class="checkbox">
+					<label> {% if not note["completed"] %} 
+						<input type="checkbox" name="completed">{{_("Completed")}}</input>
+						{% else %} 
+						<input type="checkbox" name="completed" checked>{{_("Completed")}}</input>
+						{% end %}
+					</label>
+				</div>
+				<div class="form-group">
+					<input type="radio" class="option-input radio yellow"
+						value="yellow" name="color" checked onclick="javascript:change('#ffc')"> 
+					<input type="radio" class="option-input radio green" value="green" name="color"
+						onclick="javascript:change('#c2ffc1')"> 
+					<input type="radio" class="option-input radio blue" value="blue"
+						name="color" onclick="javascript:change('#81effe')"> 
+					<input type="radio" class="option-input radio purple" value="purple"
+						name="color" onclick="javascript:change('#c0befe')"> 
+					<input type="radio" class="option-input radio red" value="red"
+						name="color" onclick="javascript:change('#fc76bb')">
+				</div>
+				<br>
+				<div class="form-group">
+					<button class="btn btn-lg btn-primary btn-block" type="button"
+						onclick="SubmitForm();">{{_("Submit")}}</button>
+				</div>
+				<div class="form-group">
+					<button class="btn btn-lg btn-danger btn-block" type="button"
+						onclick="SubmitDelete();">{{_("Delete")}}</button>
+				</div>
+			</form>
+			<form id="remove-note" method="post" action="remove-note">
+				<input type="hidden" value="{{note["boardId"]}}" name="boardId" />
+				<input type="hidden" value="{{note["id"]}}" name="noteId" />
+				<!-- the 'raw' word is to force escape to be desactivated (it is by default activated) -->
+				{% raw xsrf_form_html() %}
+			</form>
+		</div>
 	</div>
 
 	<script type="text/javascript">
 		function findSelection(field) {
 			var radios = document.getElementsByName(field);
-
 			for (var i = 0, length = radios.length; i < length; i++) {
 				if (radios[i].checked) {
 					return radios[i].value;
@@ -120,10 +132,10 @@ body {
 			if (title == null || title == undefined || title == '') {
 				var alertPanel = document.getElementById("alertPanel");
 				alertPanel.innerHTML = '<div class="alert alert-danger" role="alert">\
-				<span class="glyphicon glyphicon-exclamation-sign"\
-				aria-hidden="true"></span> <span class="sr-only"> Warning: </span>\
-				The title is required and can\'t be empty\
-				</div>';
+					<span class="glyphicon glyphicon-exclamation-sign"\
+					aria-hidden="true"></span> <span class="sr-only"> Warning: </span>' +
+					"{{_("The title is required and cannot be empty")}}" +
+					'</div>';
 				return false;
 			}
 
@@ -131,7 +143,9 @@ body {
 		}
 
 		function change(color) {
-			var board = document.getElementById("form-signin");
+			var board = document.getElementById("form-signin-outter");
+			board.style.backgroundColor = color;
+			board = document.getElementById("form-signin");
 			board.style.backgroundColor = color;
 		}
 

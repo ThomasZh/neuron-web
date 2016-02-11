@@ -59,8 +59,7 @@ body {
 					<div class="collapse navbar-collapse">
 						<div class="nav navbar-nav navbar-right">
 							<a class="navbar-brand" href="/register"> <span
-								class="glyphicon glyphicon-user" aria-hidden="true"> </span>
-								{{_("Sign up")}}
+								class="glyphicon glyphicon-user" aria-hidden="true"> {{_("Sign up")}}</span>
 							</a>
 						</div>
 					</div>
@@ -82,12 +81,12 @@ body {
 				<label for="input-email" class="sr-only">{{_("Email address")}}</label> <input
 					type="email" id="input-email" name="input-email"
 					class="form-control" value="{{ login_name }}"
-					placeholder="{{_("Email address")}}" required autofocus>
+					placeholder={{_("Email address")}} required autofocus>
 			</div>
 			<div class="form-group required">
 				<label for="input-password" class="sr-only">{{_("Password")}}</label> <input
 					type="password" id="input-password" name="input-password"
-					class="form-control" placeholder="{{_("Password")}}" required>
+					class="form-control" placeholder={{_("Password")}} required>
 			</div>
 			<div class="checkbox">
 				{% if remember_me == "on" %} <label> <input type="checkbox"
@@ -122,18 +121,18 @@ body {
 				var alertPanel = document.getElementById("alertPanel");
 				alertPanel.innerHTML = '<div class="alert alert-danger" role="alert">\
 					<span class="glyphicon glyphicon-exclamation-sign"\
-					aria-hidden="true"></span> <span class="sr-only"> Warning: </span>\
-					The email address is required and can\'t be empty\
-					</div>';
+					aria-hidden="true"></span> <span class="sr-only"> Warning: </span>'+
+					"{{_("The email address is required and cannot be empty")}}" +
+					'</div>';
 				return false;
 			}
 			if (!IsMail(email)) {
 				var alertPanel = document.getElementById("alertPanel");
 				alertPanel.innerHTML = '<div class="alert alert-danger" role="alert">\
 					<span class="glyphicon glyphicon-exclamation-sign"\
-					aria-hidden="true"></span> <span class="sr-only"> Warning: </span>\
-					The input is not a valid email address\
-					</div>';
+					aria-hidden="true"></span> <span class="sr-only"> Warning: </span>'+
+					"{{_("The input is not a valid email address")}}" +
+					'</div>';
 				return false;
 			}
 			var password = document.getElementById("input-password").value;
@@ -141,9 +140,9 @@ body {
 				var alertPanel = document.getElementById("alertPanel");
 				alertPanel.innerHTML = '<div class="alert alert-danger" role="alert">\
 					<span class="glyphicon glyphicon-exclamation-sign"\
-					aria-hidden="true"></span> <span class="sr-only"> Warning: </span>\
-					The password is required and can\'t be empty\
-					</div>';
+					aria-hidden="true"></span> <span class="sr-only"> Warning: </span>'+
+					"{{_("The password is required and cannot be empty")}}" +
+					'</div>';
 				return false;
 			}
 
