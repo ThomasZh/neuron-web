@@ -45,9 +45,10 @@ body {
 			<nav class="navbar navbar-static-top">
 				<div class="container2">
 					<div class="navbar-header">
-						<h2>
-							<span>404: {{_("NOT FOUND")}}</span>
-						</h2>
+						<a class="navbar-brand" href="/">
+							<img alt="Brand" src="{{static_url("icons/note_256.png")}}" width="32"> 
+						</a>
+						<span class="navbar-brand">404: {{_("NOT FOUND")}}</span>
 					</div>
 					<div class="collapse navbar-collapse">
 						<div class="nav navbar-nav navbar-right"></div>

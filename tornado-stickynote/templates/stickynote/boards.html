@@ -39,12 +39,15 @@ body {
 						<span class="glyphicon glyphicon-log-out" aria-hidden="true">
 						</span>
 					</a> 
+					<a class="navbar-brand" href="#">
+						<img alt="Brand" src="{{static_url("icons/note_256.png")}}" width="32"> 
+					</a>
 					<span class="navbar-brand"> {{_("Welcome")}}, {{login_name}}</span>
 				</div>
 				<div class="collapse navbar-collapse">
 					<div class="nav navbar-nav navbar-right">
 						<a class="navbar-brand" href="/logout"> 
-							<span class="glyphicon glyphicon-log-out" aria-hidden="true">
+							<span class="glyphicon glyphicon-log-out navbar-brand" aria-hidden="true">
 								{{_("Logout")}}
 							</span>
 						</a>

@@ -145,7 +145,7 @@ body {
 		function change(color) {
 			var board = document.getElementById("form-signin-outter");
 			board.style.backgroundColor = color;
-			board = document.getElementById("form-signin");
+			var board = document.getElementById("form-signin");
 			board.style.backgroundColor = color;
 		}
 
@@ -171,7 +171,18 @@ body {
 				board.style.backgroundColor = '#c0befe';
 			else if (color.value == "red")
 				board.style.backgroundColor = '#fc76bb';
-
+			var board = document.getElementById("form-signin-outter");
+			if (color.value == "yellow")
+				board.style.backgroundColor = '#ffc';
+			else if (color.value == "green")
+				board.style.backgroundColor = '#c2ffc1';
+			else if (color.value == "blue")
+				board.style.backgroundColor = '#81effe';
+			else if (color.value == "purple")
+				board.style.backgroundColor = '#c0befe';
+			else if (color.value == "red")
+				board.style.backgroundColor = '#fc76bb';
+			
 			var radios = document.getElementsByName("color");
 			for (var i = 0, length = radios.length; i < length; i++) {
 				if (radios[i].value == color.value) {
