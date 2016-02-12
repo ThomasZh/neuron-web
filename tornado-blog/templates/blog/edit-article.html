@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>{{_("Add")}}</title>
+<title>{{_("Edit")}}</title>
 <link rel="stylesheet"
 	href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
 <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
@@ -27,12 +27,13 @@
 		<form id="form1" name="form1" class="wufoo topLabel page1"
 			accept-charset="UTF-8" autocomplete="off"
 			enctype="multipart/form-data" method="POST"
-			action="add-article">
+			action="edit-article">
 			
 			{% raw xsrf_form_html() %}
 
+			<input id="articleId" name="articleId" value="{{article["id"]}}" type="hidden" />
 			<header id="header" class="info">
-				<h2>发布博客文章</h2>
+				<h2>编辑博客文章</h2>
 				<div>
 					<br>请填写以下信息<br>
 				</div>
@@ -44,7 +45,7 @@
 					<div>
 						<input id="title" name="title" class="field text large"
 							maxlength="255" tabindex="6" onkeyup="handleInput(this); "
-							onchange="handleInput(this);" required type="text"> 
+							onchange="handleInput(this);" required type="text" value="{{article["title"]}}"> 
 							<label for="Field1">最多字数: <var id="rangeMaxMsg1">50</var>个.&nbsp;&nbsp;&nbsp; 
 								<em style="display: inline;" class="currently">当前字数: <var id="rangeUsedMsg1">0</var> 个.
 							</em></label>
@@ -62,7 +63,7 @@
 							class="field textarea medium" spellcheck="true" rows="10"
 							cols="50" tabindex="8"
 							onkeyup="handleInput(this); validateRange(14, 'character');"
-							onchange="handleInput(this);" required></textarea>
+							onchange="handleInput(this);" required>{{article["content"]}}</textarea>
 
 						<label for="Field14">最多字数: <var id="rangeMaxMsg14">1000</var>个.&nbsp;&nbsp;&nbsp; 
 							<em style="display: inline;" class="currently">当前字数: <var id="rangeUsedMsg14">0</var> 个.

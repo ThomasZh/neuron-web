@@ -50,7 +50,7 @@
 					<span class="icon-bar"></span> 
 					<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#">Start Bootstrap</a>
+				<a class="navbar-brand" href="/">Start Bootstrap</a>
 			</div>
 
 			<!-- Collect the nav links, forms, and other content for toggling -->
@@ -93,10 +93,11 @@
 				<ul class="pager">
 					<li class="next"><a href="/admin/add-article">New Post +</a></li>
 				</ul>
+				<hr>
 			</div>
 			<div id="articleRows" class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
 				{% for article in articles %}
-					{% module Template("blog/articles-block.html", article=article) %}
+					{% module Template("blog/admin-articles-block.html", article=article) %}
 				{% end %}
 			</div>
 			<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
