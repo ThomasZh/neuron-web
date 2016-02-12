@@ -39,7 +39,7 @@ body {
 
 <body>
 	<div class="container">
-		<form class="form-signin" id="form-signin" action="/forgot-pwd"
+		<form class="form-signin" id="form-signin" action="/account/forgot-pwd"
 			method="POST">
 			{% raw xsrf_form_html() %}
 
@@ -47,7 +47,7 @@ body {
 			<nav class="navbar navbar-static-top">
 				<div class="container2">
 					<div class="navbar-header">
-						<a class="navbar-toggle collapsed" type="submit" href="/login">
+						<a class="navbar-toggle collapsed" type="submit" href="/account/login">
 							<span class="glyphicon glyphicon-log-in" aria-hidden="true">
 						</span></a>
 						<a class="navbar-brand" href="/">
@@ -57,7 +57,7 @@ body {
 					</div>
 					<div class="collapse navbar-collapse">
 						<div class="nav navbar-nav navbar-right">
-							<a class="navbar-brand" href="/login"> <span
+							<a class="navbar-brand" href="/account/login"> <span
 								class="glyphicon glyphicon-log-in" aria-hidden="true"> {{_("Sign in")}}</span>
 							</a>
 						</div>

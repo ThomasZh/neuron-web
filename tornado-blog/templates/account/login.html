@@ -49,7 +49,7 @@ body {
 
 <body>
 	<div class="container">
-		<form class="form-signin" id="form-signin" action="/login"
+		<form class="form-signin" id="form-signin" action="/account/login"
 			method="POST">
 			{% raw xsrf_form_html() %}
 
@@ -57,17 +57,17 @@ body {
 			<nav class="navbar navbar-static-top">
 				<div class="container2">
 					<div class="navbar-header">
-						<a class="navbar-toggle collapsed" type="submit" href="/register">
+						<a class="navbar-toggle collapsed" type="submit" href="/account/register">
 							<span class="glyphicon glyphicon-user" aria-hidden="true">
 						</span></a>
-						<a class="navbar-brand" href="#">
+						<a class="navbar-brand" href="/">
 							<img alt="Brand" src="{{static_url("icons/note_256.png")}}" width="32"> 
 						</a>
 						<span class="navbar-brand">{{_("Sign in")}}</span>
 					</div>
 					<div class="collapse navbar-collapse">
 						<div class="nav navbar-nav navbar-right">
-							<a class="navbar-brand" href="/register"> <span
+							<a class="navbar-brand" href="/account/register"> <span
 								class="glyphicon glyphicon-user" aria-hidden="true"> {{_("Sign up")}}</span>
 							</a>
 						</div>
@@ -109,7 +109,7 @@ body {
 					onclick="SubmitForm();">{{_("Submit")}}</button>
 			</div>
 			<div class="form-group">
-				<a href="forgot-pwd">{{_("Forgot password")}}</a>
+				<a href="/account/forgot-pwd">{{_("Forgot password")}}</a>
 			</div>
 		</form>
 		</div>

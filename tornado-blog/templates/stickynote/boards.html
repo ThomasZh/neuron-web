@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>{{_("Home")}}</title>
+<link rel="stylesheet"
+	href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<link href="{{static_url("sticky-notes.css")}}" rel="stylesheet"
+	type="text/css">
+<style type="text/css">
+body {
+	background-color: #666;
+}
+
+.container {
+	padding-top: 0px;
+	padding-left: 0px;
+	padding-right: 0px;
+	padding-bottom: 0px;
+	margin: 0em 0em 0em 1em;
+}
+</style>
+</head>
+
+<body>
+	<form id="logout-form" action="/account/logout" method="POST">
+		{% raw xsrf_form_html() %}
+
+		<!-- START THE NAVBAR -->
+		<nav class="navbar navbar-static-top">
+			<div>
+				<div class="navbar-header">
+					<a class="navbar-brand navbar-toggle collapsed" href="/logout">
+						<span class="glyphicon glyphicon-log-out" aria-hidden="true">
+						</span>
+					</a> 
+					<a class="navbar-brand" href="/" style="cursor: pointer">
+						<img alt="Brand" src="{{static_url("icons/note_256.png")}}" width="32"> 
+					</a>
+					<span class="navbar-brand"> {{_("Welcome")}}, {{login_name}}</span>
+				</div>
+				<div class="collapse navbar-collapse">
+					<div class="nav navbar-nav navbar-right">
+						<a class="navbar-brand" href="/account/logout"> 
+							<span class="glyphicon glyphicon-log-out navbar-brand" aria-hidden="true">
+								{{_("Logout")}}
+							</span>
+						</a>
+					</div>
+				</div>
+			</div>
+		</nav>
+		<!-- END NAVBAR -->
+	</form>
+
+	<div class="container">
+		<div id="body">
+			<ul id="blackboard">
+				<li>
+					<a class="black" id="plus" href="add-board"> 
+						<img src="{{static_url("images/plus-white.png")}}" 
+							width="100%" height="100%" />
+					</a>
+				</li>
+				{% for board in boards %}
+					{% module Template("stickynote/boards-block.html", board=board) %}
+				{% end %}
+			</ul>
+		</div>
+	</div>
+
+	<script type="text/javascript">
+		function submitLogout() {
+			document.getElementById("logout-form").submit();
+		}
+	</script>
+</body>
+</html>

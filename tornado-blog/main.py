@@ -31,6 +31,10 @@ from account import LoginHandler, LogoutHandler, RegisterHandler, \
     ForgotPwdHandler, ResetPwdHandler
 from base import timestamp_datetime
 from blog import AddArticleHandler, ArticleHandler, AjaxArticlesHandler
+from greenboard import AddBoardHandler, EditBoardHandler, RemoveBoardHandler, \
+    BoardsHandler
+from stickynote import NotesHandler, AddNoteHandler, EditNoteHandler, \
+    RemoveNoteHandler
 
 
 define("port", default=8888, help="run on the given port", type=int)
@@ -80,17 +84,25 @@ def main():
     app = tornado.web.Application(
         [            
             (r"/", MainHandler),
-            (r'/login', LoginHandler),
-            (r'/logout', LogoutHandler),
-            (r'/register', RegisterHandler),
-            (r'/forgot-pwd', ForgotPwdHandler),
-            (r'/reset-pwd', ResetPwdHandler),
             (r"/about", AboutHandler),
             (r"/demo-center", DemoCenterHandler),
             (r"/contact", ContactHandler),
-            (r"/add-article", AddArticleHandler),
             (r"/article", ArticleHandler),
             (r"/ajax-articles", AjaxArticlesHandler),
+            (r'/account/login', LoginHandler),
+            (r'/account/logout', LogoutHandler),
+            (r'/account/register', RegisterHandler),
+            (r'/account/forgot-pwd', ForgotPwdHandler),
+            (r'/account/reset-pwd', ResetPwdHandler),
+            (r"/admin/add-article", AddArticleHandler),
+            (r"/sticky-note/boards", BoardsHandler),
+            (r"/sticky-note/add-board", AddBoardHandler),
+            (r"/sticky-note/edit-board", EditBoardHandler),
+            (r"/sticky-note/remove-board", RemoveBoardHandler),
+            (r"/sticky-note/notes", NotesHandler),
+            (r"/sticky-note/add-note", AddNoteHandler),
+            (r"/sticky-note/edit-note", EditNoteHandler),
+            (r"/sticky-note/remove-note", RemoveNoteHandler),
             (".*", PageNotFoundHandler),
             ],
         # __TODO:_GENERATE_YOUR_OWN_RANDOM_VALUE_HERE__
@@ -99,8 +111,10 @@ def main():
         static_path=os.path.join(os.path.dirname(__file__), "static"),
         xsrf_cookies=True,
         debug=options.debug,
-        login_url="/login",
+        login_url="/account/login",
         )
+    tornado.locale.load_gettext_translations(os.path.join(os.path.dirname(__file__), "locale"), "stickynote")
+    tornado.locale.set_default_locale("en_US")
     app.listen(options.port)
     tornado.ioloop.IOLoop.current().start()
 
