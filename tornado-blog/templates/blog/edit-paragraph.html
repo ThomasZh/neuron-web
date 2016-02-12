@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>{{_("Edit")}}</title>
+<link rel="stylesheet"
+	href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+<link rel="stylesheet" href="{{ static_url("css/fileinput.min.css")}}">
+
+<!-- CSS -->
+<link href="{{ static_url("css/index.css")}}" rel="stylesheet">
+<link href="{{ static_url("css/theme.css")}}" rel="stylesheet">
+<script src="{{ static_url("js/shn5sjh.js")}}"></script>
+<link href="{{ static_url("css/shn5sjh-d.css")}}" rel="stylesheet">
+</head>
+
+<body id="public" onorientationchange="window.scrollTo(0, 1)">
+	<div id="container" class="ltr">
+		<h1 id="logo">
+			<a>Wufoo</a>
+		</h1>
+
+		<form id="form1" name="form1" class="wufoo topLabel page1"
+			accept-charset="UTF-8" autocomplete="off"
+			enctype="multipart/form-data" method="POST"
+			action="edit-paragraph">
+			
+			{% raw xsrf_form_html() %}
+
+			<input id="articleId" name="articleId" value="{{articleId}}" type="hidden" />
+			<input id="paragraphId" name="paragraphId" value="{{paragraph["id"]}}" type="hidden" />
+			<header id="header" class="info">
+				<h2>发布博客文章--段落</h2>
+				<div>
+					<br>请填写以下信息<br>
+				</div>
+			</header>
+
+			<ul>
+				<li id="fo1li1" class="notranslate">
+					<label class="desc" id="title1" for="Field1"> 类型: <span id="req_1" class="req">*</span></label>
+					<div>
+						<input id="type" name="type" class="field text large"
+							maxlength="255" tabindex="6" onkeyup="handleInput(this); "
+							onchange="handleInput(this);" required type="text" value="{{paragraph["type"]}}"> 
+							<label for="Field1">heading, p, blockquote, img, caption, code</label>
+					</div>
+				</li>
+				<li id="fo1li2" class="notranslate">
+					<label class="desc" id="title2" for="Field2"> 序号: <span id="req_1" class="req">*</span></label>
+					<div>
+						<input id="seq" name="seq" class="field text large"
+							maxlength="255" tabindex="6" onkeyup="handleInput(this); "
+							onchange="handleInput(this);" required type="text" value="{{paragraph["seq"]}}"> 
+							<label for="Field1">1, 2, 3, 4, 5...</label>
+					</div>
+				</li>
+
+
+
+				<li id="fo1li14" class="notranslate">
+					<label class="desc" id="title14" for="Field14"> 描述: <span id="req_14" class="req">*</span>
+					</label>
+
+					<div>
+						<textarea id="content" name="content"
+							class="field textarea medium" spellcheck="true" rows="10"
+							cols="50" tabindex="8"
+							onkeyup="handleInput(this); validateRange(14, 'character');"
+							onchange="handleInput(this);">{{paragraph["content"]}}</textarea>
+
+						<label for="Field14">最多字数: <var id="rangeMaxMsg14">1000</var>个.&nbsp;&nbsp;&nbsp; 
+							<em style="display: inline;" class="currently">当前字数: <var id="rangeUsedMsg14">0</var> 个.
+						</em></label>
+					</div>
+
+					<p class="instruct" id="instruct14">
+						<small>内容和图片是互斥的，有一个就可以了。(可以是一行或几行文字)。<br>
+						</small>
+					</p></li>
+
+
+
+				<li id="fo1li115" class="notranslate">
+					<label class="desc" id="title115" for="Field115"> 添加图片: <span id="req_15" class="req">*</span></label>
+					<div>
+						<input id="file" name="file" class="file" type="file"
+							data-show-caption="false" data-show-upload="false"
+							data-show-remove="true" />
+					</div> 
+					<input id="imgUrl" name="imgUrl" type="hidden" />
+					<p class="instruct" id="instruct115">
+						<small>请注意: 图像将被裁剪和调整到适合的大小。 </small>
+					</p></li>
+
+
+
+				<li class="buttons">
+					<p>
+						<a id="submit" class="btn btn-primary ">发布</a>
+					</p>
+					<div id="success-block"></div>
+				</li>
+			</ul>
+		</form>
+
+
+	</div>
+	<!--container-->
+
+	<script src="{{ static_url("js/fileinput.min.js")}}"></script>
+	<script src="{{ static_url("js/fileinput_locale_zh.js")}}"></script>
+	<script src="{{ static_url("js/spark-md5.min.js")}}"></script>
+	<script src="{{ static_url("js/async.js")}}"></script>
+	<script src="{{ static_url("js/upyun-mu.js")}}"></script>
+	<script>
+		function uuid() {
+			var s = [];
+			var hexDigits = "0123456789abcdef";
+			for (var i = 0; i < 36; i++) {
+				s[i] = hexDigits.substr(Math.floor(Math.random() * 0x10), 1);
+			}
+			s[14] = "4"; // bits 12-15 of the time_hi_and_version field to 0010
+			s[19] = hexDigits.substr((s[19] & 0x3) | 0x8, 1); // bits 6-7 of the clock_seq_hi_and_reserved to 01
+			s[8] = s[13] = s[18] = s[23] = "-";
+
+			var uuid = s.join("");
+			return uuid;
+		}
+
+		document.getElementById('submit').onclick = function() {
+			var ext = '.' + document.getElementById('file').files[0].name.split('.').pop();
+
+			var config = {
+				// 空间名称
+				bucket : 'bighorn',
+				// 上传请求过期时间
+				expiration : parseInt((new Date().getTime() + 3600000) / 1000),
+				// 尽量不要使用直接传表单 API 的方式，以防泄露造成安全隐患
+				form_api_secret : 'minNcL/cabhEznMeFpYhEQFsH+k='
+			};
+
+			var instance = new Sand(config);
+			var options = {
+				'notify_url' : 'http://upyun.com'
+			};
+			instance.setOptions(options);
+
+			var d = new Date();
+			var month = d.getMonth() + 1;
+			var filename = '/image/test/' + d.getFullYear() + '/' + month + '/' + d.getDate() + '/' + uuid() + ext;
+			instance.upload(filename);
+			document.getElementById("imgUrl").value = 'http://bighorn.b0.upaiyun.com' + filename;
+		};
+
+		document.addEventListener('uploaded',function(e) {
+			var block = document.getElementById('success-block');
+
+			var elem = document.createElement("ul");
+			elem.innerHTML += '<div class="alert alert-success" role="alert">Well done! You successfully upload this file.</div>';
+			block.appendChild(elem);
+
+			setTimeout(function() {
+				elem.remove();
+			}, 5000);
+
+			document.getElementById("form1").submit();
+		});
+	</script>
+</body>
+</html>

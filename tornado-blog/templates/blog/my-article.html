@@ -33,7 +33,7 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-    
+
 <style type="text/css">
 	.text-shadow {text-shadow:1px 1px 1px #000; padding:10px 0; color:#FFF;} 
 </style>
@@ -92,8 +92,21 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+					<!-- Pager -->
+					<ul class="pager">
+						<li class="previous"><a href="/admin/edit-article?id={{article["id"]}}">Edit Post</a></li>
+						<li class="next"><a href="/admin/add-paragraph?id={{article["id"]}}">New Paragraph +</a></li>
+					</ul>
+					<hr>
+				</div>
+				<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
 					{% for paragraph in paragraphs %} 
 						{% module Template("blog/paragraph-block.html",paragraph=paragraph) %} 
+						<!-- Pager -->
+						<ul class="pager">
+							<li class="next"><a href="/admin/edit-paragraph?articleId={{article["id"]}}&id={{paragraph["id"]}}">Edit Paragraph</a></li>
+						</ul>
+						<hr>
 					{% end %}
 				</div>
 			</div>

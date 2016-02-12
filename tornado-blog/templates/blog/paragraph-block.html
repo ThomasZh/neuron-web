@@ -1,0 +1,15 @@
+{% if paragraph["type"] == "p" %}
+	<p>{{paragraph["content"]}}</p>
+{% elif paragraph["type"] == "heading" %}
+	<h2 class="section-heading">{{paragraph["content"]}}</h2>
+{% elif paragraph["type"] == "blockquote" %}
+	<blockquote>{{paragraph["content"]}}</blockquote>
+{% elif paragraph["type"] == "img" %}
+	<a href="#"> <img class="img-responsive" src="{{paragraph["content"]}}" alt=""></a>
+{% elif paragraph["type"] == "caption" %}
+	<span class="caption text-muted">{{paragraph["content"]}}</span>
+{% elif paragraph["type"] == "code" %}
+	<code>{{paragraph["content"]}}</code>
+{% else %}
+	<"{{paragraph["type"]}}">{{paragraph["content"]}}</{{paragraph["type"]}}>
+{% end %}

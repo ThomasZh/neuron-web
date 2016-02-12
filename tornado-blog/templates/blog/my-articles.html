@@ -153,7 +153,7 @@
 			$.get("/ajax-my-articles?last="+lastTimestamp,function(data,status){
 				ajaxobj = eval("("+data+")");
 				for (var i in ajaxobj) {
-                	$('#articleRows').append('<div class="post-preview"><a href="/admin/edit-article?id='
+                	$('#articleRows').append('<div class="post-preview"><a href="/admin/my-article?id='
                 		+ ajaxobj[i].id +
                 		'"><img class="img-responsive" src="' 
                 		+ ajaxobj[i].imgUrl +
