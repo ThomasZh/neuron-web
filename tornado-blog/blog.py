@@ -24,7 +24,7 @@ from tornado.httpclient import HTTPClient
 from tornado.httputil import url_concat
 import tornado.web
 
-from base import BaseHandler, timestamp_datetime
+from base import BaseHandler, timestamp_datetime, datetime_timestamp
 
 
 class MyArticlesHandler(BaseHandler):
@@ -139,9 +139,52 @@ class ArticleHandler(tornado.web.RequestHandler):
 
 class AjaxArticlesHandler(tornado.web.RequestHandler):
     def get(self):
-        _timestamp = long(time.time() * 1000)
+        _last_timestamp = (self.request.arguments['last'])[0] # datetime as 2016-02-12 15:29
+        print _last_timestamp
+        
+        if _last_timestamp == None:
+            _timestamp = long(time.time() * 1000)
+            print _timestamp
+        elif _last_timestamp == '':
+            _timestamp = long(time.time() * 1000)
+            print _timestamp
+        else:
+            _timestamp = datetime_timestamp(_last_timestamp)
+            print _timestamp
+        
         params = {"before": _timestamp, "limit": 20}
         url = url_concat("http://182.92.66.109/blogs/articles", params)
+        http_client = HTTPClient()
+        response = http_client.fetch(url, method="GET")
+        logging.info("got response %r", response.body)
+        _articles = json_decode(response.body)
+        
+        for _article in _articles:
+            _timestamp = _article["timestamp"]
+            _datetime = timestamp_datetime(_timestamp / 1000)
+            _article["timestamp"] = _datetime
+        
+        self.finish(json.dumps(_articles))  
+
+
+class AjaxMyArticlesHandler(tornado.web.RequestHandler):
+    def get(self):
+        _ticket = self.get_secure_cookie("ticket")
+        _last_timestamp = (self.request.arguments['last'])[0] # datetime as 2016-02-12 15:29
+        print _last_timestamp
+        
+        if _last_timestamp == None:
+            _timestamp = long(time.time() * 1000)
+            print _timestamp
+        elif _last_timestamp == '':
+            _timestamp = long(time.time() * 1000)
+            print _timestamp
+        else:
+            _timestamp = datetime_timestamp(_last_timestamp)
+            print _timestamp
+        
+        params = {"X-Session-Id": _ticket, "before": _timestamp, "limit": 20}
+        url = url_concat("http://182.92.66.109/blogs/my-articles", params)
         http_client = HTTPClient()
         response = http_client.fetch(url, method="GET")
         logging.info("got response %r", response.body)

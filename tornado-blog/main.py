@@ -31,7 +31,7 @@ from account import LoginHandler, LogoutHandler, RegisterHandler, \
     ForgotPwdHandler, ResetPwdHandler
 from base import timestamp_datetime
 from blog import AddArticleHandler, ArticleHandler, AjaxArticlesHandler, \
-    MyArticlesHandler, EditArticleHandler
+    MyArticlesHandler, EditArticleHandler, AjaxMyArticlesHandler
 from greenboard import AddBoardHandler, EditBoardHandler, RemoveBoardHandler, \
     BoardsHandler
 from stickynote import NotesHandler, AddNoteHandler, EditNoteHandler, \
@@ -90,6 +90,7 @@ def main():
             (r"/contact", ContactHandler),
             (r"/article", ArticleHandler),
             (r"/ajax-articles", AjaxArticlesHandler),
+            (r"/ajax-my-articles", AjaxMyArticlesHandler),
             (r'/account/login', LoginHandler),
             (r'/account/logout', LogoutHandler),
             (r'/account/register', RegisterHandler),

@@ -89,9 +89,6 @@
 	<div class="container">
 		<div class="row">
 			<div id="articleRows" class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-				{% for article in articles %}
-					{% module Template("blog/articles-block.html", article=article) %}
-				{% end %}
 			</div>
 			<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
 				<!-- Pager -->
@@ -143,27 +140,42 @@
 
 	<script type="text/javascript">
 		preAllow = true;   // when ajax not completed, cannot do the next request
+		lastTimestamp = '';
+		
+		function query() {
+			$.get("/ajax-articles?last="+lastTimestamp,function(data,status){
+				ajaxobj = eval("("+data+")");
+				for (var i in ajaxobj) {
+                	$('#articleRows').append('<div class="post-preview"><a href="/article?id='
+                		+ ajaxobj[i].id +
+                		'"><img class="img-responsive" src="' 
+                		+ ajaxobj[i].imgUrl +
+                		'"><h2 class="post-title">'
+                		+ ajaxobj[i].title +
+                		'</h2><h3 class="post-subtitle">'
+                		+ ajaxobj[i].content +
+                		'</h3></a><p class="post-meta">Posted by <a href="#">'
+                		+ ajaxobj[i].accountNickname +
+                		'</a> ' 
+                		+ ajaxobj[i].timestamp +
+                		'</p></div><hr>');
+                	lastTimestamp = ajaxobj[i].timestamp;
+				}
+				preAllow = true;
+			});
+		}
 	
 		$("#AjaxGetButton").click(function(){ // This event fires when a button is clicked
 			if(preAllow){
 			    preAllow = false;
-				$.get("/ajax-articles",function(data,status){
-					ajaxobj = eval("("+data+")");
-					for (var i in ajaxobj) {
-                    	$('#articleRows').append('<div class="post-preview"><a href="/article?id='
-                    		+ ajaxobj[i].id +
-                    		'"><h2 class="post-title">'
-                    		+ ajaxobj[i].title +
-                    		'</h2><h3 class="post-subtitle">'
-                    		+ ajaxobj[i].content +
-                    		'</h3></a><p class="post-meta">Posted by <a href="#">'
-                    		+ ajaxobj[i].accountNickname +
-                    		'</a> ' 
-                    		+ ajaxobj[i].timestamp +
-                    		'</p></div><hr>');
-					}
-					preAllow = true;
-				});
+			    query();
+			}
+		});
+		
+		$(document).ready(function(){ // init after open this page
+			if(preAllow){
+			    preAllow = false;
+				query();
 			}
 		});
 	</script>
