@@ -27,6 +27,25 @@ import tornado.web
 from base import BaseHandler, timestamp_datetime
 
 
+class MyArticlesHandler(BaseHandler):
+    @tornado.web.authenticated  # if no session, redirect to login page
+    def get(self):
+        _timestamp = long(time.time() * 1000)
+        params = {"before": _timestamp, "limit": 20}
+        url = url_concat("http://182.92.66.109/blogs/articles", params)
+        http_client = HTTPClient()
+        response = http_client.fetch(url, method="GET")
+        logging.info("got response %r", response.body)
+        _articles = json_decode(response.body)
+        
+        for _article in _articles:
+            _timestamp = _article["timestamp"]
+            _datetime = timestamp_datetime(_timestamp / 1000)
+            _article["timestamp"] = _datetime
+            
+        self.render('blog/my-articles.html', articles=_articles)
+
+
 class AddArticleHandler(BaseHandler):
     @tornado.web.authenticated  # if no session, redirect to login page
     def get(self):
@@ -62,7 +81,7 @@ class AddArticleHandler(BaseHandler):
             _datetime = timestamp_datetime(_timestamp / 1000)
             _article["timestamp"] = _datetime
             
-        self.render('index.html', articles=_articles)
+        self.render('blog/my-articles.html', articles=_articles)
 
 
 class ArticleHandler(tornado.web.RequestHandler):

@@ -7,7 +7,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>Clean Blog</title>
+<title>Clean Blog - Administrator's Console</title>
 
 <!-- Bootstrap Core CSS -->
 <link rel="stylesheet"
@@ -45,11 +45,12 @@
 			<div class="navbar-header page-scroll">
 				<button type="button" class="navbar-toggle" data-toggle="collapse"
 					data-target="#bs-example-navbar-collapse-1">
-					<span class="sr-only">Toggle navigation</span> <span
-						class="icon-bar"></span> <span class="icon-bar"></span> <span
-						class="icon-bar"></span>
+					<span class="sr-only">Toggle navigation</span> 
+					<span class="icon-bar"></span> 
+					<span class="icon-bar"></span> 
+					<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="/">Start Bootstrap</a>
+				<a class="navbar-brand" href="#">Start Bootstrap</a>
 			</div>
 
 			<!-- Collect the nav links, forms, and other content for toggling -->
@@ -58,7 +59,7 @@
 				<ul class="nav navbar-nav navbar-right">
 					<li><a href="/">Home</a></li>
 					<li><a href="/about">About</a></li>
-					<li><a href="#">Demo Center</a></li>
+					<li><a href="/demo-center">Demo Center</a></li>
 					<li><a href="/contact">Contact</a></li>
 				</ul>
 			</div>
@@ -70,14 +71,14 @@
 	<!-- Page Header -->
 	<!-- Set your background image for this header on the line below. -->
 	<header class="intro-header"
-		style="background-image: url('{{static_url("img/demo-center-bg.jpg")}}')">
+		style="background-image: url('{{static_url("img/network-administrator.jpg")}}')">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
 					<div class="site-heading">
-						<h1></h1>
+						<h1>Clean Blog</h1>
 						<hr class="small">
-						<span class="subheading"></span>
+						<span class="subheading">A Clean Blog Theme by Start Bootstrap</span>
 					</div>
 				</div>
 			</div>
@@ -88,77 +89,21 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-				<div class="post-preview">
-					<a href="/sticky-note/boards">
-						<img class="img-responsive"
-							src="{{static_url("img/sticky-notes-sm.png")}}">
-						<h2 class="post-title">Sticky Notes</h2>
-						<h3 class="post-subtitle">This is the first project by tornado. 
-							You can think it is a demo for how to use tornado (implemented by python).
-							This project show how to use register/login/logout/forgot password/reset password...</h3>
-					</a>
-					<p class="post-meta">
-						Posted by <a href="#">Thomas</a> on January 7, 2016
-					</p>
-				</div>
-				
-				<hr>
-				
-				<div class="post-preview">
-					<a href="post.html">
-						<img class="img-responsive"
-							src="{{static_url("img/404.jpg")}}">
-						<h2 class="post-title">Only one page, ERROR 404: NOT FOUND.</h2>
-					</a>
-					<p class="post-meta">
-						Posted by <a href="#">Thomas</a> on January 12, 2016
-					</p>
-				</div>
-				
-				<hr>
-				
-				<div class="post-preview">
-					<a href="/admin/my-articles">
-						<img class="img-responsive"
-							src="{{static_url("img/admin-md.png")}}">
-						<h2 class="post-title">Clean Blog Administrator's console
-						</h2>
-						<h3 class="post-subtitle">The baby sister project of this web site.
-							Demo how to use javascript upload image files to upyun.</h3>
-					</a>
-					<p class="post-meta">
-						Posted by <a href="#">Thomas</a> coming soon...
-					</p>
-				</div>
-				
-				<hr>
-				
-				<div class="post-preview">
-					<a href="post.html">
-						<img class="img-responsive"
-							src="{{static_url("img/web-socket-sm.png")}}">
-						<h2 class="post-title">Web Chat</h2>
-						<h3 class="post-subtitle">Implements by tornado's web socket.</h3>
-					</a>
-					<p class="post-meta">
-						Posted by <a href="#">Thomas</a> coming soon...
-					</p>
-				</div>
-				
-				<hr>
-				
-				<div class="post-preview">
-					<a href="post.html">
-						<img class="img-responsive"
-							src="{{static_url("img/go-game-sm.jpg")}}">
-						<h2 class="post-title">Web Go Game</h2>
-						<h3 class="post-subtitle">It's a long story, I wrote this code since 2005,
-							ten years not completed yet. I'll use tornado's websocket redegin it.</h3>
-					</a>
-					<p class="post-meta">
-						Posted by <a href="#">Thomas</a> coming soon...
-					</p>
-				</div>
+				<!-- Pager -->
+				<ul class="pager">
+					<li class="next"><a href="/admin/add-article">New Post +</a></li>
+				</ul>
+			</div>
+			<div id="articleRows" class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+				{% for article in articles %}
+					{% module Template("blog/articles-block.html", article=article) %}
+				{% end %}
+			</div>
+			<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+				<!-- Pager -->
+				<ul class="pager">
+					<li class="next"><a id="AjaxGetButton">Older Posts &rarr;</a></li>
+				</ul>
 			</div>
 		</div>
 	</div>
@@ -192,7 +137,7 @@
 			</div>
 		</div>
 	</footer>
-
+  
 	<!-- jQuery -->
 	<script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
 
@@ -202,6 +147,32 @@
 	<!-- Custom Theme JavaScript -->
 	<script src="{{static_url("js/clean-blog.min.js")}}"></script>
 
+	<script type="text/javascript">
+		preAllow = true;   // when ajax not completed, cannot do the next request
+	
+		$("#AjaxGetButton").click(function(){ // This event fires when a button is clicked
+			if(preAllow){
+			    preAllow = false;
+				$.get("/ajax-articles",function(data,status){
+					ajaxobj = eval("("+data+")");
+					for (var i in ajaxobj) {
+                    	$('#articleRows').append('<div class="post-preview"><a href="/article?id='
+                    		+ ajaxobj[i].id +
+                    		'"><h2 class="post-title">'
+                    		+ ajaxobj[i].title +
+                    		'</h2><h3 class="post-subtitle">'
+                    		+ ajaxobj[i].content +
+                    		'</h3></a><p class="post-meta">Posted by <a href="#">'
+                    		+ ajaxobj[i].accountNickname +
+                    		'</a> ' 
+                    		+ ajaxobj[i].timestamp +
+                    		'</p></div><hr>');
+					}
+					preAllow = true;
+				});
+			}
+		});
+	</script>
+	
 </body>
-
 </html>

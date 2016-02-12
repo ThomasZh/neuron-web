@@ -30,7 +30,8 @@ import tornado.web
 from account import LoginHandler, LogoutHandler, RegisterHandler, \
     ForgotPwdHandler, ResetPwdHandler
 from base import timestamp_datetime
-from blog import AddArticleHandler, ArticleHandler, AjaxArticlesHandler
+from blog import AddArticleHandler, ArticleHandler, AjaxArticlesHandler, \
+    MyArticlesHandler
 from greenboard import AddBoardHandler, EditBoardHandler, RemoveBoardHandler, \
     BoardsHandler
 from stickynote import NotesHandler, AddNoteHandler, EditNoteHandler, \
@@ -94,6 +95,7 @@ def main():
             (r'/account/register', RegisterHandler),
             (r'/account/forgot-pwd', ForgotPwdHandler),
             (r'/account/reset-pwd', ResetPwdHandler),
+            (r"/admin/my-articles", MyArticlesHandler),
             (r"/admin/add-article", AddArticleHandler),
             (r"/sticky-note/boards", BoardsHandler),
             (r"/sticky-note/add-board", AddBoardHandler),
