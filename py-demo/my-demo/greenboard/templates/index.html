@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Green board demo implement by tornado</title>
+</head>
+<body>
+	<div id="body">
+		<div>
+			<ul id="blackboard">
+				<li><a src="+" /></li> 
+				{% for board in boards %} 
+				{% module Template("message.html",board=board) %} 
+				{% end %}
+			</ul>
+		</div>
+	</div>
+</body>
+</html>
