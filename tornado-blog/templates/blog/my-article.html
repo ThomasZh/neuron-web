@@ -94,8 +94,10 @@
 				<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
 					<!-- Pager -->
 					<ul class="pager">
-						<li class="previous"><a href="/admin/edit-article?id={{article["id"]}}">Edit Post</a></li>
-						<li class="next"><a href="/admin/add-paragraph?id={{article["id"]}}">New Paragraph +</a></li>
+						<li class="previous"><a href="/admin/edit-article?id={{article["id"]}}">
+							<span class="glyphicon glyphicon-pencil"></span></a></li>
+						<li class="next"><a href="/admin/add-paragraph?id={{article["id"]}}">
+							<span class="glyphicon glyphicon-plus"></span></a></li>
 					</ul>
 					<hr>
 				</div>
@@ -104,7 +106,12 @@
 						{% module Template("blog/paragraph-block.html",paragraph=paragraph) %} 
 						<!-- Pager -->
 						<ul class="pager">
-							<li class="next"><a href="/admin/edit-paragraph?articleId={{article["id"]}}&id={{paragraph["id"]}}">Edit Paragraph</a></li>
+							<li class="next"><a href="/admin/edit-paragraph?articleId={{article["id"]}}&id={{paragraph["id"]}}">
+								<span class="glyphicon glyphicon-pencil"></span></a></li>
+							<li class="next"><a href="/admin/paragraph/down?articleId={{article["id"]}}&id={{paragraph["id"]}}">
+								<span class="glyphicon glyphicon-chevron-down"></span></a></li>
+							<li class="next"><a href="/admin/paragraph/up?articleId={{article["id"]}}&id={{paragraph["id"]}}">
+								<span class="glyphicon glyphicon-chevron-up"></span></a></li>
 						</ul>
 						<hr>
 					{% end %}

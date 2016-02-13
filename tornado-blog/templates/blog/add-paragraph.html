@@ -49,16 +49,6 @@
 							<label for="Field1">heading, p, blockquote, img, caption, code</label>
 					</div>
 				</li>
-				<li id="fo1li2" class="notranslate">
-					<label class="desc" id="title2" for="Field2"> 序号: <span id="req_1" class="req">*</span></label>
-					<div>
-						<input id="seq" name="seq" class="field text large"
-							maxlength="255" tabindex="6" onkeyup="handleInput(this); "
-							onchange="handleInput(this);" required type="text"> 
-							<label for="Field1">1, 2, 3, 4, 5...</label>
-					</div>
-				</li>
-
 
 
 				<li id="fo1li14" class="notranslate">
@@ -132,28 +122,33 @@
 		}
 
 		document.getElementById('submit').onclick = function() {
-			var ext = '.' + document.getElementById('file').files[0].name.split('.').pop();
+			var type = document.getElementById('type').value;
+			if (type == 'img') {
+				var ext = '.' + document.getElementById('file').files[0].name.split('.').pop();
 
-			var config = {
-				// 空间名称
-				bucket : 'bighorn',
-				// 上传请求过期时间
-				expiration : parseInt((new Date().getTime() + 3600000) / 1000),
-				// 尽量不要使用直接传表单 API 的方式，以防泄露造成安全隐患
-				form_api_secret : 'minNcL/cabhEznMeFpYhEQFsH+k='
-			};
+				var config = {
+					// 空间名称
+					bucket : 'bighorn',
+					// 上传请求过期时间
+					expiration : parseInt((new Date().getTime() + 3600000) / 1000),
+					// 尽量不要使用直接传表单 API 的方式，以防泄露造成安全隐患
+					form_api_secret : 'minNcL/cabhEznMeFpYhEQFsH+k='
+				};
 
-			var instance = new Sand(config);
-			var options = {
-				'notify_url' : 'http://upyun.com'
-			};
-			instance.setOptions(options);
+				var instance = new Sand(config);
+				var options = {
+					'notify_url' : 'http://upyun.com'
+				};
+				instance.setOptions(options);
 
-			var d = new Date();
-			var month = d.getMonth() + 1;
-			var filename = '/image/test/' + d.getFullYear() + '/' + month + '/' + d.getDate() + '/' + uuid() + ext;
-			instance.upload(filename);
-			document.getElementById("imgUrl").value = 'http://bighorn.b0.upaiyun.com' + filename;
+				var d = new Date();
+				var month = d.getMonth() + 1;
+				var filename = '/image/test/' + d.getFullYear() + '/' + month + '/' + d.getDate() + '/' + uuid() + ext;
+				instance.upload(filename);
+				document.getElementById("imgUrl").value = 'http://bighorn.b0.upaiyun.com' + filename;
+			} else {
+				document.getElementById("form1").submit();
+			}
 		};
 
 		document.addEventListener('uploaded',function(e) {

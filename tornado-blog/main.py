@@ -32,7 +32,8 @@ from account import LoginHandler, LogoutHandler, RegisterHandler, \
 from base import timestamp_datetime
 from blog import AddArticleHandler, ArticleHandler, AjaxArticlesHandler, \
     MyArticlesHandler, EditArticleHandler, AjaxMyArticlesHandler, \
-    MyArticleHandler, AddParagraphHandler, EditParagraphHandler
+    MyArticleHandler, AddParagraphHandler, EditParagraphHandler, \
+    UpParagraphHandler, DownParagraphHandler
 from greenboard import AddBoardHandler, EditBoardHandler, RemoveBoardHandler, \
     BoardsHandler
 from stickynote import NotesHandler, AddNoteHandler, EditNoteHandler, \
@@ -103,6 +104,8 @@ def main():
             (r"/admin/edit-article", EditArticleHandler),
             (r"/admin/add-paragraph", AddParagraphHandler),
             (r"/admin/edit-paragraph", EditParagraphHandler),
+            (r"/admin/paragraph/up", UpParagraphHandler),
+            (r"/admin/paragraph/down", DownParagraphHandler),
             (r"/sticky-note/boards", BoardsHandler),
             (r"/sticky-note/add-board", AddBoardHandler),
             (r"/sticky-note/edit-board", EditBoardHandler),
