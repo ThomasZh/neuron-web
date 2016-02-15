@@ -87,7 +87,12 @@ class DemoCenterHandler(tornado.web.RequestHandler):
 
 class RichTextEditorHandler(tornado.web.RequestHandler):
     def get(self):
-        self.render('richeditor/toolbar_inline.html')
+        self.render('richeditor/full_page.html')
+
+
+class GoGameHandler(tornado.web.RequestHandler):
+    def get(self):
+        self.render('gogame/playing.html')
 
 
 def main():
@@ -131,6 +136,7 @@ def main():
             (r"/sticky-note/edit-note", EditNoteHandler),
             (r"/sticky-note/remove-note", RemoveNoteHandler),
             (r"/rich-text-editor", RichTextEditorHandler),
+            (r"/go-game", GoGameHandler),
             (".*", PageNotFoundHandler),
             ],
         # __TODO:_GENERATE_YOUR_OWN_RANDOM_VALUE_HERE__

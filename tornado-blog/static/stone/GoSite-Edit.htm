@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>js-go.it homepage</title>
+</head>
+
+<body bgcolor=#FFFFFF leftmargin=0 topmargin=0 marginwidth=0 marginheight=0>
+<form name=WorkSheet>
+	<table width=760 height="100%" border=0 cellpadding=0 cellspacing=0 align="center"> 
+		<tr> 
+		<td id='GoBoardPanel'>
+		</td>
+		</tr>
+	</table>
+</form>
+</body>
+</html>
+
+
+<script type="text/javascript" src="GoBoard.js"></script>
+<script type="text/javascript" src="GoGame.js"></script>
+<script language=javascript>
+// ³õÊ¼»¯ÆåÅÌ
+var dp=21;
+var dw=19;
+var dh=19;
+var goBoard = new GoBoard(dp, dw, dh);
+goBoard.Init('GoBoardPanel');
+goBoard.SetMode('edit');
+</script>
