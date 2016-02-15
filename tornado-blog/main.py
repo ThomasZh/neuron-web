@@ -85,6 +85,11 @@ class DemoCenterHandler(tornado.web.RequestHandler):
         self.render('demo-center.html')
 
 
+class RichTextEditorHandler(tornado.web.RequestHandler):
+    def get(self):
+        self.render('richeditor/toolbar_inline.html')
+
+
 def main():
     parse_command_line()
     app = tornado.web.Application(
@@ -125,6 +130,7 @@ def main():
             (r"/sticky-note/add-note", AddNoteHandler),
             (r"/sticky-note/edit-note", EditNoteHandler),
             (r"/sticky-note/remove-note", RemoveNoteHandler),
+            (r"/rich-text-editor", RichTextEditorHandler),
             (".*", PageNotFoundHandler),
             ],
         # __TODO:_GENERATE_YOUR_OWN_RANDOM_VALUE_HERE__
