@@ -33,7 +33,10 @@ from base import timestamp_datetime
 from blog import AddArticleHandler, ArticleHandler, AjaxArticlesHandler, \
     MyArticlesHandler, EditArticleHandler, AjaxMyArticlesHandler, \
     MyArticleHandler, AddParagraphHandler, EditParagraphHandler, \
-    UpParagraphHandler, DownParagraphHandler, EditParagraphRawHandler
+    UpParagraphHandler, DownParagraphHandler, EditParagraphRawHandler, \
+    EditParagraphImgHandler, AddParagraphRawHandler, AddParagraphImgHandler, \
+    DelParagraphHandler, AddParagraphAfterHandler, AddParagraphRawAfterHandler, \
+    AddParagraphImgAfterHandler
 from greenboard import AddBoardHandler, EditBoardHandler, RemoveBoardHandler, \
     BoardsHandler
 from stickynote import NotesHandler, AddNoteHandler, EditNoteHandler, \
@@ -103,10 +106,17 @@ def main():
             (r"/admin/add-article", AddArticleHandler),
             (r"/admin/edit-article", EditArticleHandler),
             (r"/admin/add-paragraph", AddParagraphHandler),
+            (r"/admin/add-paragraph-raw", AddParagraphRawHandler),
+            (r"/admin/add-paragraph-img", AddParagraphImgHandler),
+            (r"/admin/add-paragraph/after", AddParagraphAfterHandler),
+            (r"/admin/add-paragraph-raw/after", AddParagraphRawAfterHandler),
+            (r"/admin/add-paragraph-img/after", AddParagraphImgAfterHandler),
             (r"/admin/edit-paragraph", EditParagraphHandler),
             (r"/admin/edit-paragraph-raw", EditParagraphRawHandler),
+            (r"/admin/edit-paragraph-img", EditParagraphImgHandler),
             (r"/admin/paragraph/up", UpParagraphHandler),
             (r"/admin/paragraph/down", DownParagraphHandler),
+            (r"/admin/paragraph/del", DelParagraphHandler),
             (r"/sticky-note/boards", BoardsHandler),
             (r"/sticky-note/add-board", AddBoardHandler),
             (r"/sticky-note/edit-board", EditBoardHandler),

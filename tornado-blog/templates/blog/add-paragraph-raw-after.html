@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>{{_("Edit")}}</title>
+<title>{{_("Add")}}</title>
 <link rel="stylesheet"
 	href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
 <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
@@ -15,10 +15,11 @@
  -->
 <link href="http://netdna.bootstrapcdn.com/font-awesome/3.0.2/css/font-awesome.css" rel="stylesheet">
 
+
 <!-- CSS -->
 <style type="text/css">
 .form-signin {
-	max-width: 800px;
+	max-width: 600px;
 	padding: 19px 0px 19px;
 	margin: 0 auto 20px;
 }
@@ -28,11 +29,11 @@
 <body>
 	<div class="container">
 		<form class="form-signin" id="form1"
-			accept-charset="UTF-8" method="POST" action="edit-paragraph-raw">
+			accept-charset="UTF-8" method="POST" action="after">
 			{% raw xsrf_form_html() %}
 
 			<input id="articleId" name="articleId" value="{{articleId}}" type="hidden" />
-			<input id="paragraphId" name="paragraphId" value="{{paragraph["id"]}}" type="hidden" />
+			<input id="brotherId" name="brotherId" value="{{brotherId}}" type="hidden" />
 
 			<div class="form-group required">
 
@@ -47,11 +48,11 @@
 		--->
 
     <div id="editor">
-    	{% raw paragraph["content"] %}
     </div>
     <input data-edit="createLink" id="content" name="content" type="hidden" >
+<!-- 
 	<input type="hidden" id="description" value="<%=description%>">
-	
+ -->	
 	<div id="alerts"></div>
     <div class="btn-toolbar" data-role="editor-toolbar" data-target="#editor">
       <div class="btn-group">
@@ -109,11 +110,11 @@
     </div>
 
 
+</div>
 
 
 
-				
-			</div>
+
 			<div class="form-group">
 				<a id="submit" class="btn btn-lg btn-primary btn-block">{{_("Submit")}}</a>
 				<div id="success-block"></div>
@@ -124,7 +125,7 @@
 
 	<script src="{{ static_url("external/jquery.hotkeys.js")}}"></script>
 	<script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-<!-- 	
+<!-- 
 	<script src="{{ static_url("external/google-code-prettify/prettify.js")}}"></script>
 	 -->
 	<script src="{{ static_url("bootstrap-wysiwyg.js")}}"></script>	
@@ -157,7 +158,7 @@
 	      } else {
 	        $('#voiceBtn').hide();
 	      }
-*/	      
+*/
 		};
 		function showErrorAlert (reason, detail) {
 			var msg='';
@@ -182,7 +183,7 @@
 		    	'ctrl+y meta+y meta+shift+z': 'redo'
 			}
 		});
-				
+		
 		document.getElementById('submit').onclick = function() {
 			var html = $('#editor').html();
 			document.getElementById("content").value = html;

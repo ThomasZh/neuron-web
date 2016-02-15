@@ -5,11 +5,10 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>{{_("Edit")}}</title>
+<title>{{_("Add")}}</title>
 <link rel="stylesheet"
 	href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
 <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
-
 <!-- Custom CSS -->
 <link href="{{static_url("css/clean-blog.min.css")}}" rel="stylesheet">
 
@@ -37,53 +36,20 @@
 		<div class="row">
 			<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
 			<p class="help-block text-danger"></p>
-		<form class="form-signin" id="form1"
-			accept-charset="UTF-8" method="POST" action="edit-paragraph">
+		<form id="form1" accept-charset="UTF-8" method="POST" action="after">
 			{% raw xsrf_form_html() %}
 
 			<input id="articleId" name="articleId" value="{{articleId}}" type="hidden" />
-			<input id="paragraphId" name="paragraphId" value="{{paragraph["id"]}}" type="hidden" />
+			<input id="brotherId" name="brotherId" value="{{brotherId}}" type="hidden" />
 
 			<div class="row control-group">
-				<label for="title" class="sr-only">{{_("heading, p, blockquote, caption, code")}}</label> 
+				<label for="title" class="sr-only">{{_("heading, p, blockquote, img, caption, code")}}</label>
 				<select class="form-control" id="type" name="type">
-					{% if paragraph["type"] == "p" %}
 						<option value="p" selected="selected">paragraph</option>
 						<option value="caption">caption</option>
 						<option value="heading">heading</option>
 						<option value="blockquote">blockquote</option>
 						<option value="code">code</option>
-					{% elif paragraph["type"] == "caption" %}
-						<option value="p">paragraph</option>
-						<option value="caption" selected="selected">caption</option>
-						<option value="heading">heading</option>
-						<option value="blockquote">blockquote</option>
-						<option value="code">code</option>
-					{% elif paragraph["type"] == "heading" %}
-						<option value="p">paragraph</option>
-						<option value="caption">caption</option>
-						<option value="heading" selected="selected">heading</option>
-						<option value="blockquote">blockquote</option>
-						<option value="code">code</option>
-					{% elif paragraph["type"] == "blockquote" %}
-						<option value="p">paragraph</option>
-						<option value="caption">caption</option>
-						<option value="heading">heading</option>
-						<option value="blockquote" selected="selected">blockquote</option>
-						<option value="code">code</option>
-					{% elif paragraph["type"] == "code" %}
-						<option value="p">paragraph</option>
-						<option value="caption">caption</option>
-						<option value="heading">heading</option>
-						<option value="blockquote">blockquote</option>
-						<option value="code" selected="selected">code</option>
-					{% else %}
-						<option value="p" selected="selected">paragraph</option>
-						<option value="caption">caption</option>
-						<option value="heading">heading</option>
-						<option value="blockquote">blockquote</option>
-						<option value="code">code</option>
-					{% end %}
 				</select>
 			</div>
 			<div class="row control-group">
@@ -91,7 +57,7 @@
 					<label>Content</label>
 					<textarea rows="5" class="form-control" placeholder="Content"
 						id="content" name="content" required
-						data-validation-required-message="Please enter a content.">{{paragraph["content"]}}</textarea>
+						data-validation-required-message="Please enter a content."></textarea>
 					<p class="help-block text-danger"></p>
 				</div>
 			</div>

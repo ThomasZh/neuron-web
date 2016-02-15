@@ -7,7 +7,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>Time&sup2;box Blog - Post</title>
+<title>Time&sup2;box - Blog</title>
 
 <!-- Bootstrap Core CSS -->
 <link rel="stylesheet"
@@ -35,7 +35,8 @@
     <![endif]-->
     
 <style type="text/css">
-	.text-shadow {text-shadow:1px 1px 1px #000; padding:10px 0; color:#FFF;} 
+	.text-shadow {text-shadow:1px 1px 1px #000; padding:10px 0; color:#FFF;}
+	.img-responsive { margin: 5px 0px 5px 0px;} 
 </style>
 </head>
 
@@ -93,7 +94,7 @@
 			<div class="row">
 				<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
 					{% for paragraph in paragraphs %} 
-						{% module Template("blog/paragraph-block.html",paragraph=paragraph) %} 
+						{% module Template("blog/paragraph-block.html", article=article, paragraph=paragraph) %} 
 					{% end %}
 				</div>
 			</div>
