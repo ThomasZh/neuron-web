@@ -95,6 +95,11 @@ class GoGameHandler(tornado.web.RequestHandler):
         self.render('gogame/playing.html')
 
 
+class SyntaxHighlighterHandler(tornado.web.RequestHandler):
+    def get(self):
+        self.render('SyntaxHighlighter/example.htm')
+
+
 def main():
     parse_command_line()
     app = tornado.web.Application(
@@ -136,6 +141,7 @@ def main():
             (r"/sticky-note/edit-note", EditNoteHandler),
             (r"/sticky-note/remove-note", RemoveNoteHandler),
             (r"/rich-text-editor", RichTextEditorHandler),
+            (r"/syntax-high-lighter", SyntaxHighlighterHandler),
             (r"/go-game", GoGameHandler),
             (".*", PageNotFoundHandler),
             ],

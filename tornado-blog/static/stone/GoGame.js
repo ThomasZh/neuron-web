@@ -14,7 +14,7 @@ function GoGame(boardSize)
 	this.BoardSize = boardSize;         // default size=19*19
 	this.StoneArray = new Array();      // 1 black, -1 white, 0 space
 	this.TextArray = new Array();       // board text
-	this.StepCount = 0;	// 目前棋局的步数
+	this.StepCount = 0;	// current step
 }
 
 
@@ -75,7 +75,7 @@ GoGame.prototype.SetText = function(i, j, str)
 }
 
 
-// 更新棋局
+// update this game
 GoGame.prototype.Update = function(goGameA)
 {
 	this.StepCount = goGameA.StepCount;
@@ -91,14 +91,14 @@ GoGame.prototype.Update = function(goGameA)
 }
 
 
-// 取得目前棋局的步数
+// get current step
 GoGame.prototype.GetStep = function()
 {
 	return this.StepCount;
 }
 
 
-// 目前棋局的步数+1
+// next step number
 GoGame.prototype.StepForward = function()
 {
 	this.StepCount++;
