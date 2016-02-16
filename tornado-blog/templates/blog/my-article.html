@@ -197,11 +197,17 @@
 		}
 		
 		function delRow(articleId, paragraphId) {
-			$.get("/admin/paragraph/del?articleId=" + articleId + "&id=" + paragraphId, function(data,status){
-				var c = $("#"+paragraphId);
-				var p = $("#ptable");
-				c.empty();
-			});
+			var msg = "Are you sure you want to delete this item?";
+			if (confirm(msg) == true) {
+				$.get("/admin/paragraph/del?articleId=" + articleId + "&id=" + paragraphId, function(data,status){
+					var c = $("#"+paragraphId);
+					var p = $("#ptable");
+					c.empty();
+				});
+				return true;
+			} else {
+				return false;
+			}
 		}
 		
 		function ScrollToParagraph(id){
