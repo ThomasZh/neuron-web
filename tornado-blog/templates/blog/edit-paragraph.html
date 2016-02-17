@@ -52,37 +52,37 @@
 						<option value="caption">caption</option>
 						<option value="heading">heading</option>
 						<option value="blockquote">blockquote</option>
-						<option value="code">code</option>
+						<option value="pre">source code</option>
 					{% elif paragraph["type"] == "caption" %}
 						<option value="p">paragraph</option>
 						<option value="caption" selected="selected">caption</option>
 						<option value="heading">heading</option>
 						<option value="blockquote">blockquote</option>
-						<option value="code">code</option>
+						<option value="pre">source code</option>
 					{% elif paragraph["type"] == "heading" %}
 						<option value="p">paragraph</option>
 						<option value="caption">caption</option>
 						<option value="heading" selected="selected">heading</option>
 						<option value="blockquote">blockquote</option>
-						<option value="code">code</option>
+						<option value="pre">source code</option>
 					{% elif paragraph["type"] == "blockquote" %}
 						<option value="p">paragraph</option>
 						<option value="caption">caption</option>
 						<option value="heading">heading</option>
 						<option value="blockquote" selected="selected">blockquote</option>
-						<option value="code">code</option>
-					{% elif paragraph["type"] == "code" %}
+						<option value="pre">source code</option>
+					{% elif paragraph["type"] == "pre" %}
 						<option value="p">paragraph</option>
 						<option value="caption">caption</option>
 						<option value="heading">heading</option>
 						<option value="blockquote">blockquote</option>
-						<option value="code" selected="selected">code</option>
+						<option value="pre" selected="selected">source code</option>
 					{% else %}
 						<option value="p" selected="selected">paragraph</option>
 						<option value="caption">caption</option>
 						<option value="heading">heading</option>
 						<option value="blockquote">blockquote</option>
-						<option value="code">code</option>
+						<option value="pre">source code</option>
 					{% end %}
 				</select>
 			</div>

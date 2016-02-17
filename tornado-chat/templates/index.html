@@ -1,19 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>chat demo</title>
-<link rel="stylesheet"
-	href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
-<script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
-<script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	<title>chat demo</title>
 </head>
-
 <body>
 	<form action="/new-msg" method="post">
 		<textarea id="text"></textarea>
-		<input type="submit" />
+		<input type="submit"/>
 	</form>
 	<div id="msg"></div>
+	<script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
 	<script src="{{ static_url('chat.js') }}"></script>
 </body>
 </html>

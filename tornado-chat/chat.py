@@ -78,6 +78,7 @@ def send_message(message):
     for handler in ChatSocketHandler.socket_handlers:
         try:
             handler.write_message(message)
+            print message
         except:
             logging.error('Error sending message', exc_info=True)
 

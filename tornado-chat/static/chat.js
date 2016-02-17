@@ -1,11 +1,11 @@
-(function() {
+$(function() {
     var $msg = $('#msg');
     var $text = $('#text');
 
     var WebSocket = window.WebSocket || window.MozWebSocket;
     if (WebSocket) {
         try {
-            var socket = new WebSocket('ws://localhost:8000/new-msg/socket');
+            var socket = new WebSocket('ws://localhost:8888/new-msg/socket');
         } catch (e) {}
     }
 

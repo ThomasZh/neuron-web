@@ -100,6 +100,11 @@ class SyntaxHighlighterHandler(tornado.web.RequestHandler):
         self.render('SyntaxHighlighter/example.htm')
 
 
+class TraverHandler(tornado.web.RequestHandler):
+    def get(self):
+        self.render('aplan/travel.html')
+
+
 def main():
     parse_command_line()
     app = tornado.web.Application(
@@ -142,6 +147,7 @@ def main():
             (r"/sticky-note/remove-note", RemoveNoteHandler),
             (r"/rich-text-editor", RichTextEditorHandler),
             (r"/syntax-high-lighter", SyntaxHighlighterHandler),
+            (r"/aplan/travel", TraverHandler),
             (r"/go-game", GoGameHandler),
             (".*", PageNotFoundHandler),
             ],

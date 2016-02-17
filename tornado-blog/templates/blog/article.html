@@ -12,6 +12,10 @@
 <!-- Bootstrap Core CSS -->
 <link rel="stylesheet"
 	href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<link type="text/css" rel="stylesheet"
+	href="//cdn.bootcss.com/SyntaxHighlighter/3.0.83/styles/shCoreDefault.min.css" />
+<link type="text/css" rel="stylesheet"
+	href="//cdn.bootcss.com/SyntaxHighlighter/3.0.83/styles/shThemeDefault.min.css" />
 
 <!-- Custom CSS -->
 <link href="{{static_url("css/clean-blog.min.css")}}" rel="stylesheet">
@@ -37,6 +41,8 @@
 <style type="text/css">
 	.text-shadow {text-shadow:1px 1px 1px #000; padding:10px 0; color:#FFF;}
 	.img-responsive { margin: 5px 0px 5px 0px;} 
+	.syntaxhighlighter table .container:before { display: none !important; }
+	.container:before, .container:after { display: table; content: ""; line-height: 0;}
 </style>
 </head>
 
@@ -140,6 +146,20 @@
 	<!-- Custom Theme JavaScript -->
 	<script src="{{static_url("js/clean-blog.min.js")}}"></script>
 
+	<script type="text/javascript"
+		src="//cdn.bootcss.com/SyntaxHighlighter/3.0.83/scripts/shCore.min.js"></script>
+	<script type="text/javascript"
+		src="//cdn.bootcss.com/SyntaxHighlighter/3.0.83/scripts/shBrushJScript.min.js"></script>
+
+	<script type="text/javascript">
+
+		SyntaxHighlighter.config.bloggerMode = true;
+		SyntaxHighlighter.defaults['toolbar'] = false;
+		SyntaxHighlighter.defaults['gutter'] = true;
+		SyntaxHighlighter.defaults['smart-tabs'] = true;
+		SyntaxHighlighter.defaults['tab-size'] = 4;
+		SyntaxHighlighter.all();
+	</script>
 </body>
 
 </html>

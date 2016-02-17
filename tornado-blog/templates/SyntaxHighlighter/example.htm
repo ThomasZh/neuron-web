@@ -1,70 +1,130 @@
 <html>
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<title>Time&sup2;box - Syntax high lighter demo</title>
-	<script type="text/javascript" src="//cdn.bootcss.com/SyntaxHighlighter/3.0.83/scripts/shCore.min.js"></script>
-	<script type="text/javascript" src="//cdn.bootcss.com/SyntaxHighlighter/3.0.83/scripts/shBrushJScript.min.js"></script>
-	<link type="text/css" rel="stylesheet" href="//cdn.bootcss.com/SyntaxHighlighter/3.0.83/styles/shCoreDefault.min.css"/>
-	<link type="text/css" rel="stylesheet" href="//cdn.bootcss.com/SyntaxHighlighter/3.0.83/styles/shThemeDefault.min.css"/>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Time&sup2;box - Syntax high lighter demo</title>
+<link rel="stylesheet"
+	href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script type="text/javascript"
+	src="//cdn.bootcss.com/SyntaxHighlighter/3.0.83/scripts/shCore.min.js"></script>
+<script type="text/javascript"
+	src="//cdn.bootcss.com/SyntaxHighlighter/3.0.83/scripts/shBrushJScript.min.js"></script>
+<link type="text/css" rel="stylesheet"
+	href="//cdn.bootcss.com/SyntaxHighlighter/3.0.83/styles/shCoreDefault.min.css" />
+<link type="text/css" rel="stylesheet"
+	href="//cdn.bootcss.com/SyntaxHighlighter/3.0.83/styles/shThemeDefault.min.css" />
+
+<!-- Custom CSS -->
+<link href="{{static_url("css/clean-blog.min.css")}}" rel="stylesheet">
+
+<!-- Custom Fonts -->
+<link
+	href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css"
+	rel="stylesheet" type="text/css">
+<link
+	href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic'
+	rel='stylesheet' type='text/css'>
+<link
+	href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800'
+	rel='stylesheet' type='text/css'>
+
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+
+<style type="text/css">
+.container:before, .container:after {
+	display: table;
+	content: "";
+	line-height: 0;
+}
+
+.syntaxhighlighter table .container:before {
+	display: none !important;
+}
+</style>
 </head>
 
 <body style="background: white; font-family: Helvetica">
+	<div class="container">
+		<h1>Hello SyntaxHighlighter</h1>
 
-<h1>Hello SyntaxHighlighter</h1>
+		<script type="syntaxhighlighter" class="brush: js" min-width="100"><![CDATA[
+		/**
+		 * SyntaxHighlighter
+		 */
+		function foo(){
+			if (counter <= 10)
+				return;
+			// it works!
+		}
+		]]></script>
 
-<script type="syntaxhighlighter" class="brush: js"><![CDATA[
-  /**
-   * SyntaxHighlighter
-   */
-  function foo()
-  {
-	if (counter <= 10)
-          return;
-      // it works!
-  }
-]]></script>
+		<pre class="brush: js; ruler: true; first-line: 10; highlight: [2, 4, 6]">
+		/**
+		 * GoGame.js
+		 * thomas.zhang
+		 * 2009-04-23
+		 */
 
-<pre class="brush: js; ruler: true; first-line: 10; highlight: [2, 4, 6]">
-/**
- * GoGame.js
- * thomas.zhang
- * 2009-04-23
- */
+		__Black_Stone = 1;
+		__White_Stone = -1;
+		__None_Stone = 0;
 
-__Black_Stone = 1;
-__White_Stone = -1;
-__None_Stone = 0;
+		// class define
+		function GoGame(boardSize){
+			this.BoardSize = boardSize;         // default size=19*19
+			this.StoneArray = new Array();      // 1 black, -1 white, 0 space
+			this.TextArray = new Array();       // board text
+			this.StepCount = 0;					// current step
+		}
 
-// class define
-function GoGame(boardSize){
-	this.BoardSize = boardSize;         // default size=19*19
-	this.StoneArray = new Array();      // 1 black, -1 white, 0 space
-	this.TextArray = new Array();       // board text
-	this.StepCount = 0;					// current step
-}
+		GoGame.prototype.GetStoneArray = function(){
+			return this.StoneArray;
+		}
 
-GoGame.prototype.GetStoneArray = function(){
-	return this.StoneArray;
-}
+		GoGame.prototype.GetTextArray = function(){
+			return this.TextArray;
+		}
+		</pre>
 
-GoGame.prototype.GetTextArray = function(){
-	return this.TextArray;
-}
-</pre>
+		<pre class="brush: js; ruler: true; first-line: 1; highlight: [1, 3, 5]">
+		function SubmitForm() {
+			var title = document.getElementById("title").value;
+			if (title == null || title == undefined || title == '') {
+				var alertPanel = document.getElementById("alertPanel");
+				alertPanel.innerHTML = '<div class="alert alert-danger" role="alert">' 
+					+ '<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>'
+					+ '<span class="sr-only"> Warning: </span>'
+					+ "{{_("The title is required and cannot be empty")}}" 
+					+ '</div>';
+				return false;
+			}
 
-<a href="http://blog.csdn.net/shanliangliuxing/article/details/9000251">对SyntaxHighlighter介绍得非常全面的博客</a>
-<p>简单装配后就可以使用了。但遇到一个问题：所有缩进都失效了，就是空白符和tab都不见了。查询了无数次代码，均无法解决。最后想到：是不是Tornado对模版进行了什么处理？</p>
-<p>答案：Tornado模板引擎一直有一个坑，有时候你可能觉得并不影响正常使用，但使用代码格式化控制就不行了：模板会去掉每行前后的空格。</p>
-<a href="http://www.leavesongs.com/PYTHON/tornado-template-whitespace.html">Tornado模板对空白字符的处理与解决方案</a>
-<p>我采用了方法3.模板文件不为.html或.js后缀，可以为.htm或.tpl等。</p>
+			document.getElementById("form-signin").submit();
+		}
+		</pre>
+		
+		<a href="http://blog.csdn.net/shanliangliuxing/article/details/9000251">对SyntaxHighlighter介绍得非常全面的博客</a>
+		<p>简单装配后就可以使用了。但遇到一个问题：所有缩进都失效了，就是空白符和tab都不见了。查询了无数次代码，均无法解决。最后想到：是不是Tornado对模版进行了什么处理？</p>
+		<p>答案：Tornado模板引擎一直有一个坑，有时候你可能觉得并不影响正常使用，但使用代码格式化控制就不行了：模板会去掉每行前后的空格。</p>
+		<a href="http://www.leavesongs.com/PYTHON/tornado-template-whitespace.html">Tornado模板对空白字符的处理与解决方案</a>
+		<p>我采用了方法3.模板文件不为.html或.js后缀，可以为.htm或.tpl等。</p>
 
-	<script type="text/javascript">
-		SyntaxHighlighter.config.bloggerMode = true;
-		SyntaxHighlighter.defaults['toolbar'] = false;
-		SyntaxHighlighter.defaults['gutter'] = true;
-		SyntaxHighlighter.defaults['smart-tabs'] = true;
-		SyntaxHighlighter.defaults['tab-size'] = 4;
-		SyntaxHighlighter.all();
-	</script>
+		<script type="text/javascript">
+			SyntaxHighlighter.config.bloggerMode = true;
+			SyntaxHighlighter.defaults['toolbar'] = false;
+			SyntaxHighlighter.defaults['gutter'] = true;
+			SyntaxHighlighter.defaults['smart-tabs'] = true;
+			SyntaxHighlighter.defaults['tab-size'] = 4;
+			SyntaxHighlighter.all();
+		</script>
+
+	</div>
 </body>
 </html>

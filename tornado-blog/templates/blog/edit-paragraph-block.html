@@ -16,12 +16,15 @@
 {% elif paragraph["type"] == "code" %}
 	<a href="/admin/edit-paragraph?articleId={{article["id"]}}&id={{paragraph["id"]}}">
 		<code>{{paragraph["content"]}}</code></a>
+{% elif paragraph["type"] == "pre" %}
+	<a href="/admin/edit-paragraph?articleId={{article["id"]}}&id={{paragraph["id"]}}"><span>Source Code: </span></a>
+		<pre class="brush: js;">{{paragraph["content"]}}</pre>
 {% elif paragraph["type"] == "samp" %}
 	<a href="/admin/edit-paragraph?articleId={{article["id"]}}&id={{paragraph["id"]}}">
 		<samp>{{paragraph["content"]}}</samp></a>
 {% elif paragraph["type"] == "raw" %}
-	<a href="/admin/edit-paragraph-raw?articleId={{article["id"]}}&id={{paragraph["id"]}}">
-		<span>Richtext: </span><br/>{% raw paragraph["content"] %}</a>
+	<a href="/admin/edit-paragraph-raw?articleId={{article["id"]}}&id={{paragraph["id"]}}"><span>Rich html: </span></a>
+		{% raw paragraph["content"] %}
 {% else %}
 	<a href="/admin/edit-paragraph?articleId={{article["id"]}}&id={{paragraph["id"]}}">
 		<{{paragraph["type"]}}>{{paragraph["content"]}}</{{paragraph["type"]}}></a>
