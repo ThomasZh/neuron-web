@@ -9,7 +9,7 @@
 		<blockquote>{{paragraph["content"]}}</blockquote></a>
 {% elif paragraph["type"] == "img" %}
 	<a href="/admin/edit-paragraph-img?articleId={{article["id"]}}&id={{paragraph["id"]}}">
-		<img class="img-responsive" src="{{paragraph["content"]}}" alt="" width="1080"></a>
+		<img class="img-responsive" src="{{paragraph["content"]}}" alt=""></a>
 {% elif paragraph["type"] == "caption" %}
 	<a href="/admin/edit-paragraph?articleId={{article["id"]}}&id={{paragraph["id"]}}">
 		<span class="caption text-muted">{{paragraph["content"]}}</span></a>

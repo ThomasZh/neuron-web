@@ -7,7 +7,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>Time&sup2;box - Blog</title>
+<title>{{article["title"]}}</title>
 
 <!-- Bootstrap Core CSS -->
 <link rel="stylesheet"
@@ -99,6 +99,42 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+					<!--MOB SHARE BEGIN-->
+					<!-- 
+					<div class="-mob-share-ui-button -mob-share-open">分享</div>
+					<div class="-mob-share-ui" style="display: none">
+						<ul class="-mob-share-list">
+							<li class="-mob-share-weibo"><p>新浪微博</p></li>
+							<li class="-mob-share-tencentweibo"><p>腾讯微博</p></li>
+							<li class="-mob-share-qzone"><p>QQ空间</p></li>
+							<li class="-mob-share-qq"><p>QQ好友</p></li>
+							<li class="-mob-share-renren"><p>人人网</p></li>
+							<li class="-mob-share-kaixin"><p>开心网</p></li>
+							<li class="-mob-share-douban"><p>豆瓣</p></li>
+							<li class="-mob-share-facebook"><p>Facebook</p></li>
+							<li class="-mob-share-twitter"><p>Twitter</p></li>
+						</ul>
+						<div class="-mob-share-close">取消</div>
+					</div>
+					<div class="-mob-share-ui-bg"></div>
+					<script id="-mob-share"
+						src="http://f1.webshare.mob.com/code/mob-share.js?appkey=f96b6d9f63ed"></script>
+					 -->
+					<!--MOB SHARE END-->
+					
+					<!-- JiaThis Button BEGIN -->
+					<div id="ckepop">
+						<span class="jiathis_txt">分享到：</span> <a
+							class="jiathis_button_weixin">微信</a> <a
+							href="http://www.jiathis.com/share"
+							class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis"
+							target="_blank">更多</a> <a class="jiathis_counter_style"></a>
+					</div>
+					<script type="text/javascript"
+						src="http://v3.jiathis.com/code/jia.js?uid=1" charset="utf-8"></script>
+					<!-- JiaThis Button END -->
+				</div>
+				<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
 					{% for paragraph in paragraphs %} 
 						{% module Template("blog/paragraph-block.html", article=article, paragraph=paragraph) %} 
 					{% end %}
@@ -115,19 +151,28 @@
 			<div class="row">
 				<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
 					<ul class="list-inline text-center">
-						<li><a href="#"> <span class="fa-stack fa-lg"> <i
-									class="fa fa-circle fa-stack-2x"></i> <i
-									class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+						<li><a href="mailto:thomas@time2box.com"> 
+							<span class="fa-stack fa-lg"> 
+								<i class="fa fa-circle fa-stack-2x"></i> 
+								<i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
 							</span>
 						</a></li>
-						<li><a href="#"> <span class="fa-stack fa-lg"> <i
-									class="fa fa-circle fa-stack-2x"></i> <i
-									class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+						<li><a href="http://weibo.com/sedums"> 
+							<span class="fa-stack fa-lg"> 
+								<i class="fa fa-circle fa-stack-2x"></i> 
+								<i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
 							</span>
 						</a></li>
-						<li><a href="#"> <span class="fa-stack fa-lg"> <i
-									class="fa fa-circle fa-stack-2x"></i> <i
-									class="fa fa-github fa-stack-1x fa-inverse"></i>
+						<li><a href="https://www.linkedin.com/in/璟天-张-33a65a102"> 
+							<span class="fa-stack fa-lg"> 
+								<i class="fa fa-circle fa-stack-2x"></i> 
+								<i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+							</span>
+						</a></li>
+						<li><a href="https://github.com/ThomasZh"> 
+							<span class="fa-stack fa-lg"> 
+								<i class="fa fa-circle fa-stack-2x"></i> 
+								<i class="fa fa-github fa-stack-1x fa-inverse"></i>
 							</span>
 						</a></li>
 					</ul>
