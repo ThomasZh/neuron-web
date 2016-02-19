@@ -37,6 +37,7 @@ from blog import AddArticleHandler, ArticleHandler, AjaxArticlesHandler, \
     EditParagraphImgHandler, AddParagraphRawHandler, AddParagraphImgHandler, \
     DelParagraphHandler, AddParagraphAfterHandler, AddParagraphRawAfterHandler, \
     AddParagraphImgAfterHandler
+from chat import ChatOverviewHandler, ChatRoomHandler, MsgHandler
 from greenboard import AddBoardHandler, EditBoardHandler, RemoveBoardHandler, \
     BoardsHandler
 from stickynote import NotesHandler, AddNoteHandler, EditNoteHandler, \
@@ -100,9 +101,9 @@ class SyntaxHighlighterHandler(tornado.web.RequestHandler):
         self.render('SyntaxHighlighter/example.htm')
 
 
-class TraverHandler(tornado.web.RequestHandler):
+class ScrollHandler(tornado.web.RequestHandler):
     def get(self):
-        self.render('aplan/travel.html')
+        self.render('scroll/travel.html')
 
 
 def main():
@@ -147,8 +148,11 @@ def main():
             (r"/sticky-note/remove-note", RemoveNoteHandler),
             (r"/rich-text-editor", RichTextEditorHandler),
             (r"/syntax-high-lighter", SyntaxHighlighterHandler),
-            (r"/aplan/travel", TraverHandler),
+            (r"/aplan/scroll", ScrollHandler),
             (r"/go-game", GoGameHandler),
+            (r"/chat/overview", ChatOverviewHandler),
+            (r"/chat/chatroom", ChatRoomHandler),
+            (r"/chat/msg", MsgHandler),
             (".*", PageNotFoundHandler),
             ],
         # __TODO:_GENERATE_YOUR_OWN_RANDOM_VALUE_HERE__

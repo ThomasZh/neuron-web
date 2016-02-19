@@ -7,7 +7,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>Time&sup2;box - Demo Center</title>
+<title>Time&sup2;box - Chat</title>
 
 <!-- Bootstrap Core CSS -->
 <link rel="stylesheet"
@@ -33,11 +33,11 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-
-</head>
 <style type="text/css">
 	.text-shadow {text-shadow:1px 1px 1px #000; padding:10px 0; color:#FFF;} 
 </style>
+</head>
+
 <body>
 
 	<!-- Navigation -->
@@ -60,7 +60,7 @@
 				<ul class="nav navbar-nav navbar-right">
 					<li><a href="/">Home</a></li>
 					<li><a href="/about">About</a></li>
-					<li><a href="#">Demo Center</a></li>
+					<li><a href="/demo-center">Demo Center</a></li>
 					<li><a href="/contact">Contact</a></li>
 				</ul>
 			</div>
@@ -72,7 +72,7 @@
 	<!-- Page Header -->
 	<!-- Set your background image for this header on the line below. -->
 	<header class="intro-header"
-		style="background-image: url('{{static_url("img/demo-center-bg.jpg")}}')">
+		style="background-image: url('{{static_url("img/websocket-browser-support.jpg")}}')">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
@@ -90,122 +90,20 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+				{% for chat in chats %} 
 				<div class="post-preview">
-					<a href="/sticky-note/boards">
-						<img class="img-responsive"
-							src="{{static_url("img/sticky-notes-sm.png")}}">
-						<h2 class="post-title">Sticky Notes</h2>
-						<h3 class="post-subtitle">This is the first project by tornado. 
-							You can think it is a demo for how to use tornado (implemented by python).
-							This project show how to use register/login/logout/forgot password/reset password...</h3>
+					<a href="/chat/chatroom?id={{chat["chatId"]}}">
+						<img class="img-responsive" src="{{chat["fromAvatarUrl"]}}" width="100">
+						<h2 class="post-title">{{chat["chatName"]}}</h2>
+						<h3 class="post-subtitle">{{chat["content"]}}</h3>
 					</a>
 					<p class="post-meta">
-						Posted by <a href="#">Thomas</a> on February 7, 2016
+						Posted by <a href="#">{{chat["fromNickname"]}}</a> on {{chat["timestamp"]}} 
+						<span class="badge">{{chat["budgeNum"]}}</span>
 					</p>
 				</div>
-				
 				<hr>
-				
-				<div class="post-preview">
-					<a href="post.html">
-						<img class="img-responsive"
-							src="{{static_url("img/404.jpg")}}">
-						<h2 class="post-title">Only one page, ERROR 404: NOT FOUND.</h2>
-					</a>
-					<p class="post-meta">
-						Posted by <a href="#">Thomas</a> on February 10, 2016
-					</p>
-				</div>
-				
-				<hr>
-				
-				<div class="post-preview">
-					<a href="/admin/my-articles">
-						<img class="img-responsive"
-							src="{{static_url("img/admin-md.png")}}">
-						<h2 class="post-title">Time&sup2;box Blog Administrator's console
-						</h2>
-						<h3 class="post-subtitle">The baby sister project of this web site.
-							Demo how to use javascript upload image files to upyun; 
-							Use ajax implememts the pagination of older posts.</h3>
-					</a>
-					<p class="post-meta">
-						Posted by <a href="#">Thomas</a> on February 13, 2016
-					</p>
-				</div>
-				
-				<hr>
-				
-				<div class="post-preview">
-					<a href="/rich-text-editor">
-						<img class="img-responsive"
-							src="{{static_url("img/froala.jpg")}}">
-						<h2 class="post-title">Rich text editor</h2>
-						<h3 class="post-subtitle">After project Time&sup2;box Blog Administrator's console, 
-							we realize must be to have a rich text editor for users.</h3>
-					</a>
-					<p class="post-meta">
-						Posted by <a href="#">Thomas</a> on February 15, 2016
-					</p>
-				</div>
-				
-				<hr>
-				
-				<div class="post-preview">
-					<a href="/syntax-high-lighter">
-						<img class="img-responsive"
-							src="{{static_url("img/syntax-high-lighter.png")}}">
-						<h2 class="post-title">Syntax High Lighter</h2>
-						<h3 class="post-subtitle">On project Time&sup2;box Blog Administrator's console, 
-							we found another request: source code display, specially for software's bloger.</h3>
-					</a>
-					<p class="post-meta">
-						Posted by <a href="#">Thomas</a> on February 16, 2016
-					</p>
-				</div>
-				
-				<hr>
-				
-				<div class="post-preview">
-					<a href="/aplan/scroll">
-						<img class="img-responsive"
-							src="{{static_url("img/scroll.jpg")}}">
-						<h2 class="post-title">Aplan integration with scroll</h2>
-						<h3 class="post-subtitle">This demo display 63 layouts about picture wall on mobile phone's screen.</h3>
-					</a>
-					<p class="post-meta">
-						Posted by <a href="#">Thomas</a> on February 18, 2016
-					</p>
-				</div>
-				
-				<hr>
-				
-				<div class="post-preview">
-					<a href="/chat/overview">
-						<img class="img-responsive"
-							src="{{static_url("img/chat.jpg")}}">
-						<h2 class="post-title">WebSocket Chat</h2>
-						<h3 class="post-subtitle">Implements by tornado's web socket.</h3>
-					</a>
-					<p class="post-meta">
-						Posted by <a href="#">Thomas</a> on February 19, 2016
-					</p>
-				</div>
-				
-				<hr>
-				
-				<div class="post-preview">
-					<a href="/go-game">
-						<img class="img-responsive"
-							src="{{static_url("img/go-game-sm.jpg")}}">
-						<h2 class="post-title">Web Go Game</h2>
-						<h3 class="post-subtitle">It's a long story, I wrote this code since 2005,
-							ten years not completed yet. I'll use tornado's websocket redegin it.</h3>
-					</a>
-					<p class="post-meta">
-						Posted by <a href="#">Thomas</a> coming soon...
-					</p>
-				</div>
+				{% end %}
 			</div>
 		</div>
 	</div>

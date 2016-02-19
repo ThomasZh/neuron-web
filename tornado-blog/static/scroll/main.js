@@ -3,47 +3,10 @@ function pageInit(){
 	var t="",
 	e=["DFPPOP3W12-GB","DFPTanLiW5-GB","DFPWaWaW5-GB","DFPGangBiW2-GB","DFPJinWenW3-GB","DFPHanziPenW5-GB"],
 	h=[];
-	
-	is_ios&&(
-		$("html").addClass("ios"),
-		$("body").append('<div id="mask"></div>'),
-		$("#mask").on("click",function(t){t.preventDefault(),$(this).hide()})
-	);
-	
-	for(var i=0;i<datalist.length;i++){
-		var l=datalist[i];
-		if(1==l.type){
-			l=l.textList[0];
-			var g="normal",r="left",s="",d="";
-		
-			switch(l.fontName&&(s=e[l.fontName-1],-1==$.inArray(s,h)&&h.push(s)),l.fontColor&&(d="color"+l.fontColor),l.fontSize){
-				case 1:g="small";break;
-				case 2:g="big";break;
-				case 3:g="title"
-			}
-		
-			switch(l.textAlign){
-				case 1:r="center";break;
-				case 2:r="right"
-			}
-		
-			var p=$("#text-template").html(),c=Handlebars.compile(p),
-			f={fontSize:g,textAlign:r,text:l.text,fontName:s,fontColor:d};
-			t+=c(f)
-		}else if(2==l.type){
-			for(var p=$("#photos-template").html(),c=Handlebars.compile(p),y=[],n=0;n<l.mediaList.length;n++){
-				var a={photo:l.mediaList[n].image.url,originalPhoto:l.mediaList[n].originalImage.url,
-					originalSize:l.mediaList[n].originalImageWidth+"x"+l.mediaList[n].originalImageHeight};
-				y.push(a)
-			}
-			var f={count:y.length,index:l.index,medialist:y};
-			t+=c(f)
-		}
-	}
-	$("#skrollr-body").append(t);
-		
+
 	for(var o="",i=0;i<h.length;i++)
-		o+='@font-face{font-family: "'+h[i]+'";src: url(http://stimgcn1-ppe.s-msn.com/scroll/FontSubSetting/'+uid+"/"+uuid+"_"+h[i]+".ttf);}";
+//		o+='@font-face{font-family: "'+h[i]+'";src: url(http://stimgcn1-ppe.s-msn.com/scroll/FontSubSetting/'+uid+"/"+uuid+"_"+h[i]+".ttf);}";
+		o+='@font-face{font-family: "Arial";src: url(http://stimgcn1-ppe.s-msn.com/scroll/FontSubSetting/'+uid+"/"+uuid+"_"+h[i]+".ttf);}";
 	$("head").append("<style>"+o+"</style>"),initPhotoSwipeFromDOM(".gallery"),galleryReSet();
 	var u={reset:!1,vFactor:.3,mobile:!0};
 	window.sr=new scrollReveal(u)
@@ -361,7 +324,7 @@ is_ios=/iPod|iPhone|iPad/i.test(ua),
 is_weixin=/MicroMessenger/i.test(ua),
 is_android=/Android/i.test(ua),
 is_mobile=/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(ua),
-datalist=[],
+
 
 initPhotoSwipeFromDOM=function(t){
 	for(var e=function(t){
