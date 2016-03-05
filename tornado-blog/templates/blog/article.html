@@ -58,17 +58,17 @@
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand text-shadow" href="/">Time&sup2;box</a>
+				<a class="navbar-brand" href="/">Time&sup2;box</a>
 			</div>
 
 			<!-- Collect the nav links, forms, and other content for toggling -->
 			<div class="collapse navbar-collapse"
 				id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav navbar-right">
-					<li><a class="text-shadow" href="/">Home</a></li>
-					<li><a class="text-shadow" href="/about">About</a></li>
-					<li><a class="text-shadow" href="/demo-center">Demo Center</a></li>
-					<li><a class="text-shadow" href="/contact">Contact</a></li>
+					<li><a href="/">Home</a></li>
+					<li><a href="/about">About</a></li>
+					<li><a href="/demo-center">Demo Center</a></li>
+					<li><a href="/contact">Contact</a></li>
 				</ul>
 			</div>
 			<!-- /.navbar-collapse -->
@@ -79,13 +79,12 @@
 	<!-- Page Header -->
 	<!-- Set your background image for this header on the line below. -->
 	<header class="intro-header"
-		style="background-image: url('{{article["imgUrl"]}}')">
+		style="background-image: url('{{static_url("images/title-bkg/4.jpg")}}')">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
 					<div class="post-heading">
 						<h1 class="text-shadow">{{article["title"]}}</h1>
-						<h2 class="subheading text-shadow">{{article["content"]}}</h2>
 						<span class="meta text-shadow">Posted by <a href="#">{{article["accountNickname"]}}</a> {{article["timestamp"]}}
 						</span>
 					</div>
@@ -135,6 +134,8 @@
 					<!-- JiaThis Button END -->
 				</div>
 				<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+					<p><img class="img-responsive" src="{{article['imgUrl']}}"/></p>
+					<p>{{article["content"]}}</p>
 					{% for paragraph in paragraphs %} 
 						{% module Template("blog/paragraph-block.html", article=article, paragraph=paragraph) %} 
 					{% end %}
@@ -197,7 +198,6 @@
 		src="//cdn.bootcss.com/SyntaxHighlighter/3.0.83/scripts/shBrushJScript.min.js"></script>
 
 	<script type="text/javascript">
-
 		SyntaxHighlighter.config.bloggerMode = true;
 		SyntaxHighlighter.defaults['toolbar'] = false;
 		SyntaxHighlighter.defaults['gutter'] = true;

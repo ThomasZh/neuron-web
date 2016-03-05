@@ -5,7 +5,7 @@
 	<a href="/admin/edit-paragraph?articleId={{article["id"]}}&id={{paragraph["id"]}}">
 		<h2 class="section-heading">{{paragraph["content"]}}</h2></a>
 {% elif paragraph["type"] == "blockquote" %}
-	<a href="/admin/edit-paragrap?articleId={{article["id"]}}&id={{paragraph["id"]}}">
+	<a href="/admin/edit-paragraph?articleId={{article["id"]}}&id={{paragraph["id"]}}">
 		<blockquote>{{paragraph["content"]}}</blockquote></a>
 {% elif paragraph["type"] == "img" %}
 	<a href="/admin/edit-paragraph-img?articleId={{article["id"]}}&id={{paragraph["id"]}}">
