@@ -30,7 +30,6 @@ from wechat import getAccessToken, APP_ID, APP_SECRET, getUserInfo
 class WechatActivityIndexHandler(BaseHandler):
     def get(self):
         _id = self.get_argument("ekey", "")
-        #self.render('wechat/activity_info.html', ekey=_id)
         self.redirect("https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxaa328c83d3132bfb&redirect_uri=http://planc2c.com/wechat/activity/desc?ekey="+_id+"&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirect")
 
 
