@@ -23,41 +23,18 @@ from tornado.httpclient import HTTPClient
 from tornado.httputil import url_concat
 
 from account import ssoLogin
-from base import BaseHandler, timestamp_datetime
+from base import BaseHandler, timestamp_datetime, STP
+from wechat import getAccessToken, APP_ID, APP_SECRET, getUserInfo
 
 
-APP_ID = "wxaa328c83d3132bfb"
-APP_SECRET = "32bbf99a46d80b24bae81e8c8558c42f"
-DOMAIN = "planc2c.com"
-STP = "123.56.228.41"
-
-
-def getAccessToken(appId, appSecret, code):
-    url = "https://api.weixin.qq.com/sns/oauth2/access_token?appid="+appId+"&secret="+appSecret+"&code="+code+"&grant_type=authorization_code"
-    http_client = HTTPClient()
-    response = http_client.fetch(url, method="GET")
-    logging.info("got response %r", response.body)
-    accessToken = json_decode(response.body)
-    return accessToken
-
-
-def getUserInfo(token, openid):
-    url = "https://api.weixin.qq.com/sns/userinfo?access_token="+token+"&openid="+openid+"&lang=zh_CN"
-    http_client = HTTPClient()
-    response = http_client.fetch(url, method="GET")
-    logging.info("got response %r", response.body)
-    userInfo = json_decode(response.body)
-    return userInfo
-
-
-class ActivityInfoHandler(BaseHandler):
+class WechatActivityIndexHandler(BaseHandler):
     def get(self):
         _id = self.get_argument("ekey", "")
         #self.render('wechat/activity_info.html', ekey=_id)
         self.redirect("https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxaa328c83d3132bfb&redirect_uri=http://planc2c.com/wechat/activity/desc?ekey="+_id+"&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirect")
 
 
-class ActivityApplyHandler(BaseHandler):
+class WechatActivityApplyHandler(BaseHandler):
     def get(self):
         _id = self.get_argument("ekey", "")
         _sessionTicket = self.get_secure_cookie("ticket")
@@ -111,7 +88,7 @@ class ActivityApplyHandler(BaseHandler):
         self.render('wechat/activity_apply_success.html')
 
 
-class ActivitySignupHandler(BaseHandler):
+class WechatActivitySignupHandler(BaseHandler):
     def post(self):
         _id = self.get_argument("ekey", "")
         _sessionTicket = self.get_secure_cookie("ticket")
@@ -124,7 +101,7 @@ class ActivitySignupHandler(BaseHandler):
         self.render('wechat/activity_apply_success.html')
 
 
-class ActivityDescHandler(BaseHandler):
+class WechatActivityDescHandler(BaseHandler):
     def get(self):
         _id = self.get_argument("ekey", "")
         logging.debug("got id %r", _id)

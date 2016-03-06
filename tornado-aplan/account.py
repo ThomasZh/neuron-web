@@ -23,9 +23,7 @@ import uuid
 from tornado.escape import json_encode, json_decode
 from tornado.httpclient import HTTPClient
 
-from base import BaseHandler
-
-STP = "123.56.228.41"
+from base import BaseHandler, STP
 
 
 class LoginHandler(BaseHandler):

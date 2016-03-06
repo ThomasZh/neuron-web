@@ -18,15 +18,15 @@
 
 import os.path
 
-from tornado.httpclient import HTTPClient
 import tornado.ioloop
 from tornado.options import define, options
 import tornado.web
 
 from account import LoginHandler, LogoutHandler, RegisterHandler, \
     ForgotPwdHandler, ResetPwdHandler
-from activity import ActivityDescHandler, ActivityInfoHandler, \
-    ActivityApplyHandler, ActivitySignupHandler
+from wechat_activity import WechatActivityIndexHandler, WechatActivityDescHandler, \
+    WechatActivityApplyHandler, WechatActivitySignupHandler
+from wechat_journey import WechatJourneyIndexHandler, WechatJourneyInfoHandler
 
 
 define("port", default=8888, help="run on the given port", type=int)
@@ -58,21 +58,6 @@ class PageNotFoundHandler(tornado.web.RequestHandler):
         self.render('404.html')
 
 
-class JourneyHandler(tornado.web.RequestHandler):
-    def get(self):
-        APP_ID = "wxaa328c83d3132bfb";
-        APP_SECRET = "32bbf99a46d80b24bae81e8c8558c42f";
-        DOMAIN = "planc2c.com";
-        
-        http_client = HTTPClient()
-        oauth_url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=" + APP_ID + "&redirect_uri=http://planc2c.com&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirect" 
-        response = http_client.fetch(oauth_url)
-        str = response.body
-        print str.decode('iso8859-1')
-        
-        self.render('index.html')
-
-
 def main():
     app = tornado.web.Application(
         [
@@ -85,11 +70,13 @@ def main():
             (r'/account/register', RegisterHandler),
             (r'/account/forgot-pwd', ForgotPwdHandler),
             (r'/account/reset-pwd', ResetPwdHandler),
-            (r'/wechat/activity/desc', ActivityDescHandler),
-            (r'/wechat/activity/info', ActivityInfoHandler),
-            (r'/wechat/activity/apply', ActivityApplyHandler),
-            (r'/wechat/activity/signup', ActivitySignupHandler),
-            (r'/stp-web-5.0.0/aplan/activity/info', ActivityInfoHandler),
+            (r'/wechat/activity/index', WechatActivityIndexHandler),
+            (r'/wechat/activity/desc', WechatActivityDescHandler),
+            (r'/wechat/activity/apply', WechatActivityApplyHandler),
+            (r'/wechat/activity/signup', WechatActivitySignupHandler),
+            (r'/stp-web-5.0.0/aplan/activity/info', WechatActivityIndexHandler),
+            (r'/wechat/journey/index', WechatJourneyIndexHandler),
+            (r'/wechat/journey/info', WechatJourneyInfoHandler),
             (".*", PageNotFoundHandler),
         ],
         # __TODO:_GENERATE_YOUR_OWN_RANDOM_VALUE_HERE__
@@ -100,7 +87,7 @@ def main():
         debug=options.debug,
         login_url="/account/login",
     )
-    #tornado.locale.load_gettext_translations(os.path.join(os.path.dirname(__file__), "locale"), "aplan")
+    # tornado.locale.load_gettext_translations(os.path.join(os.path.dirname(__file__), "locale"), "aplan")
     tornado.locale.set_default_locale("en_US")
     tornado.options.parse_command_line()
     app.listen(options.port)

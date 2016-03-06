@@ -1,0 +1,63 @@
+<!doctype html>
+<html class="no-js">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta content="yes" name="apple-mobile-web-app-capable" />
+<meta content="yes" name="apple-touch-fullscreen" />
+<meta content="telephone=no" name="format-detection" />
+<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0, minimal-ui" />
+<title>游记</title>
+<meta name="description" />
+<meta name="keywords" />
+<link rel="stylesheet" href="{{static_url('journey_vendor.css')}}" />
+<link rel="stylesheet" href="{{static_url('journey_main.css')}}" />
+</head>
+<body>
+	<div id="skrollr-body">
+		<div id="header" class="section full-width">
+			<img src="{{info['bgImageUrl']}}" />
+			<div class="bg"></div>
+			<h1>{{info['name']}}</h1>
+			<p>{{info['accountNickName']}}<span>{{info['beginTime']}} - {{info['endTime']}}</span></p>
+		</div>
+	</div>
+
+	{% for richContent in info['richContents'] %}
+		{% if richContent['type'] == 1 %}
+			<div class="section">
+				<p class="fontSize:3,textAlign:left,fontName:0,fontColor:d">{{richContent['text']}}</p>
+			</div>
+		{% else %}
+			<div data-bottom-top="transform:translate3d(0, 50px,0);opacity: 0.5;" 
+				data-bottom="transform:translate3d(0, 0,0);opacity: {{richContent['type'] / 100}};" 
+				class="section gallery gallery{{richContent['type'] / 100}} type{{richContent['type'] % 100}}"> 
+				{% for image in richContent['images'] %}
+					<figure data-sr="ease-in-out 50% scale up 20%">
+						<a><img src="{{image['url']}}" /></a>
+					</figure>
+				{% end %}	
+			</div>
+		{% end %}	
+	{% end %}	
+
+	<div class="section">
+		<p class="fontSize:3,textAlign:left,fontName:0,fontColor:d">还没有安装？长按二维码识别，下载应用进行查看。</p>
+	</div>
+	<div data-bottom-top="transform:translate3d(0, 50px,0);opacity: 0.5;" 
+		data-bottom="transform:translate3d(0, 0,0);opacity: 1;" 
+		class="section gallery gallery1 type0">
+		<figure data-sr="ease-in-out 50% scale up 20%">
+			<a><img src="{{static_url('image/activity/yyb-dbcode.jpg')}}" /></a>
+		</figure>
+	</div>
+    
+	<script src="{{static_url('journey_vendor.js')}}"></script>
+	<script src="{{static_url('journey_main.js')}}"></script>
+	<script>
+		pageInit();
+	</script>
+</body>
+</html>
