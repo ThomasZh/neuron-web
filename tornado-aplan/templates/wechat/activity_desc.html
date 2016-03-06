@@ -164,14 +164,33 @@
 
 		<!-- 招募中 -->
 		{% if info["status"] == 30 %}
-      		<div class="fixbtn">
-        		<a href="/activity/apply?ekey={{ekey}}" class="defbtn">立即报名</a>
-      		</div>
+			<!-- padding & approved -->
+			{% if info["signupStatus"] != 1 and info["signupStatus"] != 2 %}
+				{% if info["applyInfoRequire"] == True %}
+      				<div class="fixbtn">
+        				<a href="/wechat/activity/apply?ekey={{ekey}}" class="defbtn">立即报名</a>
+      				</div>
+      			{% else %}
+      				<form class="form-signin" id="form-signin" action="/wechat/activity/signup" method="POST">
+      				{% raw xsrf_form_html() %}
+      				<input type="hidden" id="ekey" name="ekey" value="{{ekey}}">
+      				<div class="fixbtn">
+        				<a onclick="SubmitForm();" class="defbtn">立即报名</a>
+      				</div>
+      				</form>
+      			{% end %}
+      		{% end %}
     	{% end %}
   	</div>
 
 	<div id="cover"></div>
 	<div id="guide"></div>
+
+	<script type="text/javascript">
+		function SubmitForm() {
+			document.getElementById("form-signin").submit();
+		}
+	</script>
 
 	<script type="text/javascript" language="javascript">
 		var _system = {

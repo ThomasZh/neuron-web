@@ -100,7 +100,7 @@
         </div>
     </div>
 
-  <form class="form-signin" action="/activity/apply" method="POST">
+  <form class="form-signin" id="form-signin" action="/wechat/activity/apply" method="POST">
   	{% raw xsrf_form_html() %}
   
     <div id="participationCells">
@@ -119,12 +119,16 @@
       </div>
     </div> <!-- participationCells -->
 
-
     <div class="fixbtn">
-        <input type="submit" class="submit_btn" value="提交报名">
+        <a onclick="SubmitForm();" class="defbtn">提交报名</a>
     </div>
   </form>
 </div>
 
+<script type="text/javascript">
+function SubmitForm() {
+	document.getElementById("form-signin").submit();
+}
+</script>
 </body>
 </html>

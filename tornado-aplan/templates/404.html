@@ -3,70 +3,18 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
-<title>{{_("ERROR")}}</title>
-<link rel="stylesheet"
-	href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
-<script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
-<script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-<style type="text/css">
+<title>Error</title>
+<style>
 body {
-	background-color: #666;
-}
-
-.container {
-	padding-top: 0px;
-	padding-left: 2px;
-	padding-right: 2px;
-	padding-bottom: 2px;
-}
-
-.form-signin {
-	max-width: 600px;
-	padding: 19px 19px 19px;
-	margin: 0 auto 20px;
-	background-color: #ffc;
-	border: 0px solid #e5e5e5;
-	-webkit-border-radius: 0px;
-	-moz-border-radius: 0px;
-	border-radius: 0px;
-	-webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
-	-moz-box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
-	box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
+	text-align: center
 }
 </style>
 </head>
 
 <body>
-	<div class="container">
-		<form class="form-signin" id="form-signin" action="/" method="GET">
-
-			<!-- START THE NAVBAR -->
-			<nav class="navbar navbar-static-top">
-				<div class="container2">
-					<div class="navbar-header">
-						<a class="navbar-brand" href="/">
-							<img alt="Brand" src="{{static_url("icons/note_256.png")}}" width="32"> 
-						</a>
-						<span class="navbar-brand">404: {{_("NOT FOUND")}}</span>
-					</div>
-					<div class="collapse navbar-collapse">
-						<div class="nav navbar-nav navbar-right"></div>
-					</div>
-				</div>
-			</nav>
-			<!-- END NAVBAR -->
-
-			<div class="form-group">{{_("Sorry, the page you were looking for does not exist.")}}</div>
-			<div class="form-group">
-				<button class="btn btn-lg btn-primary btn-block" type="submit">{{_("BACK TO HOME")}}</button>
-			</div>
-			<div class="form-group">
-				<span>{{_("If you followed a broken link")}}, {{_("please")}}
-					<a href="mailto:thomas@time2box.com">{{_("let us know")}}</a>
-					{{_("where the broken link came from.")}}</span>
-			</div>
-		</form>
+	<div style="text-align: center;">
+		<a href="/"><img src="{{static_url('image/404.jpg')}}" 
+			style="min-width: 100px; max-width: 500px;" alt="BACK TO HOME"></a>
 	</div>
 </body>
 </html>

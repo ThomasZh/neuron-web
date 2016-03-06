@@ -26,7 +26,7 @@ import tornado.web
 from account import LoginHandler, LogoutHandler, RegisterHandler, \
     ForgotPwdHandler, ResetPwdHandler
 from activity import ActivityDescHandler, ActivityInfoHandler, \
-    ActivityApplyHandler
+    ActivityApplyHandler, ActivitySignupHandler
 
 
 define("port", default=8888, help="run on the given port", type=int)
@@ -85,9 +85,10 @@ def main():
             (r'/account/register', RegisterHandler),
             (r'/account/forgot-pwd', ForgotPwdHandler),
             (r'/account/reset-pwd', ResetPwdHandler),
-            (r'/activity/desc', ActivityDescHandler),
-            (r'/activity/info', ActivityInfoHandler),
-            (r'/activity/apply', ActivityApplyHandler),
+            (r'/wechat/activity/desc', ActivityDescHandler),
+            (r'/wechat/activity/info', ActivityInfoHandler),
+            (r'/wechat/activity/apply', ActivityApplyHandler),
+            (r'/wechat/activity/signup', ActivitySignupHandler),
             (r'/stp-web-5.0.0/aplan/activity/info', ActivityInfoHandler),
             (".*", PageNotFoundHandler),
         ],
