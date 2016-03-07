@@ -648,7 +648,7 @@ class ArticleHandler(tornado.web.RequestHandler):
 class AjaxArticlesHandler(tornado.web.RequestHandler):
     def get(self):
         _last_timestamp = (self.request.arguments['last'])[0] # datetime as 2016-02-12 15:29
-        print _last_timestamp
+        print "last_timestamp: "+_last_timestamp
         
         if _last_timestamp == None:
             _timestamp = long(time.time() * 1000)
@@ -657,7 +657,7 @@ class AjaxArticlesHandler(tornado.web.RequestHandler):
             _timestamp = long(time.time() * 1000)
             print _timestamp
         else:
-            _timestamp = datetime_timestamp(_last_timestamp)
+            _timestamp = datetime_timestamp(_last_timestamp) * 1000
             print _timestamp
         
         params = {"before": _timestamp, "limit": 20}
@@ -688,7 +688,7 @@ class AjaxMyArticlesHandler(tornado.web.RequestHandler):
             _timestamp = long(time.time() * 1000)
             print _timestamp
         else:
-            _timestamp = datetime_timestamp(_last_timestamp)
+            _timestamp = datetime_timestamp(_last_timestamp) * 1000
             print _timestamp
         
         params = {"X-Session-Id": _ticket, "before": _timestamp, "limit": 20}
