@@ -126,32 +126,32 @@ GoBoard.prototype.DrawNoneStone = function(spaceTd, i, j)
 
 	if (i == 0) {
 		if (j == 0) {
-			spaceTd.setAttribute("background", "./images/board" + this.dp + "/top-left.png");
+			spaceTd.setAttribute("background", "static/stone/images/board" + this.dp + "/top-left.png");
 		} else if (j == 18) {
-			spaceTd.setAttribute("background", "./images/board" + this.dp + "/top-right.png");
+			spaceTd.setAttribute("background", "static/stone/images/board" + this.dp + "/top-right.png");
 		} else {
-			spaceTd.setAttribute("background", "./images/board" + this.dp + "/top.png");
+			spaceTd.setAttribute("background", "static/stone/images/board" + this.dp + "/top.png");
 		}
 	} else if (i == 18) {
 		if (j == 18) {
-			spaceTd.setAttribute("background", "./images/board" + this.dp + "/bottom-right.png");
+			spaceTd.setAttribute("background", "static/stone/images/board" + this.dp + "/bottom-right.png");
 		} else if (i == 18 && j == 0) {
-			spaceTd.setAttribute("background", "./images/board" + this.dp + "/bottom-left.png");
+			spaceTd.setAttribute("background", "static/stone/images/board" + this.dp + "/bottom-left.png");
 		} else {
-			spaceTd.setAttribute("background", "./images/board" + this.dp + "/bottom.png");
+			spaceTd.setAttribute("background", "static/stone/images/board" + this.dp + "/bottom.png");
 		}
 	} else if (i == 3 && (j == 3 || j == 9 || j == 15)) {
-		spaceTd.setAttribute("background", "./images/board" + this.dp + "/star.png");
+		spaceTd.setAttribute("background", "static/stone/images/board" + this.dp + "/star.png");
 	} else if (i == 9 && (j == 3 || j == 9 || j == 15)) {
-		spaceTd.setAttribute("background", "./images/board" + this.dp + "/star.png");
+		spaceTd.setAttribute("background", "static/stone/images/board" + this.dp + "/star.png");
 	} else if (i == 15 && (j == 3 || j == 9 || j == 15)) {
-		spaceTd.setAttribute("background", "./images/board" + this.dp + "/star.png");
+		spaceTd.setAttribute("background", "static/stone/images/board" + this.dp + "/star.png");
 	} else if (j == 0) {
-		spaceTd.setAttribute("background", "./images/board" + this.dp + "/left.png");
+		spaceTd.setAttribute("background", "static/stone/images/board" + this.dp + "/left.png");
 	} else if (j == 18) {
-		spaceTd.setAttribute("background", "./images/board" + this.dp + "/right.png");
+		spaceTd.setAttribute("background", "static/stone/images/board" + this.dp + "/right.png");
 	} else {
-		spaceTd.setAttribute("background", "./images/board" + this.dp + "/cross.png");
+		spaceTd.setAttribute("background", "static/stone/images/board" + this.dp + "/cross.png");
 	}
 	
 	spaceTd.style.color = "white";
@@ -166,7 +166,7 @@ GoBoard.prototype.DrawNoneStone = function(spaceTd, i, j)
 GoBoard.prototype.DrawBlackStone = function(spaceTd, i, j)
 {
 	this.goGame.SetColor(i, j, __Black_Stone);
-	spaceTd.setAttribute("background", "./images/board" + this.dp + "/black.png");
+	spaceTd.setAttribute("background", "static/stone/images/board" + this.dp + "/black.png");
 	spaceTd.style.color = "white";
 }
 
@@ -175,7 +175,7 @@ GoBoard.prototype.DrawBlackStone = function(spaceTd, i, j)
 GoBoard.prototype.DrawWhiteStone = function(spaceTd, i, j)
 {
 	this.goGame.SetColor(i, j, __White_Stone);
-	spaceTd.setAttribute("background", "./images/board" + this.dp + "/white.png");
+	spaceTd.setAttribute("background", "static/stone/images/board" + this.dp + "/white.png");
 	spaceTd.style.color = "black";
 }
 
