@@ -73,59 +73,17 @@ class WechatJourneyInfoHandler(BaseHandler):
             _accountId = stpSession["accountId"]
             _sessionTicket = stpSession["sessionToken"]
             self.set_secure_cookie("ticket", _sessionTicket)
-            self.set_secure_cookie("accountId", _accountId)
-            self.set_secure_cookie("nickname", _nickname)
         
-        try:
-            params = {"X-Session-Id": _sessionTicket}
-            url = url_concat("http://"+STP+"/activities/"+activityId+"/journeys/"+journeyId, params)
-            http_client = HTTPClient()
-            response = http_client.fetch(url, method="GET")
-            logging.info("got response %r", response.body)
-            _info = json_decode(response.body)
+        params = {"X-Session-Id": _sessionTicket}
+        url = url_concat("http://"+STP+"/activities/"+activityId+"/journeys/"+journeyId, params)
+        http_client = HTTPClient()
+        response = http_client.fetch(url, method="GET")
+        logging.info("got response %r", response.body)
+        _info = json_decode(response.body)
          
-            _begin_time = timestamp_datetime(_info["beginTime"]/1000)
-            _info["beginTime"] = _begin_time
-            _end_time = timestamp_datetime(_info["endTime"]/1000)
-            _info["endTime"] = _end_time
-        except Exception:
-            # sessionTicket expire
-
-            accessToken = getAccessToken(APP_ID, APP_SECRET, _code);
-            _token = accessToken["access_token"];
-            logging.debug("got token %r", _token)
-            _openid = accessToken["openid"];
-            logging.debug("got openid %r", _openid)
-            _unionid = accessToken["unionid"];
-            logging.debug("got unionid %r", _unionid)
-        
-            userInfo = getUserInfo(_token, _openid)
-            _nickname = userInfo["nickname"]
-            _nickname = unicode(_nickname).encode('utf-8')
-            logging.debug("got nickname %r", _nickname)
-            _headimgurl = userInfo["headimgurl"]
-            logging.debug("got headimgurl %r", _headimgurl)
-        
-            _user_agent = self.request.headers["User-Agent"]
-            _lang = self.request.headers["Accept-Language"]
-            # 1604=wechat
-            stpSession = ssoLogin(1604, _unionid, _nickname, _headimgurl, _user_agent, _lang)
-            _accountId = stpSession["accountId"]
-            _sessionTicket = stpSession["sessionToken"]
-            self.set_secure_cookie("ticket", _sessionTicket)
-            self.set_secure_cookie("accountId", _accountId)
-            self.set_secure_cookie("nickname", _nickname)
-
-            params = {"X-Session-Id": _sessionTicket}
-            url = url_concat("http://"+STP+"/activities/"+activityId+"/journeys/"+journeyId, params)
-            http_client = HTTPClient()
-            response = http_client.fetch(url, method="GET")
-            logging.info("got response %r", response.body)
-            _info = json_decode(response.body)
-         
-            _begin_time = timestamp_datetime(_info["beginTime"]/1000)
-            _info["beginTime"] = _begin_time
-            _end_time = timestamp_datetime(_info["endTime"]/1000)
-            _info["endTime"] = _end_time
+        _begin_time = timestamp_datetime(_info["beginTime"]/1000)
+        _info["beginTime"] = _begin_time
+        _end_time = timestamp_datetime(_info["endTime"]/1000)
+        _info["endTime"] = _end_time
         
         self.render('wechat/journey_info.html', info=_info)

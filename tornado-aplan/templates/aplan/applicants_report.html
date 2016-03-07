@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<title>报名信息</title>
+
+<link rel="stylesheet"
+	href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<!-- 
+<link rel="stylesheet" type="text/css"
+	href="https://cdn.datatables.net/t/dt/dt-1.10.11/datatables.min.css" />
+<link rel="stylesheet" type="text/css"
+	href="{{static_url('dataTables.responsive.css')}}">
+ -->
+<link rel="stylesheet" type="text/css"
+	href="https://cdn.datatables.net/1.10.11/css/dataTables.bootstrap.min.css">
+<link rel="stylesheet" type="text/css"
+	href="https://cdn.datatables.net/responsive/2.0.2/css/responsive.bootstrap.min.css">
+</head>
+
+<body class="wide comments example dt-example-bootstrap">
+	<div class="container">
+		<h1>
+			<center>
+				<span>{{info['activityName']}}</span>
+			</center>
+		</h1>
+
+		<table id="example"
+			class="table table-striped table-bordered dt-responsive nowrap"
+			cellspacing="0" width="100%">
+			<thead>
+				<tr>
+					{% for field in template %}
+					<th>{{field['fieldName']}}</th> {% end %}
+				</tr>
+			</thead>
+
+			<tbody>
+				{% for row in applications %}
+				<tr>
+					{% for column in row %}
+					<td>{{column}}</td> {% end %}
+				</tr>
+				{% end %}
+			</tbody>
+
+			<tfoot>
+				<tr>
+					{% for field in template %}
+					<th>{{field['fieldName']}}</th> {% end %}
+				</tr>
+			</tfoot>
+		</table>
+	</div>
+
+	<script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+<!-- 
+	<script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	<script type="text/javascript"
+		src="https://cdn.datatables.net/t/dt/dt-1.10.11/datatables.min.js"></script>
+	<script src="{{static_url('dataTables.responsive.min.js')}}"></script>
+ -->
+	<script
+		src="https://cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js"></script>
+	<script
+		src="https://cdn.datatables.net/1.10.11/js/dataTables.bootstrap.min.js"></script>
+	<script
+		src="https://cdn.datatables.net/responsive/2.0.2/js/dataTables.responsive.min.js"></script>
+	<script
+		src="https://cdn.datatables.net/responsive/2.0.2/js/responsive.bootstrap.min.js"></script>
+	<script type="text/javascript" language="javascript" class="init">
+		$(document).ready(function() {
+			$('#example').DataTable();
+		});
+	</script>
+</body>
+</html>

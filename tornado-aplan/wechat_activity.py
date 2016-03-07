@@ -133,72 +133,22 @@ class WechatActivityDescHandler(BaseHandler):
             _accountId = stpSession["accountId"]
             _sessionTicket = stpSession["sessionToken"]
             self.set_secure_cookie("ticket", _sessionTicket)
-            self.set_secure_cookie("accountId", _accountId)
-            self.set_secure_cookie("nickname", _nickname)
 
-        try:
-            params = {"X-Session-Id": _sessionTicket}
-            url = url_concat("http://"+STP+"/activities/"+_id+"/detail", params)
-            http_client = HTTPClient()
-            response = http_client.fetch(url, method="GET")
-            logging.info("got response %r", response.body)
-            _info = json_decode(response.body)
+        params = {"X-Session-Id": _sessionTicket}
+        url = url_concat("http://"+STP+"/activities/"+_id+"/detail", params)
+        http_client = HTTPClient()
+        response = http_client.fetch(url, method="GET")
+        logging.info("got response %r", response.body)
+        _info = json_decode(response.body)
         
-            _begin_time = timestamp_datetime(_info["beginTime"]/1000)
-            _info["beginTime"] = _begin_time
+        _begin_time = timestamp_datetime(_info["beginTime"]/1000)
+        _info["beginTime"] = _begin_time
          
-            params = {"X-Session-Id": _sessionTicket}
-            url = url_concat("http://"+STP+"/activities/"+_id+"/poster", params)
-            http_client = HTTPClient()
-            response = http_client.fetch(url, method="GET")
-            logging.info("got response %r", response.body)
-            _descs = json_decode(response.body)
-        except Exception:
-            # sessionTicket expire
-            
-            # wechat login again
-            accessToken = getAccessToken(APP_ID, APP_SECRET, _code);
-            _token = accessToken["access_token"];
-            logging.debug("got token %r", _token)
-            _openid = accessToken["openid"];
-            logging.debug("got openid %r", _openid)
-            _unionid = accessToken["unionid"];
-            logging.debug("got unionid %r", _unionid)
-        
-            userInfo = getUserInfo(_token, _openid)
-            _nickname = userInfo["nickname"]
-            _nickname = unicode(_nickname).encode('utf-8')
-            logging.debug("got nickname %r", _nickname)
-            _headimgurl = userInfo["headimgurl"]
-            logging.debug("got headimgurl %r", _headimgurl)
-        
-            _user_agent = self.request.headers["User-Agent"]
-            _lang = self.request.headers["Accept-Language"]
-            # 1604=wechat
-            stpSession = ssoLogin(1604, _unionid, _nickname, _headimgurl, _user_agent, _lang)
-            _accountId = stpSession["accountId"]
-            _sessionTicket = stpSession["sessionToken"]
-            self.set_secure_cookie("ticket", _sessionTicket)
-            self.set_secure_cookie("accountId", _accountId)
-            self.set_secure_cookie("nickname", _nickname)
-            
-            # get activity info again
-            params = {"X-Session-Id": _sessionTicket}
-            url = url_concat("http://"+STP+"/activities/"+_id+"/detail", params)
-            http_client = HTTPClient()
-            response = http_client.fetch(url, method="GET")
-            logging.info("got response %r", response.body)
-            _info = json_decode(response.body)
-        
-            _begin_time = timestamp_datetime(_info["beginTime"]/1000)
-            _info["beginTime"] = _begin_time
-         
-            # get activity descs again
-            params = {"X-Session-Id": _sessionTicket}
-            url = url_concat("http://"+STP+"/activities/"+_id+"/poster", params)
-            http_client = HTTPClient()
-            response = http_client.fetch(url, method="GET")
-            logging.info("got response %r", response.body)
-            _descs = json_decode(response.body)
+        params = {"X-Session-Id": _sessionTicket}
+        url = url_concat("http://"+STP+"/activities/"+_id+"/poster", params)
+        http_client = HTTPClient()
+        response = http_client.fetch(url, method="GET")
+        logging.info("got response %r", response.body)
+        _descs = json_decode(response.body)
         
         self.render('wechat/activity_desc.html', ekey = _id, info = _info, descs = _descs)

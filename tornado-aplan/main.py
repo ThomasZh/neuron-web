@@ -25,6 +25,7 @@ import tornado.web
 from account import LoginHandler, LogoutHandler, RegisterHandler, \
     ForgotPwdHandler, ResetPwdHandler
 from aplan_journey import AplanJourneyInfoHandler
+from aplan_report import AplanApplicantsReportHandler
 from wechat_activity import WechatActivityIndexHandler, WechatActivityDescHandler, \
     WechatActivityApplyHandler, WechatActivitySignupHandler
 from wechat_journey import WechatJourneyIndexHandler, WechatJourneyInfoHandler
@@ -79,6 +80,7 @@ def main():
             (r'/wechat/journey/index', WechatJourneyIndexHandler),
             (r'/wechat/journey/info', WechatJourneyInfoHandler),
             (r'/aplan/journey/info', AplanJourneyInfoHandler),
+            (r'/aplan/activity/applicants', AplanApplicantsReportHandler),
             (".*", PageNotFoundHandler),
         ],
         # __TODO:_GENERATE_YOUR_OWN_RANDOM_VALUE_HERE__
