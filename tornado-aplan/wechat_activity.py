@@ -105,13 +105,23 @@ class WechatActivityApplyHandler(BaseHandler):
                 response = http_client.fetch(url, method="GET")
                 logging.info("got response %r", response.body)
                 _template = json_decode(response.body)
+                
+                if len(_template) == 0:
+                    params = {"X-Session-Id": _sessionTicket}
+                    _json = json_encode(params)
+                    url = url_concat("http://"+STP+"/activities/"+_id+"/signups", params)
+                    http_client = HTTPClient()
+                    response = http_client.fetch(url, method="POST", body=_json)
         
-                self.render('wechat/activity_apply.html', ekey=_id, info = _info, template = _template)
+                    self.render('wechat/activity_apply_success.html')
+                else:
+                    self.render('wechat/activity_apply.html', ekey=_id, info = _info, template = _template)
             else:
                 params = {"X-Session-Id": _sessionTicket}
+                _json = json_encode(params)
                 url = url_concat("http://"+STP+"/activities/"+_id+"/signups", params)
                 http_client = HTTPClient()
-                response = http_client.fetch(url, method="POST")
+                response = http_client.fetch(url, method="POST", body=_json)
         
                 self.render('wechat/activity_apply_success.html')
     def post(self):
