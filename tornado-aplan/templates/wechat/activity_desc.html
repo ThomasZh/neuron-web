@@ -6,7 +6,7 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1,user-scalable=no">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>活动邀请</title>
+<title>活动邀请: {{info['activityName']}}</title>
 
 <link href="{{static_url("activity_desc.css")}}" rel="stylesheet" type="text/css">
 <style type="text/css">
@@ -164,22 +164,9 @@
 
 		<!-- 招募中 -->
 		{% if info["status"] == 30 %}
-			<!-- padding & approved -->
-			{% if info["signupStatus"] != 1 and info["signupStatus"] != 2 %}
-				{% if info["applyInfoRequire"] == True %}
-      				<div class="fixbtn">
-        				<a href="/wechat/activity/apply?ekey={{ekey}}" class="defbtn">立即报名</a>
-      				</div>
-      			{% else %}
-      				<form class="form-signin" id="form-signin" action="/wechat/activity/signup" method="POST">
-      				{% raw xsrf_form_html() %}
-      				<input type="hidden" id="ekey" name="ekey" value="{{ekey}}">
-      				<div class="fixbtn">
-        				<a onclick="SubmitForm();" class="defbtn">立即报名</a>
-      				</div>
-      				</form>
-      			{% end %}
-      		{% end %}
+      		<div class="fixbtn">
+        		<a href="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxaa328c83d3132bfb&redirect_uri=http://planc2c.com/wechat/activity/apply?ekey={{ekey}}&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirect" class="defbtn">立即报名</a>
+      		</div>
     	{% end %}
   	</div>
 

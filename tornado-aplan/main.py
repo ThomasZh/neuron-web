@@ -26,9 +26,8 @@ from account import LoginHandler, LogoutHandler, RegisterHandler, \
     ForgotPwdHandler, ResetPwdHandler
 from aplan_journey import AplanJourneyInfoHandler
 from aplan_report import AplanApplicantsReportHandler
-from wechat_activity import WechatActivityIndexHandler, WechatActivityDescHandler, \
-    WechatActivityApplyHandler, WechatActivitySignupHandler
-from wechat_journey import WechatJourneyIndexHandler, WechatJourneyInfoHandler
+from wechat_activity import WechatActivityIndexHandler, WechatActivityApplyHandler
+from wechat_journey import WechatJourneyInfoHandler
 
 
 define("port", default=8888, help="run on the given port", type=int)
@@ -73,12 +72,10 @@ def main():
             (r'/account/forgot-pwd', ForgotPwdHandler),
             (r'/account/reset-pwd', ResetPwdHandler),
             (r'/wechat/activity/index', WechatActivityIndexHandler),
-            (r'/wechat/activity/desc', WechatActivityDescHandler),
+            (r'/wechat/activity/desc', WechatActivityIndexHandler),
             (r'/wechat/activity/apply', WechatActivityApplyHandler),
-            (r'/wechat/activity/signup', WechatActivitySignupHandler),
             (r'/stp-web-5.0.0/aplan/activity/info', WechatActivityIndexHandler),
-            (r'/wechat/journey/index', WechatJourneyIndexHandler),
-            (r'/wechat/journey/info', WechatJourneyInfoHandler),
+            (r'/wechat/journey/index', WechatJourneyInfoHandler),
             (r'/aplan/journey/info', AplanJourneyInfoHandler),
             (r'/aplan/activity/applicants', AplanApplicantsReportHandler),
             (".*", PageNotFoundHandler),
