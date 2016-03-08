@@ -106,6 +106,11 @@ class ScrollHandler(tornado.web.RequestHandler):
         self.render('scroll/travel.html')
 
 
+class DatatablesHandler(tornado.web.RequestHandler):
+    def get(self):
+        self.render('datatables/example.html')
+
+
 def main():
     parse_command_line()
     app = tornado.web.Application(
@@ -153,6 +158,7 @@ def main():
             (r"/chat/overview", ChatOverviewHandler),
             (r"/chat/chatroom", ChatRoomHandler),
             (r"/chat/msg", MsgHandler),
+            (r"/datatables/demo", DatatablesHandler),
             (".*", PageNotFoundHandler),
             ],
         # __TODO:_GENERATE_YOUR_OWN_RANDOM_VALUE_HERE__
