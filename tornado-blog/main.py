@@ -111,6 +111,25 @@ class DatatablesHandler(tornado.web.RequestHandler):
         self.render('datatables/example.html')
 
 
+class Html5ColorGameHandler(tornado.web.RequestHandler):
+    def get(self):
+        self.render('html5/color-game.html')
+
+class Html5GearAnimationHandler(tornado.web.RequestHandler):
+    def get(self):
+        self.render('html5/gear-animation.html')
+
+
+class Html5FiveStoneHandler(tornado.web.RequestHandler):
+    def get(self):
+        self.render('html5/five-stone.html')
+
+
+class Html5ChineseChessHandler(tornado.web.RequestHandler):
+    def get(self):
+        self.render('html5/chinese-chess.html')
+
+
 def main():
     parse_command_line()
     app = tornado.web.Application(
@@ -159,6 +178,10 @@ def main():
             (r"/chat/chatroom", ChatRoomHandler),
             (r"/chat/msg", MsgHandler),
             (r"/datatables/demo", DatatablesHandler),
+            (r"/html5/color-game", Html5ColorGameHandler),
+            (r"/html5/gear-animation", Html5GearAnimationHandler),
+            (r"/html5/five-stone", Html5FiveStoneHandler),
+            (r"/html5/chinese-chess", Html5ChineseChessHandler),
             (".*", PageNotFoundHandler),
             ],
         # __TODO:_GENERATE_YOUR_OWN_RANDOM_VALUE_HERE__
