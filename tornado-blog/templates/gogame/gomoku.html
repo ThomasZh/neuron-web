@@ -3,7 +3,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Go Game Board</title>
+<title>Gomoku Game Board</title>
 
 <link rel="stylesheet"
 	href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
@@ -23,7 +23,7 @@
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand text-shadow" href="/demo-center"><span class="glyphicon glyphicon-blackboard"> Go Game Board</span></a>
+				<a class="navbar-brand text-shadow" href="/demo-center"><span class="glyphicon glyphicon-blackboard"> Gomoku Game</span></a>
 			</div>
 
 			<!-- Collect the nav links, forms, and other content for toggling -->
@@ -137,12 +137,12 @@
 	<script src="{{static_url("js/clean-blog.min.js")}}"></script>
 	
 	<script type="text/javascript" src="{{static_url("stone/GoGame.js")}}"></script>
-	<script type="text/javascript" src="{{static_url("stone/GoJudgement.js")}}"></script>
+	<script type="text/javascript" src="{{static_url("stone/GomokuJudgement.js")}}"></script>
 	<script type="text/javascript" src="{{static_url("stone/GoBoard.js")}}"></script>
-	<script type="text/javascript" src="{{static_url("stone/GoBoardPlay.js")}}"></script>
+	<script type="text/javascript" src="{{static_url("stone/GomokuBoardPlay.js")}}"></script>
 	<script language=javascript>
 		//初始化棋盘
-		var goBoard = new GoBoardPlay();
+		var goBoard = new GomokuBoardPlay();
 		goBoard.Init('GoBoardPanel');
 		goBoard.SetMode(__Mode_Playing_Black);
 

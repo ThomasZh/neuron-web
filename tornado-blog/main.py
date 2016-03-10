@@ -96,6 +96,11 @@ class GoGameHandler(tornado.web.RequestHandler):
         self.render('gogame/playing.html')
 
 
+class GomokuGameHandler(tornado.web.RequestHandler):
+    def get(self):
+        self.render('gogame/gomoku.html')
+
+
 class SyntaxHighlighterHandler(tornado.web.RequestHandler):
     def get(self):
         self.render('SyntaxHighlighter/example.htm')
@@ -114,6 +119,7 @@ class DatatablesHandler(tornado.web.RequestHandler):
 class Html5ColorGameHandler(tornado.web.RequestHandler):
     def get(self):
         self.render('html5/color-game.html')
+
 
 class Html5GearAnimationHandler(tornado.web.RequestHandler):
     def get(self):
@@ -174,6 +180,7 @@ def main():
             (r"/syntax-high-lighter", SyntaxHighlighterHandler),
             (r"/aplan/scroll", ScrollHandler),
             (r"/go-game", GoGameHandler),
+            (r"/gomoku-game", GomokuGameHandler),
             (r"/chat/overview", ChatOverviewHandler),
             (r"/chat/chatroom", ChatRoomHandler),
             (r"/chat/msg", MsgHandler),

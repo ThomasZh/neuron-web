@@ -28,27 +28,23 @@ from base import BaseHandler, STP, timestamp_datetime
 class AplanJourneyInfoHandler(BaseHandler):
     def get(self):
         _sessionTicket = self.get_argument("X-Session-Id", "")
+        logging.debug("got _sessionTicket %r", _sessionTicket)
         self.set_secure_cookie("ticket", _sessionTicket)
-        
         activityId = self.get_argument("activityId", "")
         journeyId = self.get_argument("journeyId", "")
         logging.debug("got activityId %r", activityId)
         logging.debug("got journeyId %r", journeyId)
         
-        try:
-            params = {"X-Session-Id": _sessionTicket}
-            url = url_concat("http://"+STP+"/activities/"+activityId+"/journeys/"+journeyId, params)
-            http_client = HTTPClient()
-            response = http_client.fetch(url, method="GET")
-            logging.info("got response %r", response.body)
-            _info = json_decode(response.body)
+        params = {"X-Session-Id": _sessionTicket}
+        url = url_concat("http://"+STP+"/activities/"+activityId+"/journeys/"+journeyId, params)
+        http_client = HTTPClient()
+        response = http_client.fetch(url, method="GET")
+        logging.info("got response %r", response.body)
+        _info = json_decode(response.body)
          
-            _begin_time = timestamp_datetime(_info["beginTime"]/1000)
-            _info["beginTime"] = _begin_time
-            _end_time = timestamp_datetime(_info["endTime"]/1000)
-            _info["endTime"] = _end_time
-        except Exception:
-            # sessionTicket expire
-            logging.error("sessionTicket %r expire", _sessionTicket)
+        _begin_time = timestamp_datetime(_info["beginTime"]/1000)
+        _info["beginTime"] = _begin_time
+        _end_time = timestamp_datetime(_info["endTime"]/1000)
+        _info["endTime"] = _end_time
         
         self.render('aplan/journey_info.html', info=_info)
