@@ -136,6 +136,11 @@ class Html5ChineseChessHandler(tornado.web.RequestHandler):
         self.render('html5/chinese-chess.html')
 
 
+class Html5TimelineHandler(tornado.web.RequestHandler):
+    def get(self):
+        self.render('html5/timeline.html')
+
+
 def main():
     parse_command_line()
     app = tornado.web.Application(
@@ -189,6 +194,7 @@ def main():
             (r"/html5/gear-animation", Html5GearAnimationHandler),
             (r"/html5/five-stone", Html5FiveStoneHandler),
             (r"/html5/chinese-chess", Html5ChineseChessHandler),
+            (r"/html5/timeline", Html5TimelineHandler),
             (".*", PageNotFoundHandler),
             ],
         # __TODO:_GENERATE_YOUR_OWN_RANDOM_VALUE_HERE__

@@ -17,6 +17,7 @@
 
 import json
 import logging
+import random
 import time
 
 from tornado.escape import json_encode, json_decode
@@ -641,8 +642,10 @@ class ArticleHandler(tornado.web.RequestHandler):
         response = http_client.fetch(url, method="GET")
         logging.info("got response %r", response.body)
         _paragraphs = json_decode(response.body)
-
-        self.render('blog/article.html', article=_article, paragraphs=_paragraphs)
+        
+        _random = random.randint(1, 9)
+        _bgImgRandom = "/static/images/title-bkg/"+str(_random)+".jpg"
+        self.render('blog/article.html', article=_article, paragraphs=_paragraphs, bgImgRandom = _bgImgRandom)
 
 
 class AjaxArticlesHandler(tornado.web.RequestHandler):
