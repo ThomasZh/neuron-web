@@ -17,6 +17,7 @@
 
 
 import logging
+import sys
 
 from tornado.escape import json_decode, json_encode
 from tornado.httpclient import HTTPClient
@@ -59,37 +60,72 @@ class WechatActivityApplyHandler(BaseHandler):
         _unionid = self.get_argument("unionid", "")
         logging.debug("got unionid %r", _unionid)
         
-        #_sessionTicket = self.get_secure_cookie("ticket")
-        #if not _sessionTicket:
-        accessToken = getAccessToken(APP_ID, APP_SECRET, _code);
-        _token = accessToken["access_token"];
-        logging.debug("got token %r", _token)
-        _openid = accessToken["openid"];
-        logging.debug("got openid %r", _openid)
-        _unionid = accessToken["unionid"];
-        logging.debug("got unionid %r", _unionid)
+        _sessionTicket = self.get_secure_cookie("ticket")
+        if not _sessionTicket:
+            accessToken = getAccessToken(APP_ID, APP_SECRET, _code);
+            _token = accessToken["access_token"];
+            logging.debug("got token %r", _token)
+            _openid = accessToken["openid"];
+            logging.debug("got openid %r", _openid)
+            _unionid = accessToken["unionid"];
+            logging.debug("got unionid %r", _unionid)
         
-        userInfo = getUserInfo(_token, _openid)
-        _nickname = userInfo["nickname"]
-        _nickname = unicode(_nickname).encode('utf-8')
-        logging.debug("got nickname %r", _nickname)
-        _headimgurl = userInfo["headimgurl"]
-        logging.debug("got headimgurl %r", _headimgurl)
+            userInfo = getUserInfo(_token, _openid)
+            _nickname = userInfo["nickname"]
+            _nickname = unicode(_nickname).encode('utf-8')
+            logging.debug("got nickname %r", _nickname)
+            _headimgurl = userInfo["headimgurl"]
+            logging.debug("got headimgurl %r", _headimgurl)
         
-        _user_agent = self.request.headers["User-Agent"]
-        _lang = self.request.headers["Accept-Language"]
-        # 1604=wechat
-        stpSession = ssoLogin(1604, _unionid, _nickname, _headimgurl, _user_agent, _lang)
-        _accountId = stpSession["accountId"]
-        _sessionTicket = stpSession["sessionToken"]
-        self.set_secure_cookie("ticket", _sessionTicket)
+            _user_agent = self.request.headers["User-Agent"]
+            _lang = self.request.headers["Accept-Language"]
+            # 1604=wechat
+            stpSession = ssoLogin(1604, _unionid, _nickname, _headimgurl, _user_agent, _lang)
+            _accountId = stpSession["accountId"]
+            _sessionTicket = stpSession["sessionToken"]
+            self.set_secure_cookie("ticket", _sessionTicket)
         
-        params = {"X-Session-Id": _sessionTicket}
-        url = url_concat("http://"+STP+"/activities/"+_id+"/detail", params)
-        http_client = HTTPClient()
-        response = http_client.fetch(url, method="GET")
-        logging.info("got response %r", response.body)
-        _info = json_decode(response.body)
+        try:
+            params = {"X-Session-Id": _sessionTicket}
+            url = url_concat("http://"+STP+"/activities/"+_id+"/detail", params)
+            http_client = HTTPClient()
+            response = http_client.fetch(url, method="GET")
+            logging.info("got response %r", response.body)
+            _info = json_decode(response.body)
+        except:
+            err_title = str( sys.exc_info()[0] );
+            err_detail = str( sys.exc_info()[1] );
+            logging.error("error: %r info: %r", err_title, err_detail)
+            if err_detail =='HTTP 401: Unauthorized':
+                accessToken = getAccessToken(APP_ID, APP_SECRET, _code);
+                _token = accessToken["access_token"];
+                logging.debug("got token %r", _token)
+                _openid = accessToken["openid"];
+                logging.debug("got openid %r", _openid)
+                _unionid = accessToken["unionid"];
+                logging.debug("got unionid %r", _unionid)
+        
+                userInfo = getUserInfo(_token, _openid)
+                _nickname = userInfo["nickname"]
+                _nickname = unicode(_nickname).encode('utf-8')
+                logging.debug("got nickname %r", _nickname)
+                _headimgurl = userInfo["headimgurl"]
+                logging.debug("got headimgurl %r", _headimgurl)
+        
+                _user_agent = self.request.headers["User-Agent"]
+                _lang = self.request.headers["Accept-Language"]
+                # 1604=wechat
+                stpSession = ssoLogin(1604, _unionid, _nickname, _headimgurl, _user_agent, _lang)
+                _accountId = stpSession["accountId"]
+                _sessionTicket = stpSession["sessionToken"]
+                self.set_secure_cookie("ticket", _sessionTicket)
+                
+                params = {"X-Session-Id": _sessionTicket}
+                url = url_concat("http://"+STP+"/activities/"+_id+"/detail", params)
+                http_client = HTTPClient()
+                response = http_client.fetch(url, method="GET")
+                logging.info("got response %r", response.body)
+                _info = json_decode(response.body)
         
         # padding & approved
         if _info["signupStatus"] == 1 or _info["signupStatus"] == 2:
