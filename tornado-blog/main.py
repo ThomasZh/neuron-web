@@ -29,6 +29,16 @@ import tornado.web
 
 from account import LoginHandler, LogoutHandler, RegisterHandler, \
     ForgotPwdHandler, ResetPwdHandler
+from admin import AdminHandler, Admin2Handler, Admin3Handler, FormHandler, \
+    FormAdvancedHandler, FormValidationHandler, FormWizardsHandler, \
+    FormUploadHandler, FormButtonsHandler, GeneralElementsHandler, \
+    MediaGalleryHandler, TypographyHandler, IconsHandler, GlyphiconsHandler, \
+    WidgetsHandler, InvoiceHandler, InboxHandler, CalenderHandler, TablesHandler, \
+    TablesDynamicHandler, ChartjsHandler, Chartjs2Handler, MorisjsHandler, \
+    EchartsHandler, OtherChartsHandler, AdditionalEcommerceHandler, \
+    AdditionalProjectsHandler, AdditionalProjectDetailHandler, \
+    AdditionalContactsHandler, AdditionalProfileHandler, Extras500Handler, \
+    ExtrasPlainHandler, ExtrasLoginHandler, ExtrasPricingTablesHandler
 from base import timestamp_datetime
 from blog import AddArticleHandler, ArticleHandler, AjaxArticlesHandler, \
     MyArticlesHandler, EditArticleHandler, AjaxMyArticlesHandler, \
@@ -195,6 +205,41 @@ def main():
             (r"/html5/five-stone", Html5FiveStoneHandler),
             (r"/html5/chinese-chess", Html5ChineseChessHandler),
             (r"/html5/timeline", Html5TimelineHandler),
+            (r'/admin/1', AdminHandler),
+            (r'/admin/2', Admin2Handler),
+            (r'/admin/3', Admin3Handler),
+            (r'/admin/form', FormHandler),
+            (r'/admin/form/advanced', FormAdvancedHandler),
+            (r'/admin/form/validation', FormValidationHandler),
+            (r'/admin/form/wizards', FormWizardsHandler),
+            (r'/admin/form/upload', FormUploadHandler),
+            (r'/admin/form/buttons', FormButtonsHandler),
+            (r'/admin/general/elements', GeneralElementsHandler),
+            (r'/admin/media/gallery', MediaGalleryHandler),
+            (r'/admin/typography', TypographyHandler),
+            (r'/admin/icons', IconsHandler),
+            (r'/admin/glyphicons', GlyphiconsHandler),
+            (r'/admin/widgets', WidgetsHandler),
+            (r'/admin/invoice', InvoiceHandler),
+            (r'/admin/inbox', InboxHandler),
+            (r'/admin/calender', CalenderHandler),
+            (r'/admin/tables', TablesHandler),
+            (r'/admin/tables/dynamic', TablesDynamicHandler),
+            (r'/admin/chartjs', ChartjsHandler),
+            (r'/admin/chartjs2', Chartjs2Handler),
+            (r'/admin/morisjs', MorisjsHandler),
+            (r'/admin/echarts', EchartsHandler),
+            (r'/admin/charts/other', OtherChartsHandler),
+            (r'/admin/additional/ecommerce', AdditionalEcommerceHandler),
+            (r'/admin/additional/projects', AdditionalProjectsHandler),
+            (r'/admin/additional/project/detail', AdditionalProjectDetailHandler),
+            (r'/admin/additional/contacts', AdditionalContactsHandler),
+            (r'/admin/additional/profile', AdditionalProfileHandler),
+            (r'/admin/extras/404', PageNotFoundHandler),
+            (r'/admin/extras/500', Extras500Handler),
+            (r'/admin/extras/plain', ExtrasPlainHandler),
+            (r'/admin/extras/login', ExtrasLoginHandler),
+            (r'/admin/extras/pricing_tables', ExtrasPricingTablesHandler),
             (".*", PageNotFoundHandler),
             ],
         # __TODO:_GENERATE_YOUR_OWN_RANDOM_VALUE_HERE__
