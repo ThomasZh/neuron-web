@@ -47,7 +47,8 @@ from blog import AddArticleHandler, ArticleHandler, AjaxArticlesHandler, \
     EditParagraphImgHandler, AddParagraphRawHandler, AddParagraphImgHandler, \
     DelParagraphHandler, AddParagraphAfterHandler, AddParagraphRawAfterHandler, \
     AddParagraphImgAfterHandler
-from chat import ChatOverviewHandler, ChatRoomHandler, MsgHandler
+from chat import ChatOverviewHandler, ChatRoomHandler, MsgHandler, \
+    ChatFriendListHandler
 from greenboard import AddBoardHandler, EditBoardHandler, RemoveBoardHandler, \
     BoardsHandler
 from stickynote import NotesHandler, AddNoteHandler, EditNoteHandler, \
@@ -197,6 +198,7 @@ def main():
             (r"/go-game", GoGameHandler),
             (r"/gomoku-game", GomokuGameHandler),
             (r"/chat/overview", ChatOverviewHandler),
+            (r"/chat/friends", ChatFriendListHandler),
             (r"/chat/chatroom", ChatRoomHandler),
             (r"/chat/msg", MsgHandler),
             (r"/datatables/demo", DatatablesHandler),

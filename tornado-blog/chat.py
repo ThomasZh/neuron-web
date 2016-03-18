@@ -1,20 +1,60 @@
 import json
 import logging
-import uuid
+import md5
 
 from tornado.escape import json_decode, json_encode
 from tornado.httpclient import HTTPClient
 from tornado.httputil import url_concat
 import tornado.web
-import tornado.websocket
 
 from base import BaseHandler, timestamp_datetime
+
+
+class ChatFriendListHandler(BaseHandler):
+    @tornado.web.authenticated  # if no session, redirect to login page
+    def get(self):
+        _ticket = self.get_secure_cookie("ticket")
+        
+        params = {"X-Session-Id": _ticket}
+        url = url_concat("http://182.92.66.109/talent/my-profile", params)
+        http_client = HTTPClient()
+        response = http_client.fetch(url, method="GET")
+        logging.info("got response %r", response.body)
+        _myAccount = json_decode(response.body)
+        _myAccountId = _myAccount["accountId"]
+        print "myAccountId: "+_myAccountId
+        
+        params = {"X-Session-Id": _ticket, "pagenum": 1, "limit": 200}
+        url = url_concat("http://182.92.66.109/talent/friends", params)
+        http_client = HTTPClient()
+        response = http_client.fetch(url, method="GET")
+        logging.info("got response %r", response.body)
+        _friends = json_decode(response.body)
+        
+        #m = hashlib.md5()
+        m = md5.new()
+        for _friend in _friends:
+            _frinedAccountId = _friend["accountId"]
+            print "frinedAccountId: "+_frinedAccountId
+            # chatId = md5(myAccountId + friendAccountId)
+            if cmp(_frinedAccountId, _myAccountId) :
+                m.update(_frinedAccountId + _myAccountId)
+                _chatId = m.hexdigest()
+                print "chatId: "+_chatId
+            else:
+                m.update(_myAccountId + _frinedAccountId)
+                _chatId = m.hexdigest()
+                print "chatId: "+_chatId
+            _friend["chatId"] = _chatId
+            
+        self.render('chat/friends.html', friends=_friends)
 
 
 class ChatOverviewHandler(BaseHandler):
     @tornado.web.authenticated  # if no session, redirect to login page
     def get(self):
         _ticket = self.get_secure_cookie("ticket")
+        
         params = {"X-Session-Id": _ticket, "chatType": 123, "pagenum": 1, "limit": 20}
         url = url_concat("http://182.92.66.109/chats/overviews", params)
         http_client = HTTPClient()
@@ -65,6 +105,7 @@ class MsgHandler(BaseHandler):
         _login_name = self.get_secure_cookie("login_name")
         _chat_id = self.get_argument("chatId")
         _content = self.get_argument("content")
+        print _chat_id+": "+_content
         
         params = {"X-Session-Id": _ticket}
         url = url_concat("http://182.92.66.109/chats/"+ _chat_id +"/msgs", params)
