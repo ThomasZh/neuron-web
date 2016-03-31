@@ -24,7 +24,7 @@ class ChatFriendListHandler(BaseHandler):
         _myAccountId = _myAccount["accountId"]
         print "myAccountId: "+_myAccountId
         
-        params = {"X-Session-Id": _ticket, "pagenum": 1, "limit": 200}
+        params = {"X-Session-Id": _ticket, "pageNum": 1, "pageSize": 2000}
         url = url_concat("http://182.92.66.109/talent/friends", params)
         http_client = HTTPClient()
         response = http_client.fetch(url, method="GET")
